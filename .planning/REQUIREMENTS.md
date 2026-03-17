@@ -32,9 +32,9 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Rate Limiting
 
-- [ ] **RATE-01**: Proactive rate limiter parsing `X-App-Rate-Limit` and `X-Method-Rate-Limit` headers
-- [ ] **RATE-02**: Distinct handling for app-level, method-level, and service-level 429s
-- [ ] **RATE-03**: Configurable strategy — proactive by default, reactive as option
+- [x] **RATE-01**: Proactive rate limiter parsing `X-App-Rate-Limit` and `X-Method-Rate-Limit` headers
+- [x] **RATE-02**: Distinct handling for app-level, method-level, and service-level 429s
+- [x] **RATE-03**: Configurable strategy — proactive by default, reactive as option
 
 ### Caching
 
@@ -113,9 +113,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | HTTP-02 | Phase 2 | Pending |
 | HTTP-03 | Phase 2 | Complete |
 | HTTP-04 | Phase 2 | Complete |
-| RATE-01 | Phase 2 | Pending |
-| RATE-02 | Phase 2 | Pending |
-| RATE-03 | Phase 2 | Pending |
+| RATE-01 | Phase 2 | Complete |
+| RATE-02 | Phase 2 | Complete |
+| RATE-03 | Phase 2 | Complete |
 | CACHE-01 | Phase 2 | Complete |
 | CACHE-02 | Phase 2 | Complete |
 | CACHE-03 | Phase 2 | Complete |
