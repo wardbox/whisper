@@ -1,5 +1,4 @@
-import { existsSync, mkdirSync, readdirSync, writeFileSync } from 'node:fs';
-import { readFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import * as path from 'node:path';
 import type { FieldDef, SchemaFile } from './types.js';
 
@@ -162,7 +161,8 @@ export function mapToTsType(field: FieldDef, fieldName?: string): string {
         const entries = Object.keys(field.fields)
           .sort()
           .map((key) => {
-            const f = field.fields![key];
+            const f = field.fields?.[key];
+            if (!f) return `${key}: unknown`;
             return `${key}: ${mapToTsType(f, key)}`;
           });
         return `{ ${entries.join('; ')} }`;
@@ -284,9 +284,7 @@ export function generateInterfaces(
       for (const rawName of Object.keys(schema.types)) {
         const typeName = resolveTypeName(rawName, game);
         if (hasOverride(overridesDir, game, typeName)) {
-          lines.push(
-            `export type { ${typeName} } from '../overrides/${game}/${typeName}.js';`,
-          );
+          lines.push(`export type { ${typeName} } from '../overrides/${game}/${typeName}.js';`);
         }
       }
     }
