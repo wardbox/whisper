@@ -213,6 +213,30 @@ describe('createHttpClient', () => {
     }
   });
 
+  it('sets retryAfter to undefined for malformed retry-after header', async () => {
+    mockFetch(
+      429,
+      { status: { message: 'Rate limit exceeded' } },
+      {
+        'retry-after': 'abc',
+        'x-rate-limit-type': 'method',
+      },
+    );
+    const provider = normalizeKeyProvider('RGAPI-test');
+    const http = createHttpClient(provider);
+
+    const { RateLimitError } = await import('./errors.js');
+    try {
+      await http.request('na1', '/test', 'test.method');
+      expect.unreachable('Should have thrown');
+    } catch (err) {
+      expect(err).toBeInstanceOf(RateLimitError);
+      const rateLimitErr = err as InstanceType<typeof RateLimitError>;
+      expect(rateLimitErr.retryAfter).toBeUndefined();
+      expect(rateLimitErr.limitType).toBe('method');
+    }
+  });
+
   it('throws ServiceUnavailableError on 503', async () => {
     mockFetch(503, { status: { message: 'Service unavailable' } });
     const provider = normalizeKeyProvider('RGAPI-test');

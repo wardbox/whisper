@@ -171,7 +171,8 @@ function mapError(
   switch (status) {
     case 429: {
       const retryAfterStr = headers['retry-after'];
-      const retryAfter = retryAfterStr ? Number(retryAfterStr) : undefined;
+      const parsed = retryAfterStr ? Number(retryAfterStr) : undefined;
+      const retryAfter = parsed !== undefined && Number.isFinite(parsed) ? parsed : undefined;
       const limitType = classify429(headers);
       return new RateLimitError({ ...opts, retryAfter, limitType });
     }
