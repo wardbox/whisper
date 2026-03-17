@@ -54,7 +54,7 @@ describe('createClient', () => {
     expect(fetchMock).toHaveBeenCalledOnce();
     const [url, init] = fetchMock.mock.calls[0]!;
     expect(url).toBe('https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/test');
-    expect(init.headers['X-Riot-Token']).toBe('RGAPI-test');
+    expect(init.headers.get('X-Riot-Token')).toBe('RGAPI-test');
   });
 
   it('cache:false disables caching (same request twice = two fetch calls)', async () => {
@@ -208,7 +208,7 @@ describe('createClient', () => {
     await client.request('na1', '/test', 'test.method');
 
     const [, init] = fetchMock.mock.calls[0]!;
-    expect(init.headers['X-Riot-Token']).toBe('RGAPI-from-vault');
+    expect(init.headers.get('X-Riot-Token')).toBe('RGAPI-from-vault');
   });
 
   it('full pipeline: middleware -> cache -> rate limiter -> fetch', async () => {

@@ -159,7 +159,7 @@ describe('createHttpClient', () => {
     expect(fetchMock).toHaveBeenCalledOnce();
     const [url, init] = fetchMock.mock.calls[0]!;
     expect(url).toBe('https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/abc');
-    expect(init.headers['X-Riot-Token']).toBe('RGAPI-test-key');
+    expect(init.headers.get('X-Riot-Token')).toBe('RGAPI-test-key');
   });
 
   it('returns ApiResponse with parsed JSON data, status, and headers', async () => {
@@ -339,7 +339,7 @@ describe('createHttpClient', () => {
     const [, init] = fetchMock.mock.calls[0]!;
     expect(init.method).toBe('POST');
     expect(init.body).toBe('{"test":true}');
-    expect(init.headers['Content-Type']).toBe('application/json');
+    expect(init.headers.get('Content-Type')).toBe('application/json');
   });
 
   it('provider X-Riot-Token cannot be overridden by caller headers', async () => {
@@ -352,6 +352,52 @@ describe('createHttpClient', () => {
     });
 
     const [, init] = fetchMock.mock.calls[0]!;
-    expect(init.headers['X-Riot-Token']).toBe('RGAPI-real-key');
+    expect(init.headers.get('X-Riot-Token')).toBe('RGAPI-real-key');
+  });
+
+  it('lowercase x-riot-token in caller headers is overwritten by provider', async () => {
+    const fetchMock = mockFetch(200, { ok: true });
+    const provider = normalizeKeyProvider('RGAPI-real-key');
+    const http = createHttpClient(provider);
+
+    await http.request('na1', '/test', 'test.method', {
+      headers: { 'x-riot-token': 'RGAPI-fake-key' },
+    });
+
+    const [, init] = fetchMock.mock.calls[0]!;
+    expect(init.headers.get('X-Riot-Token')).toBe('RGAPI-real-key');
+  });
+
+  it('returns undefined data for 204 No Content', async () => {
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: true,
+      status: 204,
+      statusText: 'No Content',
+      headers: new Headers({ 'x-app-rate-limit': '100:1' }),
+    });
+    globalThis.fetch = fetchMock;
+    const provider = normalizeKeyProvider('RGAPI-test');
+    const http = createHttpClient(provider);
+
+    const response = await http.request('na1', '/test', 'test.method');
+    expect(response.data).toBeUndefined();
+    expect(response.status).toBe(204);
+    expect(response.headers['x-app-rate-limit']).toBe('100:1');
+  });
+
+  it('returns undefined data for 205 Reset Content', async () => {
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: true,
+      status: 205,
+      statusText: 'Reset Content',
+      headers: new Headers(),
+    });
+    globalThis.fetch = fetchMock;
+    const provider = normalizeKeyProvider('RGAPI-test');
+    const http = createHttpClient(provider);
+
+    const response = await http.request('na1', '/test', 'test.method');
+    expect(response.data).toBeUndefined();
+    expect(response.status).toBe(205);
   });
 });
