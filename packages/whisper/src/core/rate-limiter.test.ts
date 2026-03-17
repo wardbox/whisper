@@ -1,12 +1,12 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { RateLimitError } from './errors.js';
 import {
-  parseRateLimitHeader,
-  syncBuckets,
   classify429,
   getRetryDelay,
+  parseRateLimitHeader,
   RateLimiter,
+  syncBuckets,
 } from './rate-limiter.js';
-import { RateLimitError } from './errors.js';
 
 describe('parseRateLimitHeader', () => {
   it('parses single window', () => {
@@ -61,20 +61,12 @@ describe('classify429', () => {
 
 describe('getRetryDelay', () => {
   it('uses Retry-After for app 429', () => {
-    const delay = getRetryDelay(
-      { 'retry-after': '5' },
-      'application',
-      0,
-    );
+    const delay = getRetryDelay({ 'retry-after': '5' }, 'application', 0);
     expect(delay).toBe(5000);
   });
 
   it('uses Retry-After for method 429', () => {
-    const delay = getRetryDelay(
-      { 'retry-after': '3' },
-      'method',
-      0,
-    );
+    const delay = getRetryDelay({ 'retry-after': '3' }, 'method', 0);
     expect(delay).toBe(3000);
   });
 
@@ -232,9 +224,7 @@ describe('RateLimiter', () => {
         'x-method-rate-limit-count': '1:1',
       });
 
-      await expect(
-        limiter.acquire('na1', 'summoner-v4'),
-      ).rejects.toThrow(RateLimitError);
+      await expect(limiter.acquire('na1', 'summoner-v4')).rejects.toThrow(RateLimitError);
     });
 
     it('maxQueueSize throws when queue is full', async () => {
@@ -252,9 +242,7 @@ describe('RateLimiter', () => {
       const p2 = limiter.acquire('na1', 'summoner-v4');
 
       // Third should throw -- queue full
-      await expect(
-        limiter.acquire('na1', 'summoner-v4'),
-      ).rejects.toThrow(RateLimitError);
+      await expect(limiter.acquire('na1', 'summoner-v4')).rejects.toThrow(RateLimitError);
 
       // Clean up -- advance timers so queued requests resolve
       await vi.advanceTimersByTimeAsync(1100);
@@ -314,10 +302,15 @@ describe('RateLimiter', () => {
   describe('handle429', () => {
     it('applies Retry-After delay for app 429', async () => {
       const limiter = new RateLimiter();
-      const promise = limiter.handle429('na1', 'summoner-v4', {
-        'x-rate-limit-type': 'application',
-        'retry-after': '2',
-      }, 0);
+      const promise = limiter.handle429(
+        'na1',
+        'summoner-v4',
+        {
+          'x-rate-limit-type': 'application',
+          'retry-after': '2',
+        },
+        0,
+      );
 
       await vi.advanceTimersByTimeAsync(2000);
       await promise;

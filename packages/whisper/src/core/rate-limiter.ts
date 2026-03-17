@@ -53,10 +53,7 @@ export function parseRateLimitHeader(
  * @param countHeader - The rate limit count header (e.g., '5:1,50:10')
  * @returns Array of synced token buckets
  */
-export function syncBuckets(
-  limitHeader: string,
-  countHeader: string,
-): RateLimitBucket[] {
+export function syncBuckets(limitHeader: string, countHeader: string): RateLimitBucket[] {
   const limits = parseRateLimitHeader(limitHeader);
   const counts = parseRateLimitHeader(countHeader);
 
@@ -81,9 +78,7 @@ export function syncBuckets(
  * @param headers - Response headers (lowercase keys)
  * @returns The rate limit type
  */
-export function classify429(
-  headers: Record<string, string>,
-): 'application' | 'method' | 'service' {
+export function classify429(headers: Record<string, string>): 'application' | 'method' | 'service' {
   const type = headers['x-rate-limit-type'];
   if (type === 'application') return 'application';
   if (type === 'method') return 'method';
@@ -175,9 +170,7 @@ export class RateLimiter {
     maxQueueSize: number;
     requestTimeout: number;
     onRateLimit?: ((scope: string, retryAfter: number) => void) | undefined;
-    onRetry?:
-      | ((request: RequestContext, attempt: number) => void)
-      | undefined;
+    onRetry?: ((request: RequestContext, attempt: number) => void) | undefined;
   };
 
   constructor(config?: RateLimiterConfig | undefined) {
@@ -318,11 +311,7 @@ export class RateLimiter {
    * @param methodId - The API method identifier (e.g., 'summoner-v4')
    * @param headers - Response headers (lowercase keys)
    */
-  update(
-    route: string,
-    methodId: string,
-    headers: Record<string, string>,
-  ): void {
+  update(route: string, methodId: string, headers: Record<string, string>): void {
     const appLimitHeader = headers['x-app-rate-limit'];
     const appCountHeader = headers['x-app-rate-limit-count'];
     const methodLimitHeader = headers['x-method-rate-limit'];

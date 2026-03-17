@@ -1,10 +1,10 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import {
-  MemoryCache,
-  resolveTtl,
   buildCacheKey,
   type CacheAdapter,
   type CacheTtlConfig,
+  MemoryCache,
+  resolveTtl,
 } from './cache.js';
 
 describe('MemoryCache', () => {
@@ -141,34 +141,22 @@ describe('resolveTtl', () => {
   };
 
   it('matches summoner pattern in path', () => {
-    const ttl = resolveTtl(
-      '/lol/summoner/v4/summoners/by-puuid/abc123',
-      config,
-    );
+    const ttl = resolveTtl('/lol/summoner/v4/summoners/by-puuid/abc123', config);
     expect(ttl).toBe(3600);
   });
 
   it('matches match pattern in path', () => {
-    const ttl = resolveTtl(
-      '/lol/match/v5/matches/NA1_12345',
-      config,
-    );
+    const ttl = resolveTtl('/lol/match/v5/matches/NA1_12345', config);
     expect(ttl).toBe(60);
   });
 
   it('matches spectator pattern returning TTL 0', () => {
-    const ttl = resolveTtl(
-      '/lol/spectator/v5/active-games/by-puuid/abc',
-      config,
-    );
+    const ttl = resolveTtl('/lol/spectator/v5/active-games/by-puuid/abc', config);
     expect(ttl).toBe(0);
   });
 
   it('returns default TTL when no pattern matches', () => {
-    const ttl = resolveTtl(
-      '/lol/some-unknown/v1/endpoint',
-      config,
-    );
+    const ttl = resolveTtl('/lol/some-unknown/v1/endpoint', config);
     expect(ttl).toBe(300);
   });
 

@@ -1,4 +1,3 @@
-import type { ApiKeyProvider, ApiResponse } from './types.js';
 import {
   ForbiddenError,
   NotFoundError,
@@ -7,6 +6,7 @@ import {
   ServiceUnavailableError,
 } from './errors.js';
 import { classify429 } from './rate-limiter.js';
+import type { ApiKeyProvider, ApiResponse } from './types.js';
 
 /**
  * Build a full Riot API URL from a routing value and path.
@@ -228,14 +228,7 @@ export function createHttpClient(keyProvider: KeyProvider): HttpClient {
     }
     const riotMessage = extractRiotMessage(body);
 
-    throw mapError(
-      response.status,
-      response.statusText,
-      url,
-      method,
-      responseHeaders,
-      riotMessage,
-    );
+    throw mapError(response.status, response.statusText, url, method, responseHeaders, riotMessage);
   }
 
   return {

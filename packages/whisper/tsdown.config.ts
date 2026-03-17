@@ -2,6 +2,8 @@ import { defineConfig } from 'tsdown';
 
 export default defineConfig({
   entry: {
+    index: 'src/index.ts',
+    'core/index': 'src/core/index.ts',
     'lol/index': 'src/lol/index.ts',
     'tft/index': 'src/tft/index.ts',
     'val/index': 'src/val/index.ts',

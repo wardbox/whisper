@@ -37,9 +37,27 @@ describe('executePipeline', () => {
     const order: number[] = [];
 
     const middleware: Middleware[] = [
-      { name: 'first', onRequest: (ctx) => { order.push(0); return ctx; } },
-      { name: 'second', onRequest: (ctx) => { order.push(1); return ctx; } },
-      { name: 'third', onRequest: (ctx) => { order.push(2); return ctx; } },
+      {
+        name: 'first',
+        onRequest: (ctx) => {
+          order.push(0);
+          return ctx;
+        },
+      },
+      {
+        name: 'second',
+        onRequest: (ctx) => {
+          order.push(1);
+          return ctx;
+        },
+      },
+      {
+        name: 'third',
+        onRequest: (ctx) => {
+          order.push(2);
+          return ctx;
+        },
+      },
     ];
 
     await executePipeline(middleware, makeContext(), makeExecutor());
@@ -50,9 +68,27 @@ describe('executePipeline', () => {
     const order: number[] = [];
 
     const middleware: Middleware[] = [
-      { name: 'first', onResponse: (res) => { order.push(0); return res; } },
-      { name: 'second', onResponse: (res) => { order.push(1); return res; } },
-      { name: 'third', onResponse: (res) => { order.push(2); return res; } },
+      {
+        name: 'first',
+        onResponse: (res) => {
+          order.push(0);
+          return res;
+        },
+      },
+      {
+        name: 'second',
+        onResponse: (res) => {
+          order.push(1);
+          return res;
+        },
+      },
+      {
+        name: 'third',
+        onResponse: (res) => {
+          order.push(2);
+          return res;
+        },
+      },
     ];
 
     await executePipeline(middleware, makeContext(), makeExecutor());
@@ -108,7 +144,10 @@ describe('executePipeline', () => {
     const middleware: Middleware[] = [
       {
         name: 'request-only',
-        onRequest: (ctx) => { order.push('request'); return ctx; },
+        onRequest: (ctx) => {
+          order.push('request');
+          return ctx;
+        },
       },
     ];
 
@@ -123,7 +162,10 @@ describe('executePipeline', () => {
     const middleware: Middleware[] = [
       {
         name: 'response-only',
-        onResponse: (res) => { order.push('response'); return res; },
+        onResponse: (res) => {
+          order.push('response');
+          return res;
+        },
       },
     ];
 
@@ -146,7 +188,10 @@ describe('executePipeline', () => {
       },
       {
         name: 'sync-second',
-        onRequest: (ctx) => { order.push(1); return ctx; },
+        onRequest: (ctx) => {
+          order.push(1);
+          return ctx;
+        },
       },
     ];
 
@@ -160,7 +205,10 @@ describe('executePipeline', () => {
     const middleware: Middleware[] = [
       {
         name: 'sync-first',
-        onResponse: (res) => { order.push(0); return res; },
+        onResponse: (res) => {
+          order.push(0);
+          return res;
+        },
       },
       {
         name: 'async-second',
@@ -183,18 +231,36 @@ describe('executePipeline', () => {
     const middleware: Middleware[] = [
       {
         name: 'A',
-        onRequest: (ctx) => { order.push('A-req'); return ctx; },
-        onResponse: (res) => { order.push('A-res'); return res; },
+        onRequest: (ctx) => {
+          order.push('A-req');
+          return ctx;
+        },
+        onResponse: (res) => {
+          order.push('A-res');
+          return res;
+        },
       },
       {
         name: 'B',
-        onRequest: (ctx) => { order.push('B-req'); return ctx; },
-        onResponse: (res) => { order.push('B-res'); return res; },
+        onRequest: (ctx) => {
+          order.push('B-req');
+          return ctx;
+        },
+        onResponse: (res) => {
+          order.push('B-res');
+          return res;
+        },
       },
       {
         name: 'C',
-        onRequest: (ctx) => { order.push('C-req'); return ctx; },
-        onResponse: (res) => { order.push('C-res'); return res; },
+        onRequest: (ctx) => {
+          order.push('C-req');
+          return ctx;
+        },
+        onResponse: (res) => {
+          order.push('C-res');
+          return res;
+        },
       },
     ];
 
