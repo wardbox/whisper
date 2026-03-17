@@ -20,5 +20,5 @@ jobs:
       - run: pnpm build
       - run: pnpm test
       - run: pnpm check
-      - run: cd packages/whisper && npx attw --pack
+      - run: cd packages/whisper && npx attw --pack --profile node16
       - run: cd packages/whisper && npx publint .
