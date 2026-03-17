@@ -209,7 +209,7 @@ export function createHttpClient(keyProvider: KeyProvider): HttpClient {
     const response = await fetch(url, {
       method,
       headers: requestHeaders,
-      body: options?.body,
+      body: options?.body ?? null,
     });
 
     const responseHeaders = headersToRecord(response.headers);
