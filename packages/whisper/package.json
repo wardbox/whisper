@@ -1,0 +1,83 @@
+{
+  "name": "@wardbox/whisper",
+  "version": "0.1.0",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    "./lol": {
+      "import": {
+        "types": "./dist/lol/index.d.ts",
+        "default": "./dist/lol/index.js"
+      },
+      "require": {
+        "types": "./dist/lol/index.d.cts",
+        "default": "./dist/lol/index.cjs"
+      }
+    },
+    "./tft": {
+      "import": {
+        "types": "./dist/tft/index.d.ts",
+        "default": "./dist/tft/index.js"
+      },
+      "require": {
+        "types": "./dist/tft/index.d.cts",
+        "default": "./dist/tft/index.cjs"
+      }
+    },
+    "./val": {
+      "import": {
+        "types": "./dist/val/index.d.ts",
+        "default": "./dist/val/index.js"
+      },
+      "require": {
+        "types": "./dist/val/index.d.cts",
+        "default": "./dist/val/index.cjs"
+      }
+    },
+    "./lor": {
+      "import": {
+        "types": "./dist/lor/index.d.ts",
+        "default": "./dist/lor/index.js"
+      },
+      "require": {
+        "types": "./dist/lor/index.d.cts",
+        "default": "./dist/lor/index.cjs"
+      }
+    },
+    "./riftbound": {
+      "import": {
+        "types": "./dist/riftbound/index.d.ts",
+        "default": "./dist/riftbound/index.js"
+      },
+      "require": {
+        "types": "./dist/riftbound/index.d.cts",
+        "default": "./dist/riftbound/index.cjs"
+      }
+    },
+    "./riot": {
+      "import": {
+        "types": "./dist/riot/index.d.ts",
+        "default": "./dist/riot/index.js"
+      },
+      "require": {
+        "types": "./dist/riot/index.d.cts",
+        "default": "./dist/riot/index.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsdown",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "tsdown": "0.21.4",
+    "typescript": "~5.8.0",
+    "vitest": "4.1.0",
+    "@vitest/coverage-v8": "4.1.0",
+    "@arethetypeswrong/cli": "0.18.2",
+    "publint": "0.3.18"
+  }
+}

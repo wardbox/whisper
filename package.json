@@ -1,0 +1,16 @@
+{
+  "name": "whisper-root",
+  "private": true,
+  "scripts": {
+    "build": "pnpm --filter @wardbox/whisper build",
+    "test": "pnpm --filter @wardbox/whisper test",
+    "check": "biome check .",
+    "check:fix": "biome check --fix ."
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.7"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
