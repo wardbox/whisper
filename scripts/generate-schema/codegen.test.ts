@@ -100,7 +100,7 @@ describe('mapToTsType', () => {
         fields: { id: { type: 'string' } },
       },
     };
-    expect(mapToTsType(field)).toBe('{ id: string }[]');
+    expect(mapToTsType(field)).toBe('({ id: string })[]');
   });
 
   it('maps object with fields', () => {
