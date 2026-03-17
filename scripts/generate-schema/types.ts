@@ -83,8 +83,6 @@ export interface DiscoveredData {
   gameName: string;
   /** Riot tag line from account lookup */
   tagLine: string;
-  /** Summoner ID from summoner lookup */
-  summonerId: string;
   /** LoL match ID from match history */
   matchId: string;
   /** TFT player PUUID (from TFT challenger) */
