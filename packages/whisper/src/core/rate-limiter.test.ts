@@ -271,12 +271,17 @@ describe('RateLimiter', () => {
         'x-method-rate-limit-count': '1:10',
       });
 
-      const promise = limiter.acquire('na1', 'summoner-v4');
+      // Attach the rejection handler BEFORE advancing timers
+      let caughtError: Error | undefined;
+      const promise = limiter.acquire('na1', 'summoner-v4').catch((err: Error) => {
+        caughtError = err;
+      });
 
       // Advance past the timeout
       await vi.advanceTimersByTimeAsync(600);
+      await promise;
 
-      await expect(promise).rejects.toThrow(RateLimitError);
+      expect(caughtError).toBeInstanceOf(RateLimitError);
     });
   });
 
