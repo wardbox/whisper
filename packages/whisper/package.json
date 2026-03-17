@@ -5,37 +5,69 @@
   "sideEffects": false,
   "exports": {
     "./lol": {
-      "types": "./dist/lol/index.d.ts",
-      "import": "./dist/lol/index.js",
-      "require": "./dist/lol/index.cjs"
+      "import": {
+        "types": "./dist/lol/index.d.ts",
+        "default": "./dist/lol/index.js"
+      },
+      "require": {
+        "types": "./dist/lol/index.d.cts",
+        "default": "./dist/lol/index.cjs"
+      }
     },
     "./tft": {
-      "types": "./dist/tft/index.d.ts",
-      "import": "./dist/tft/index.js",
-      "require": "./dist/tft/index.cjs"
+      "import": {
+        "types": "./dist/tft/index.d.ts",
+        "default": "./dist/tft/index.js"
+      },
+      "require": {
+        "types": "./dist/tft/index.d.cts",
+        "default": "./dist/tft/index.cjs"
+      }
     },
     "./val": {
-      "types": "./dist/val/index.d.ts",
-      "import": "./dist/val/index.js",
-      "require": "./dist/val/index.cjs"
+      "import": {
+        "types": "./dist/val/index.d.ts",
+        "default": "./dist/val/index.js"
+      },
+      "require": {
+        "types": "./dist/val/index.d.cts",
+        "default": "./dist/val/index.cjs"
+      }
     },
     "./lor": {
-      "types": "./dist/lor/index.d.ts",
-      "import": "./dist/lor/index.js",
-      "require": "./dist/lor/index.cjs"
+      "import": {
+        "types": "./dist/lor/index.d.ts",
+        "default": "./dist/lor/index.js"
+      },
+      "require": {
+        "types": "./dist/lor/index.d.cts",
+        "default": "./dist/lor/index.cjs"
+      }
     },
     "./riftbound": {
-      "types": "./dist/riftbound/index.d.ts",
-      "import": "./dist/riftbound/index.js",
-      "require": "./dist/riftbound/index.cjs"
+      "import": {
+        "types": "./dist/riftbound/index.d.ts",
+        "default": "./dist/riftbound/index.js"
+      },
+      "require": {
+        "types": "./dist/riftbound/index.d.cts",
+        "default": "./dist/riftbound/index.cjs"
+      }
     },
     "./riot": {
-      "types": "./dist/riot/index.d.ts",
-      "import": "./dist/riot/index.js",
-      "require": "./dist/riot/index.cjs"
+      "import": {
+        "types": "./dist/riot/index.d.ts",
+        "default": "./dist/riot/index.js"
+      },
+      "require": {
+        "types": "./dist/riot/index.d.cts",
+        "default": "./dist/riot/index.cjs"
+      }
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsdown",
     "test": "vitest run"
