@@ -99,48 +99,48 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| FOUND-01 | — | Pending |
-| FOUND-02 | — | Pending |
-| FOUND-03 | — | Pending |
-| FOUND-04 | — | Pending |
-| FOUND-05 | — | Pending |
-| FOUND-06 | — | Pending |
-| TYPE-01 | — | Pending |
-| TYPE-02 | — | Pending |
-| TYPE-03 | — | Pending |
-| TYPE-04 | — | Pending |
-| HTTP-01 | — | Pending |
-| HTTP-02 | — | Pending |
-| HTTP-03 | — | Pending |
-| HTTP-04 | — | Pending |
-| RATE-01 | — | Pending |
-| RATE-02 | — | Pending |
-| RATE-03 | — | Pending |
-| CACHE-01 | — | Pending |
-| CACHE-02 | — | Pending |
-| CACHE-03 | — | Pending |
-| CACHE-04 | — | Pending |
-| ENDP-01 | — | Pending |
-| ENDP-02 | — | Pending |
-| ENDP-03 | — | Pending |
-| ENDP-04 | — | Pending |
-| ENDP-05 | — | Pending |
-| ENDP-06 | — | Pending |
-| ENDP-07 | — | Pending |
-| ENDP-08 | — | Pending |
-| SCHEMA-01 | — | Pending |
-| SCHEMA-02 | — | Pending |
-| SCHEMA-03 | — | Pending |
-| DOC-01 | — | Pending |
-| DOC-02 | — | Pending |
-| DOC-03 | — | Pending |
-| DOC-04 | — | Pending |
+| FOUND-01 | Phase 1 | Pending |
+| FOUND-02 | Phase 1 | Pending |
+| FOUND-03 | Phase 1 | Pending |
+| FOUND-04 | Phase 1 | Pending |
+| FOUND-05 | Phase 1 | Pending |
+| FOUND-06 | Phase 1 | Pending |
+| TYPE-01 | Phase 1 | Pending |
+| TYPE-02 | Phase 1 | Pending |
+| TYPE-03 | Phase 1 | Pending |
+| TYPE-04 | Phase 1 | Pending |
+| HTTP-01 | Phase 2 | Pending |
+| HTTP-02 | Phase 2 | Pending |
+| HTTP-03 | Phase 2 | Pending |
+| HTTP-04 | Phase 2 | Pending |
+| RATE-01 | Phase 2 | Pending |
+| RATE-02 | Phase 2 | Pending |
+| RATE-03 | Phase 2 | Pending |
+| CACHE-01 | Phase 2 | Pending |
+| CACHE-02 | Phase 2 | Pending |
+| CACHE-03 | Phase 2 | Pending |
+| CACHE-04 | Phase 2 | Pending |
+| SCHEMA-01 | Phase 3 | Pending |
+| SCHEMA-02 | Phase 3 | Pending |
+| SCHEMA-03 | Phase 3 | Pending |
+| ENDP-01 | Phase 4 | Pending |
+| ENDP-06 | Phase 4 | Pending |
+| ENDP-07 | Phase 4 | Pending |
+| ENDP-08 | Phase 4 | Pending |
+| DOC-01 | Phase 4 | Pending |
+| DOC-02 | Phase 4 | Pending |
+| ENDP-02 | Phase 5 | Pending |
+| ENDP-03 | Phase 5 | Pending |
+| ENDP-04 | Phase 5 | Pending |
+| ENDP-05 | Phase 5 | Pending |
+| DOC-03 | Phase 6 | Pending |
+| DOC-04 | Phase 6 | Pending |
 
 **Coverage:**
 - v1 requirements: 36 total
-- Mapped to phases: 0
-- Unmapped: 36 ⚠️
+- Mapped to phases: 36
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-17*
-*Last updated: 2026-03-17 after initial definition*
+*Last updated: 2026-03-17 after roadmap creation*
