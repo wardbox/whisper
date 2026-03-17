@@ -1,0 +1,57 @@
+{
+  "$schema": "whisper-schema-v1",
+  "capturedAt": "2026-03-17T19:07:36.286Z",
+  "group": "tft.tft-league-v1",
+  "source": "live",
+  "types": {
+    "LeagueListDTO": {
+      "entries": {
+        "items": {
+          "fields": {
+            "freshBlood": {
+              "type": "boolean"
+            },
+            "hotStreak": {
+              "type": "boolean"
+            },
+            "inactive": {
+              "type": "boolean"
+            },
+            "leaguePoints": {
+              "type": "integer"
+            },
+            "losses": {
+              "type": "integer"
+            },
+            "puuid": {
+              "type": "string"
+            },
+            "rank": {
+              "type": "string"
+            },
+            "veteran": {
+              "type": "boolean"
+            },
+            "wins": {
+              "type": "integer"
+            }
+          },
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "leagueId": {
+        "type": "string"
+      },
+      "name": {
+        "type": "string"
+      },
+      "queue": {
+        "type": "string"
+      },
+      "tier": {
+        "type": "string"
+      }
+    }
+  }
+}

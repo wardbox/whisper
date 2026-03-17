@@ -1,0 +1,42 @@
+{
+  "$schema": "whisper-schema-v1",
+  "capturedAt": "2026-03-17T19:07:35.009Z",
+  "group": "lol.clash-v1",
+  "source": "live",
+  "types": {
+    "TournamentDTO": {
+      "id": {
+        "type": "integer"
+      },
+      "nameKey": {
+        "type": "string"
+      },
+      "nameKeySecondary": {
+        "type": "string"
+      },
+      "schedule": {
+        "items": {
+          "fields": {
+            "cancelled": {
+              "type": "boolean"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "registrationTime": {
+              "type": "integer"
+            },
+            "startTime": {
+              "type": "integer"
+            }
+          },
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "themeId": {
+        "type": "integer"
+      }
+    }
+  }
+}
