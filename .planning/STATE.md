@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: Phase 1 context gathered
-last_updated: "2026-03-17T13:40:21.753Z"
+stopped_at: Completed 01-foundation-01-01-PLAN.md
+last_updated: "2026-03-17T14:04:33.167Z"
 last_activity: 2026-03-17 — Roadmap created, requirements mapped to 7 phases
 progress:
   total_phases: 7
   completed_phases: 0
-  total_plans: 0
-  completed_plans: 0
+  total_plans: 2
+  completed_plans: 1
   percent: 0
 ---
 
@@ -50,6 +50,7 @@ Progress: [░░░░░░░░░░] 0%
 - Trend: —
 
 *Updated after each plan completion*
+| Phase 01-foundation P01 | 4 | 2 tasks | 20 files |
 
 ## Accumulated Context
 
@@ -62,6 +63,9 @@ Recent decisions affecting current work:
 - [Init]: Publish as `@wardbox/whisper` — `whisper` on npm is taken by unrelated 2013 package
 - [Init]: Phase 2 (Core Infrastructure) is the highest-risk phase — rate limiter correctness is load-bearing for all 31 endpoint modules
 - [Init]: Schema generation (Phase 3) must precede endpoint modules — no hand-written types
+- [Phase 01-foundation]: Biome 2.x changed files.ignore to !pattern syntax in files.includes — updated biome.json accordingly
+- [Phase 01-foundation]: exports field uses nested import/require conditions with .d.cts for CJS consumers to pass attw node16 check
+- [Phase 01-foundation]: node10 attw failures are expected and non-blocking — no main field is intentional (no root barrel locked decision)
 
 ### Pending Todos
 
@@ -76,6 +80,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-17T13:40:21.751Z
-Stopped at: Phase 1 context gathered
-Resume file: .planning/phases/01-foundation/01-CONTEXT.md
+Last session: 2026-03-17T14:04:33.165Z
+Stopped at: Completed 01-foundation-01-01-PLAN.md
+Resume file: None

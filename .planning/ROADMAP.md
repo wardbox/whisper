@@ -32,7 +32,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. `pnpm check` reports no lint or format violations
   4. Assigning a platform route value to a regional route parameter (or vice versa) produces a TypeScript compile error
   5. The library package has zero entries in its `dependencies` field (all runtime deps forbidden)
-**Plans:** 2 plans
+**Plans:** 1/2 plans executed
 Plans:
 - [ ] 01-01-PLAN.md — Workspace scaffolding, build toolchain, CI pipeline
 - [ ] 01-02-PLAN.md — Routing types (PlatformRoute, RegionalRoute, toRegional) and type safety tests
@@ -112,7 +112,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/2 | Planning complete | - |
+| 1. Foundation | 1/2 | In Progress|  |
 | 2. Core Infrastructure | 0/TBD | Not started | - |
 | 3. Schema Generation | 0/TBD | Not started | - |
 | 4. LoL and Shared Endpoints | 0/TBD | Not started | - |
