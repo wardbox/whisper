@@ -25,23 +25,23 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### HTTP Core
 
-- [ ] **HTTP-01**: HTTP client using native `fetch` (no polyfill, no deps)
-- [ ] **HTTP-02**: Client accepts API key as string or async function for key rotation
-- [ ] **HTTP-03**: Standard error types with Riot error codes and status mapping
-- [ ] **HTTP-04**: Middleware/interceptor pipeline for logging, metrics, retries, custom auth
+- [x] **HTTP-01**: HTTP client using native `fetch` (no polyfill, no deps)
+- [x] **HTTP-02**: Client accepts API key as string or async function for key rotation
+- [x] **HTTP-03**: Standard error types with Riot error codes and status mapping
+- [x] **HTTP-04**: Middleware/interceptor pipeline for logging, metrics, retries, custom auth
 
 ### Rate Limiting
 
-- [ ] **RATE-01**: Proactive rate limiter parsing `X-App-Rate-Limit` and `X-Method-Rate-Limit` headers
-- [ ] **RATE-02**: Distinct handling for app-level, method-level, and service-level 429s
-- [ ] **RATE-03**: Configurable strategy — proactive by default, reactive as option
+- [x] **RATE-01**: Proactive rate limiter parsing `X-App-Rate-Limit` and `X-Method-Rate-Limit` headers
+- [x] **RATE-02**: Distinct handling for app-level, method-level, and service-level 429s
+- [x] **RATE-03**: Configurable strategy — proactive by default, reactive as option
 
 ### Caching
 
-- [ ] **CACHE-01**: In-memory cache as default (Map-based)
-- [ ] **CACHE-02**: Pluggable cache adapter interface (`get/set/delete`) for Redis, file, custom
-- [ ] **CACHE-03**: Per-method TTL configuration (summoner=long, match=short, live game=0)
-- [ ] **CACHE-04**: API-key-aware cache keys to prevent cross-key poisoning
+- [x] **CACHE-01**: In-memory cache as default (Map-based)
+- [x] **CACHE-02**: Pluggable cache adapter interface (`get/set/delete`) for Redis, file, custom
+- [x] **CACHE-03**: Per-method TTL configuration (summoner=long, match=short, live game=0)
+- [x] **CACHE-04**: API-key-aware cache keys to prevent cross-key poisoning
 
 ### Game Endpoints
 
@@ -109,17 +109,17 @@ Which phases cover which requirements. Updated during roadmap creation.
 | TYPE-02 | Phase 1 | Complete |
 | TYPE-03 | Phase 1 | Complete |
 | TYPE-04 | Phase 1 | Complete |
-| HTTP-01 | Phase 2 | Pending |
-| HTTP-02 | Phase 2 | Pending |
-| HTTP-03 | Phase 2 | Pending |
-| HTTP-04 | Phase 2 | Pending |
-| RATE-01 | Phase 2 | Pending |
-| RATE-02 | Phase 2 | Pending |
-| RATE-03 | Phase 2 | Pending |
-| CACHE-01 | Phase 2 | Pending |
-| CACHE-02 | Phase 2 | Pending |
-| CACHE-03 | Phase 2 | Pending |
-| CACHE-04 | Phase 2 | Pending |
+| HTTP-01 | Phase 2 | Complete |
+| HTTP-02 | Phase 2 | Complete |
+| HTTP-03 | Phase 2 | Complete |
+| HTTP-04 | Phase 2 | Complete |
+| RATE-01 | Phase 2 | Complete |
+| RATE-02 | Phase 2 | Complete |
+| RATE-03 | Phase 2 | Complete |
+| CACHE-01 | Phase 2 | Complete |
+| CACHE-02 | Phase 2 | Complete |
+| CACHE-03 | Phase 2 | Complete |
+| CACHE-04 | Phase 2 | Complete |
 | SCHEMA-01 | Phase 3 | Pending |
 | SCHEMA-02 | Phase 3 | Pending |
 | SCHEMA-03 | Phase 3 | Pending |
