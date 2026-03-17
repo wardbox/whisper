@@ -118,20 +118,23 @@ export function createClient(config: ClientConfig): WhisperClient {
       methodId: string,
       options?: RequestOptions,
     ): Promise<ApiResponse<T>> {
-      // 1. Check cache
+      const method = options?.method ?? 'GET';
+
+      // 1. Check cache (only for GET requests)
       let cacheKey: string | undefined;
-      if (cache) {
+      if (cache && method === 'GET') {
         const apiKey = await keyProvider.getKey();
         cacheKey = buildCacheKey(apiKey, route, path, options?.params);
         const cached = await cache.get<ApiResponse<T>>(cacheKey);
         if (cached) return cached;
       }
 
-      // 2. Build request context for middleware
-      const url = buildUrl(route, path);
+      // 2. Build full URL with query params
+      const paramStr = options?.params ? `?${new URLSearchParams(options.params).toString()}` : '';
+      const url = buildUrl(route, path) + paramStr;
       const context: RequestContext = {
         url,
-        method: options?.method ?? 'GET',
+        method,
         headers: { ...options?.headers },
         body: options?.body,
         route,
@@ -154,7 +157,7 @@ export function createClient(config: ClientConfig): WhisperClient {
           }
 
           try {
-            const result = await http.request<T>(route, path, methodId, {
+            const result = await http.request<T>(route, path + paramStr, methodId, {
               method: ctx.method,
               body: ctx.body,
               headers: ctx.headers,
@@ -179,8 +182,8 @@ export function createClient(config: ClientConfig): WhisperClient {
         throw lastError!;
       });
 
-      // 4. Store in cache
-      if (cache && cacheKey) {
+      // 4. Store in cache (GET only)
+      if (cache && cacheKey && method === 'GET') {
         const ttl = resolveTtl(path, cacheTtl);
         if (ttl > 0) {
           await cache.set(cacheKey, response, ttl);

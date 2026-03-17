@@ -78,6 +78,75 @@ describe('createClient', () => {
     expect(r1.data).toEqual(r2.data);
   });
 
+  it('POST requests bypass cache (two POSTs = two fetch calls)', async () => {
+    const fetchMock = mockFetch(200, { id: '1' });
+    const client = createClient({ apiKey: 'RGAPI-test', rateLimiter: false });
+
+    await client.request('na1', '/test', 'test.method', { method: 'POST', body: '{"a":1}' });
+    await client.request('na1', '/test', 'test.method', { method: 'POST', body: '{"a":1}' });
+
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+  });
+
+  it('GET and POST to same path do not share cache', async () => {
+    let callCount = 0;
+    globalThis.fetch = vi.fn().mockImplementation(() => {
+      callCount++;
+      return Promise.resolve({
+        ok: true,
+        status: 200,
+        statusText: 'OK',
+        headers: new Headers(),
+        json: async () => ({ call: callCount }),
+      });
+    });
+
+    const client = createClient({ apiKey: 'RGAPI-test', rateLimiter: false });
+
+    const get = await client.request('na1', '/test', 'test.method');
+    const post = await client.request('na1', '/test', 'test.method', {
+      method: 'POST',
+      body: '{}',
+    });
+
+    expect(get.data).toEqual({ call: 1 });
+    expect(post.data).toEqual({ call: 2 });
+  });
+
+  it('params are serialized into outbound URL', async () => {
+    const fetchMock = mockFetch(200, { ok: true });
+    const client = createClient({ apiKey: 'RGAPI-test', cache: false, rateLimiter: false });
+
+    await client.request('na1', '/lol/match/v5/matches', 'match-v5.getIds', {
+      params: { start: '0', count: '20' },
+    });
+
+    const [url] = fetchMock.mock.calls[0]!;
+    expect(url).toContain('?start=0&count=20');
+  });
+
+  it('different params produce different cache entries', async () => {
+    let callCount = 0;
+    globalThis.fetch = vi.fn().mockImplementation(() => {
+      callCount++;
+      return Promise.resolve({
+        ok: true,
+        status: 200,
+        statusText: 'OK',
+        headers: new Headers(),
+        json: async () => ({ call: callCount }),
+      });
+    });
+
+    const client = createClient({ apiKey: 'RGAPI-test', rateLimiter: false });
+
+    const r1 = await client.request('na1', '/test', 'test.method', { params: { page: '1' } });
+    const r2 = await client.request('na1', '/test', 'test.method', { params: { page: '2' } });
+
+    expect(r1.data).toEqual({ call: 1 });
+    expect(r2.data).toEqual({ call: 2 });
+  });
+
   it('rateLimiter:false disables rate limiting', async () => {
     mockFetch(200, { ok: true });
     const client = createClient({ apiKey: 'RGAPI-test', rateLimiter: false, cache: false });

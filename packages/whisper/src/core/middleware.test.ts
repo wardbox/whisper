@@ -225,6 +225,57 @@ describe('executePipeline', () => {
     expect(order).toEqual([1, 0]);
   });
 
+  it('onRequest error bubbles up and skips downstream middleware and executor', async () => {
+    const order: string[] = [];
+
+    const middleware: Middleware[] = [
+      {
+        name: 'A',
+        onRequest: () => {
+          order.push('A-req');
+          throw new Error('A failed');
+        },
+        onResponse: (res) => {
+          order.push('A-res');
+          return res;
+        },
+      },
+      {
+        name: 'B',
+        onRequest: (ctx) => {
+          order.push('B-req');
+          return ctx;
+        },
+      },
+    ];
+
+    await expect(executePipeline(middleware, makeContext(), makeExecutor())).rejects.toThrow('A failed');
+    expect(order).toEqual(['A-req']);
+  });
+
+  it('executor error bubbles up to caller', async () => {
+    const executor = async () => {
+      throw new Error('executor failed');
+    };
+
+    await expect(executePipeline([], makeContext(), executor)).rejects.toThrow('executor failed');
+  });
+
+  it('onResponse error bubbles up to caller', async () => {
+    const middleware: Middleware[] = [
+      {
+        name: 'fail-on-response',
+        onResponse: () => {
+          throw new Error('response hook failed');
+        },
+      },
+    ];
+
+    await expect(executePipeline(middleware, makeContext(), makeExecutor())).rejects.toThrow(
+      'response hook failed',
+    );
+  });
+
   it('full pipeline: request forward, then response reverse', async () => {
     const order: string[] = [];
 
