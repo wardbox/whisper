@@ -1,6 +1,5 @@
 {
   "$schema": "whisper-schema-v1",
-  "capturedAt": "2026-03-17T19:07:35.201Z",
   "group": "lol.lol-challenges-v1",
   "source": "live",
   "types": {
@@ -417,6 +416,7 @@
             "type": "integer"
           },
           "CHALLENGER": {
+            "optional": true,
             "type": "integer"
           },
           "DIAMOND": {
@@ -426,6 +426,7 @@
             "type": "integer"
           },
           "GRANDMASTER": {
+            "optional": true,
             "type": "integer"
           },
           "IRON": {

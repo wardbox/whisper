@@ -60,7 +60,7 @@ export async function discoverData(client: ApiClient): Promise<DiscoveredData> {
       );
       data.gameName = account.data.gameName;
       data.tagLine = account.data.tagLine;
-      console.log(`[discovery] Found Riot ID: ${data.gameName}#${data.tagLine}`);
+      console.log('[discovery] Found Riot ID: found');
     } catch (err) {
       console.warn('[discovery] Failed to fetch account info:', (err as Error).message);
     }
@@ -78,7 +78,7 @@ export async function discoverData(client: ApiClient): Promise<DiscoveredData> {
       );
       if (matchIds.data.length > 0) {
         data.matchId = matchIds.data[0];
-        console.log(`[discovery] Found LoL match: ${data.matchId}`);
+        console.log('[discovery] Found LoL match: found');
       }
     } catch (err) {
       console.warn('[discovery] Failed to fetch LoL match IDs:', (err as Error).message);
@@ -105,7 +105,7 @@ export async function discoverData(client: ApiClient): Promise<DiscoveredData> {
         );
         if (tftMatchIds.data.length > 0) {
           data.tftMatchId = tftMatchIds.data[0];
-          console.log(`[discovery] Found TFT match: ${data.tftMatchId}`);
+          console.log('[discovery] Found TFT match: found');
         }
       } catch (err) {
         console.warn('[discovery] Failed to fetch TFT match IDs:', (err as Error).message);
@@ -124,7 +124,7 @@ export async function discoverData(client: ApiClient): Promise<DiscoveredData> {
     const activeAct = content.data.acts?.find((a) => a.isActive);
     if (activeAct) {
       data.valActId = activeAct.id;
-      console.log(`[discovery] Found Valorant act: ${data.valActId}`);
+      console.log('[discovery] Found Valorant act: found');
     }
   } catch (err) {
     console.warn('[discovery] Failed to fetch Valorant content:', (err as Error).message);
@@ -158,7 +158,7 @@ export async function discoverData(client: ApiClient): Promise<DiscoveredData> {
           );
           if (lorMatchIds.data.length > 0) {
             data.lorMatchId = lorMatchIds.data[0];
-            console.log(`[discovery] Found LoR match: ${data.lorMatchId}`);
+            console.log('[discovery] Found LoR match: found');
           }
         } catch (err) {
           console.warn('[discovery] Failed to fetch LoR match IDs:', (err as Error).message);
@@ -174,7 +174,7 @@ export async function discoverData(client: ApiClient): Promise<DiscoveredData> {
   // Summary
   console.log('[discovery] Discovery complete:');
   console.log(`  LoL PUUID: ${data.puuid ? 'found' : 'MISSING'}`);
-  console.log(`  Riot ID: ${data.gameName ? `${data.gameName}#${data.tagLine}` : 'MISSING'}`);
+  console.log(`  Riot ID: ${data.gameName ? 'found' : 'MISSING'}`);
   console.log(`  LoL Match: ${data.matchId ? 'found' : 'MISSING'}`);
   console.log(`  TFT PUUID: ${data.tftPuuid ? 'found' : 'MISSING'}`);
   console.log(`  TFT Match: ${data.tftMatchId ? 'found' : 'MISSING'}`);

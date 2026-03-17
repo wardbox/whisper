@@ -1,6 +1,5 @@
 {
   "$schema": "whisper-schema-v1",
-  "capturedAt": "2026-03-17T19:07:34.715Z",
   "group": "lol.champion-mastery-v4",
   "source": "live",
   "types": {
@@ -44,6 +43,11 @@
           "requireGradeCounts": {
             "fields": {
               "A-": {
+                "optional": true,
+                "type": "integer"
+              },
+              "S-": {
+                "optional": true,
                 "type": "integer"
               }
             },

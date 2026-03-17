@@ -1,6 +1,5 @@
 {
   "$schema": "whisper-schema-v1",
-  "capturedAt": "2026-03-17T19:07:40.349Z",
   "group": "riot.account-v1",
   "source": "live",
   "types": {

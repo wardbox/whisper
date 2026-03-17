@@ -116,6 +116,21 @@ describe('mapToTsType', () => {
     expect(result).toContain('name: string');
   });
 
+  it('preserves optional and nullable on nested object fields', () => {
+    const field: FieldDef = {
+      type: 'object',
+      fields: {
+        severity: { type: 'string', nullable: true },
+        updatedAt: { type: 'string', optional: true },
+        description: { type: 'string', optional: true, nullable: true },
+      },
+    };
+    const result = mapToTsType(field);
+    expect(result).toContain('severity: string | null');
+    expect(result).toContain('updatedAt?: string');
+    expect(result).toContain('description?: string | null');
+  });
+
   // KNOWN_ENUMS tests
   it('maps tier field to literal union', () => {
     const result = mapToTsType({ type: 'string' }, 'tier');
