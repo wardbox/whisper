@@ -15,6 +15,9 @@ const SCHEMAS_DIR = path.resolve(__dirname, '../schemas');
 const GENERATED_DIR = path.resolve(__dirname, '../../packages/whisper/src/types/generated');
 const OVERRIDES_DIR = path.resolve(__dirname, '../../packages/whisper/src/types/overrides');
 
+const args = process.argv.slice(2);
+const discoveryOnly = args.includes('--discovery-only');
+
 async function main() {
   // 1. Validate env
   const apiKey = process.env.RIOT_API_KEY;
@@ -24,7 +27,24 @@ async function main() {
   }
 
   // 2. Create client (dog-food Whisper's own client with rate limiting enabled, cache disabled)
-  const client = createClient({ apiKey, cache: false });
+  let requestCount = 0;
+  const client = createClient({
+    apiKey,
+    cache: false,
+    rateLimiter: {
+      onRateLimit: (scope, retryAfter) => {
+        console.log(`  [rate-limiter] Queued on ${scope}, waiting ${retryAfter}ms`);
+      },
+    },
+    middleware: [
+      {
+        onRequest: (ctx) => {
+          requestCount++;
+          return ctx;
+        },
+      },
+    ],
+  });
 
   // 3. Ensure output directories exist
   fs.mkdirSync(SCHEMAS_DIR, { recursive: true });
@@ -34,6 +54,11 @@ async function main() {
   console.log('Discovering test data...');
   const data = await discoverData(client);
   console.log(`Discovered: puuid=${data.puuid?.slice(0, 8)}..., matchId=${data.matchId || 'none'}`);
+
+  if (discoveryOnly) {
+    console.log('--discovery-only: stopping after discovery.');
+    return;
+  }
 
   // 5. Hit endpoints and extract schemas
   console.log(`Processing ${ENDPOINT_REGISTRY.length} API groups...`);
@@ -48,12 +73,29 @@ async function main() {
 
     const route = group.routing === 'platform' ? 'na1' : 'americas';
 
+    // Build game-specific param map so each game uses its own puuids and match IDs
+    const gameParams: Record<string, string | undefined> = {
+      puuid: data.puuid,
+      gameName: data.gameName,
+      tagLine: data.tagLine,
+      matchId: data.matchId,
+    };
+    if (group.game === 'tft') {
+      gameParams.puuid = data.tftPuuid || data.puuid;
+      gameParams.matchId = data.tftMatchId;
+    } else if (group.game === 'lor') {
+      gameParams.puuid = data.lorPuuid || data.puuid;
+      gameParams.matchId = data.lorMatchId;
+    } else if (group.game === 'val') {
+      gameParams.actId = data.valActId;
+    }
+
     for (const endpoint of group.endpoints) {
       // Substitute path params from discovered data
       let resolvedPath = endpoint.path;
       let skip = false;
       for (const param of endpoint.params ?? []) {
-        const value = data[param as keyof typeof data];
+        const value = gameParams[param];
         if (!value) {
           console.warn(`  Skipping ${endpoint.methodId}: missing param '${param}'`);
           skip = true;
@@ -116,7 +158,7 @@ async function main() {
   // 6. Generate TypeScript interfaces from schema files
   console.log('Generating TypeScript interfaces...');
   generateInterfaces(SCHEMAS_DIR, GENERATED_DIR, OVERRIDES_DIR);
-  console.log('Done.');
+  console.log(`Done. ${requestCount} API requests made.`);
 }
 
 main().catch((err) => {

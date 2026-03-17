@@ -28,7 +28,6 @@ export async function discoverData(client: ApiClient): Promise<DiscoveredData> {
     puuid: '',
     gameName: '',
     tagLine: '',
-    summonerId: '',
     matchId: '',
   };
 
@@ -36,7 +35,7 @@ export async function discoverData(client: ApiClient): Promise<DiscoveredData> {
   try {
     console.log('[discovery] Fetching LoL challenger league...');
     const league = await client.request<{
-      entries: Array<{ puuid: string; summonerId: string }>;
+      entries: Array<{ puuid: string }>;
     }>(
       'na1',
       '/lol/league/v4/challengerleagues/by-queue/RANKED_SOLO_5x5',
@@ -44,7 +43,6 @@ export async function discoverData(client: ApiClient): Promise<DiscoveredData> {
     );
     if (league.data.entries?.length > 0) {
       data.puuid = league.data.entries[0].puuid;
-      data.summonerId = league.data.entries[0].summonerId;
       console.log(`[discovery] Found LoL PUUID: ${data.puuid.slice(0, 8)}...`);
     }
   } catch (err) {
@@ -68,23 +66,7 @@ export async function discoverData(client: ApiClient): Promise<DiscoveredData> {
     }
   }
 
-  // Step 3: Get summoner data
-  if (data.puuid) {
-    try {
-      console.log('[discovery] Fetching summoner data...');
-      const summoner = await client.request<{ id: string }>(
-        'na1',
-        `/lol/summoner/v4/summoners/by-puuid/${data.puuid}`,
-        'summoner-v4.getByPuuid',
-      );
-      data.summonerId = summoner.data.id;
-      console.log(`[discovery] Found summoner ID: ${data.summonerId.slice(0, 8)}...`);
-    } catch (err) {
-      console.warn('[discovery] Failed to fetch summoner:', (err as Error).message);
-    }
-  }
-
-  // Step 4: Get LoL match IDs
+  // Step 3: Get LoL match IDs
   if (data.puuid) {
     try {
       console.log('[discovery] Fetching LoL match IDs...');
@@ -193,7 +175,6 @@ export async function discoverData(client: ApiClient): Promise<DiscoveredData> {
   console.log('[discovery] Discovery complete:');
   console.log(`  LoL PUUID: ${data.puuid ? 'found' : 'MISSING'}`);
   console.log(`  Riot ID: ${data.gameName ? `${data.gameName}#${data.tagLine}` : 'MISSING'}`);
-  console.log(`  Summoner ID: ${data.summonerId ? 'found' : 'MISSING'}`);
   console.log(`  LoL Match: ${data.matchId ? 'found' : 'MISSING'}`);
   console.log(`  TFT PUUID: ${data.tftPuuid ? 'found' : 'MISSING'}`);
   console.log(`  TFT Match: ${data.tftMatchId ? 'found' : 'MISSING'}`);
