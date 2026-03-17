@@ -47,7 +47,7 @@ Plans:
   3. Requests are queued before token buckets empty — no request hits the API after the limit is reached
   4. A custom cache adapter implementing `get/set/delete` replaces the default in-memory cache with no other code changes
   5. A middleware function registered in the pipeline receives pre-request and post-response hooks for every outgoing call
-**Plans:** 4 plans
+**Plans:** 1/4 plans executed
 Plans:
 - [ ] 02-01-PLAN.md — Core types, error class hierarchy, and middleware pipeline
 - [ ] 02-02-PLAN.md — Cache subsystem (MemoryCache, TTL resolution, API-key-aware keys)
@@ -118,7 +118,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/2 | Complete | 2026-03-17 |
-| 2. Core Infrastructure | 0/4 | Planned | - |
+| 2. Core Infrastructure | 1/4 | In Progress|  |
 | 3. Schema Generation | 0/TBD | Not started | - |
 | 4. LoL and Shared Endpoints | 0/TBD | Not started | - |
 | 5. TFT, Valorant, LoR, and Riftbound Endpoints | 0/TBD | Not started | - |
