@@ -249,7 +249,9 @@ describe('executePipeline', () => {
       },
     ];
 
-    await expect(executePipeline(middleware, makeContext(), makeExecutor())).rejects.toThrow('A failed');
+    await expect(executePipeline(middleware, makeContext(), makeExecutor())).rejects.toThrow(
+      'A failed',
+    );
     expect(order).toEqual(['A-req']);
   });
 
