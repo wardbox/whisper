@@ -38,18 +38,19 @@ created: 2026-03-17
 
 | Task ID | Plan | Wave | Requirement | Test Type | Automated Command | File Exists | Status |
 |---------|------|------|-------------|-----------|-------------------|-------------|--------|
-| 03-01-01 | 01 | 1 | SCHEMA-01 | integration | `pnpm vitest run scripts/generate-schema` | ❌ W0 | ⬜ pending |
-| 03-01-02 | 01 | 1 | SCHEMA-02 | unit | `pnpm vitest run src/types/generated` | ❌ W0 | ⬜ pending |
-| 03-01-03 | 01 | 1 | SCHEMA-03 | unit | `pnpm vitest run scripts/generate-schema` | ❌ W0 | ⬜ pending |
+| 03-01-T1 | 01 | 1 | SCHEMA-01 | unit | `pnpm vitest run scripts/generate-schema/schema.test.ts` | schema.test.ts (created in task) | pending |
+| 03-01-T2 | 01 | 1 | SCHEMA-01 | unit | `pnpm vitest run scripts/generate-schema/registry.test.ts` | registry.test.ts (created in task) | pending |
+| 03-02-T1 | 02 | 2 | SCHEMA-02 | unit | `pnpm vitest run scripts/generate-schema/codegen.test.ts` | codegen.test.ts (created in task) | pending |
+| 03-02-T2 | 02 | 2 | SCHEMA-02, SCHEMA-03 | integration | `npx tsx ../../scripts/generate-schema/index.ts 2>&1 \| grep RIOT_API_KEY` | N/A (entry point smoke test) | pending |
 
-*Status: ⬜ pending · ✅ green · ❌ red · ⚠️ flaky*
+*Status: pending / green / red / flaky*
 
 ---
 
 ## Wave 0 Requirements
 
-- [ ] `scripts/generate-schema/__tests__/` — test directory for schema generation scripts
-- [ ] Test fixtures with sample API responses for offline testing
+- [ ] `packages/whisper/vitest.config.ts` updated to include `scripts/**/*.test.ts` (done in 03-01-T1)
+- [ ] Test fixtures with sample API responses for offline testing (embedded in test files as inline objects)
 
 *If none: "Existing infrastructure covers all phase requirements."*
 
