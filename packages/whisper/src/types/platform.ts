@@ -1,9 +1,22 @@
 /** All Riot API platform routing values */
 export type PlatformRoute =
-  | 'na1' | 'br1' | 'la1' | 'la2'
-  | 'jp1' | 'kr'
-  | 'me1' | 'eun1' | 'euw1' | 'tr1' | 'ru'
-  | 'oc1' | 'ph2' | 'sg2' | 'th2' | 'tw2' | 'vn2'
+  | 'na1'
+  | 'br1'
+  | 'la1'
+  | 'la2'
+  | 'jp1'
+  | 'kr'
+  | 'me1'
+  | 'eun1'
+  | 'euw1'
+  | 'tr1'
+  | 'ru'
+  | 'oc1'
+  | 'ph2'
+  | 'sg2'
+  | 'th2'
+  | 'tw2'
+  | 'vn2';
 
 /** Platform routing constants for IDE discoverability */
 export const PLATFORM = {
@@ -24,4 +37,4 @@ export const PLATFORM = {
   TH2: 'th2',
   TW2: 'tw2',
   VN2: 'vn2',
-} as const satisfies Record<string, PlatformRoute>
+} as const satisfies Record<string, PlatformRoute>;

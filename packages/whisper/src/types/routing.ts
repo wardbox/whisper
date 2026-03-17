@@ -1,5 +1,5 @@
-import type { PlatformRoute } from './platform.js'
-import type { RegionalRoute } from './regional.js'
+import type { PlatformRoute } from './platform.js';
+import type { RegionalRoute } from './regional.js';
 
 const PLATFORM_TO_REGIONAL: Record<PlatformRoute, RegionalRoute> = {
   na1: 'americas',
@@ -19,9 +19,9 @@ const PLATFORM_TO_REGIONAL: Record<PlatformRoute, RegionalRoute> = {
   th2: 'sea',
   tw2: 'sea',
   vn2: 'sea',
-}
+};
 
 /** Map a platform route to its corresponding regional route */
 export function toRegional(platform: PlatformRoute): RegionalRoute {
-  return PLATFORM_TO_REGIONAL[platform]
+  return PLATFORM_TO_REGIONAL[platform];
 }

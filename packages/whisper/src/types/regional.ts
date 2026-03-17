@@ -1,5 +1,5 @@
 /** All Riot API regional routing values */
-export type RegionalRoute = 'americas' | 'europe' | 'asia' | 'sea'
+export type RegionalRoute = 'americas' | 'europe' | 'asia' | 'sea';
 
 /** Regional routing constants for IDE discoverability */
 export const REGIONAL = {
@@ -7,4 +7,4 @@ export const REGIONAL = {
   EUROPE: 'europe',
   ASIA: 'asia',
   SEA: 'sea',
-} as const satisfies Record<string, RegionalRoute>
+} as const satisfies Record<string, RegionalRoute>;
