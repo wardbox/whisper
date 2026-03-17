@@ -9,12 +9,12 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Foundation
 
-- [ ] **FOUND-01**: Project uses tsdown for builds with dual ESM+CJS output
-- [ ] **FOUND-02**: Biome configured for linting and formatting
-- [ ] **FOUND-03**: Vitest test suite with CI pipeline on Node 22 LTS
-- [ ] **FOUND-04**: `@arethetypeswrong/cli` and `publint` in CI
-- [ ] **FOUND-05**: pnpm workspace with library + docs as separate packages
-- [ ] **FOUND-06**: Zero runtime dependencies in the library package
+- [x] **FOUND-01**: Project uses tsdown for builds with dual ESM+CJS output
+- [x] **FOUND-02**: Biome configured for linting and formatting
+- [x] **FOUND-03**: Vitest test suite with CI pipeline on Node 22 LTS
+- [x] **FOUND-04**: `@arethetypeswrong/cli` and `publint` in CI
+- [x] **FOUND-05**: pnpm workspace with library + docs as separate packages
+- [x] **FOUND-06**: Zero runtime dependencies in the library package
 
 ### Types & Routing
 
@@ -99,12 +99,12 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| FOUND-01 | Phase 1 | Pending |
-| FOUND-02 | Phase 1 | Pending |
-| FOUND-03 | Phase 1 | Pending |
-| FOUND-04 | Phase 1 | Pending |
-| FOUND-05 | Phase 1 | Pending |
-| FOUND-06 | Phase 1 | Pending |
+| FOUND-01 | Phase 1 | Complete |
+| FOUND-02 | Phase 1 | Complete |
+| FOUND-03 | Phase 1 | Complete |
+| FOUND-04 | Phase 1 | Complete |
+| FOUND-05 | Phase 1 | Complete |
+| FOUND-06 | Phase 1 | Complete |
 | TYPE-01 | Phase 1 | Pending |
 | TYPE-02 | Phase 1 | Pending |
 | TYPE-03 | Phase 1 | Pending |
