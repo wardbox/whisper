@@ -1,0 +1,196 @@
+{
+  "$schema": "whisper-schema-v1",
+  "group": "riftbound.riftbound-content-v1",
+  "source": "stub",
+  "types": {
+    "CardArtDTO": {
+      "artist": {
+        "type": "string"
+      },
+      "fullURL": {
+        "type": "string"
+      },
+      "thumbnailURL": {
+        "type": "string"
+      }
+    },
+    "CardDTO": {
+      "art": {
+        "fields": {
+          "artist": {
+            "type": "string"
+          },
+          "fullURL": {
+            "type": "string"
+          },
+          "thumbnailURL": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "collectorNumber": {
+        "type": "integer"
+      },
+      "description": {
+        "type": "string"
+      },
+      "faction": {
+        "type": "string"
+      },
+      "flavorText": {
+        "type": "string"
+      },
+      "id": {
+        "type": "string"
+      },
+      "keywords": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "name": {
+        "type": "string"
+      },
+      "rarity": {
+        "type": "string"
+      },
+      "set": {
+        "type": "string"
+      },
+      "stats": {
+        "fields": {
+          "cost": {
+            "type": "integer"
+          },
+          "energy": {
+            "type": "integer"
+          },
+          "might": {
+            "type": "integer"
+          },
+          "power": {
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "tags": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "type": {
+        "type": "string"
+      }
+    },
+    "CardStatsDTO": {
+      "cost": {
+        "type": "integer"
+      },
+      "energy": {
+        "type": "integer"
+      },
+      "might": {
+        "type": "integer"
+      },
+      "power": {
+        "type": "integer"
+      }
+    },
+    "RiftboundContentDTO": {
+      "game": {
+        "type": "string"
+      },
+      "lastUpdated": {
+        "type": "string"
+      },
+      "sets": {
+        "items": {
+          "fields": {
+            "cards": {
+              "items": {
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "version": {
+        "type": "string"
+      }
+    },
+    "SetDTO": {
+      "cards": {
+        "items": {
+          "fields": {
+            "art": {
+              "type": "object"
+            },
+            "collectorNumber": {
+              "type": "integer"
+            },
+            "description": {
+              "type": "string"
+            },
+            "faction": {
+              "type": "string"
+            },
+            "flavorText": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "keywords": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "name": {
+              "type": "string"
+            },
+            "rarity": {
+              "type": "string"
+            },
+            "set": {
+              "type": "string"
+            },
+            "stats": {
+              "type": "object"
+            },
+            "tags": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "type": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "id": {
+        "type": "string"
+      },
+      "name": {
+        "type": "string"
+      }
+    }
+  }
+}

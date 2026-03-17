@@ -2,5 +2,7 @@
 
 export * from './lol.js';
 export * from './lor.js';
+export * from './riftbound.js';
 export * from './riot.js';
 export * from './tft.js';
+export * from './val.js';

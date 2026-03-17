@@ -1,0 +1,539 @@
+{
+  "$schema": "whisper-schema-v1",
+  "group": "val.val-content-v1",
+  "source": "stub",
+  "types": {
+    "ActDto": {
+      "id": {
+        "type": "string"
+      },
+      "isActive": {
+        "type": "boolean"
+      },
+      "localizedNames": {
+        "fields": {
+          "ar-AE": {
+            "type": "string"
+          },
+          "de-DE": {
+            "type": "string"
+          },
+          "en-GB": {
+            "type": "string"
+          },
+          "en-US": {
+            "type": "string"
+          },
+          "es-ES": {
+            "type": "string"
+          },
+          "es-MX": {
+            "type": "string"
+          },
+          "fr-FR": {
+            "type": "string"
+          },
+          "id-ID": {
+            "type": "string"
+          },
+          "it-IT": {
+            "type": "string"
+          },
+          "ja-JP": {
+            "type": "string"
+          },
+          "ko-KR": {
+            "type": "string"
+          },
+          "pl-PL": {
+            "type": "string"
+          },
+          "pt-BR": {
+            "type": "string"
+          },
+          "ru-RU": {
+            "type": "string"
+          },
+          "th-TH": {
+            "type": "string"
+          },
+          "tr-TR": {
+            "type": "string"
+          },
+          "vi-VN": {
+            "type": "string"
+          },
+          "zh-CN": {
+            "type": "string"
+          },
+          "zh-TW": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "name": {
+        "type": "string"
+      }
+    },
+    "ContentDto": {
+      "acts": {
+        "items": {
+          "fields": {
+            "id": {
+              "type": "string"
+            },
+            "isActive": {
+              "type": "boolean"
+            },
+            "localizedNames": {
+              "type": "object"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "characters": {
+        "items": {
+          "fields": {
+            "assetName": {
+              "type": "string"
+            },
+            "assetPath": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "localizedNames": {
+              "type": "object"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "charmLevels": {
+        "items": {
+          "fields": {
+            "assetName": {
+              "type": "string"
+            },
+            "assetPath": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "localizedNames": {
+              "type": "object"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "charms": {
+        "items": {
+          "fields": {
+            "assetName": {
+              "type": "string"
+            },
+            "assetPath": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "localizedNames": {
+              "type": "object"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "chromas": {
+        "items": {
+          "fields": {
+            "assetName": {
+              "type": "string"
+            },
+            "assetPath": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "localizedNames": {
+              "type": "object"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "equips": {
+        "items": {
+          "fields": {
+            "assetName": {
+              "type": "string"
+            },
+            "assetPath": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "localizedNames": {
+              "type": "object"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "gameModes": {
+        "items": {
+          "fields": {
+            "assetName": {
+              "type": "string"
+            },
+            "assetPath": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "localizedNames": {
+              "type": "object"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "maps": {
+        "items": {
+          "fields": {
+            "assetName": {
+              "type": "string"
+            },
+            "assetPath": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "localizedNames": {
+              "type": "object"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "playerCards": {
+        "items": {
+          "fields": {
+            "assetName": {
+              "type": "string"
+            },
+            "assetPath": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "localizedNames": {
+              "type": "object"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "playerTitles": {
+        "items": {
+          "fields": {
+            "assetName": {
+              "type": "string"
+            },
+            "assetPath": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "localizedNames": {
+              "type": "object"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "skinLevels": {
+        "items": {
+          "fields": {
+            "assetName": {
+              "type": "string"
+            },
+            "assetPath": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "localizedNames": {
+              "type": "object"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "skins": {
+        "items": {
+          "fields": {
+            "assetName": {
+              "type": "string"
+            },
+            "assetPath": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "localizedNames": {
+              "type": "object"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "sprayLevels": {
+        "items": {
+          "fields": {
+            "assetName": {
+              "type": "string"
+            },
+            "assetPath": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "localizedNames": {
+              "type": "object"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "sprays": {
+        "items": {
+          "fields": {
+            "assetName": {
+              "type": "string"
+            },
+            "assetPath": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "localizedNames": {
+              "type": "object"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "version": {
+        "type": "string"
+      }
+    },
+    "ContentItemDto": {
+      "assetName": {
+        "type": "string"
+      },
+      "assetPath": {
+        "type": "string"
+      },
+      "id": {
+        "type": "string"
+      },
+      "localizedNames": {
+        "fields": {
+          "ar-AE": {
+            "type": "string"
+          },
+          "de-DE": {
+            "type": "string"
+          },
+          "en-GB": {
+            "type": "string"
+          },
+          "en-US": {
+            "type": "string"
+          },
+          "es-ES": {
+            "type": "string"
+          },
+          "es-MX": {
+            "type": "string"
+          },
+          "fr-FR": {
+            "type": "string"
+          },
+          "id-ID": {
+            "type": "string"
+          },
+          "it-IT": {
+            "type": "string"
+          },
+          "ja-JP": {
+            "type": "string"
+          },
+          "ko-KR": {
+            "type": "string"
+          },
+          "pl-PL": {
+            "type": "string"
+          },
+          "pt-BR": {
+            "type": "string"
+          },
+          "ru-RU": {
+            "type": "string"
+          },
+          "th-TH": {
+            "type": "string"
+          },
+          "tr-TR": {
+            "type": "string"
+          },
+          "vi-VN": {
+            "type": "string"
+          },
+          "zh-CN": {
+            "type": "string"
+          },
+          "zh-TW": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "name": {
+        "type": "string"
+      }
+    },
+    "LocalizedNamesDto": {
+      "ar-AE": {
+        "type": "string"
+      },
+      "de-DE": {
+        "type": "string"
+      },
+      "en-GB": {
+        "type": "string"
+      },
+      "en-US": {
+        "type": "string"
+      },
+      "es-ES": {
+        "type": "string"
+      },
+      "es-MX": {
+        "type": "string"
+      },
+      "fr-FR": {
+        "type": "string"
+      },
+      "id-ID": {
+        "type": "string"
+      },
+      "it-IT": {
+        "type": "string"
+      },
+      "ja-JP": {
+        "type": "string"
+      },
+      "ko-KR": {
+        "type": "string"
+      },
+      "pl-PL": {
+        "type": "string"
+      },
+      "pt-BR": {
+        "type": "string"
+      },
+      "ru-RU": {
+        "type": "string"
+      },
+      "th-TH": {
+        "type": "string"
+      },
+      "tr-TR": {
+        "type": "string"
+      },
+      "vi-VN": {
+        "type": "string"
+      },
+      "zh-CN": {
+        "type": "string"
+      },
+      "zh-TW": {
+        "type": "string"
+      }
+    }
+  }
+}

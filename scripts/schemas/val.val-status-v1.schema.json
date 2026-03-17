@@ -1,0 +1,229 @@
+{
+  "$schema": "whisper-schema-v1",
+  "group": "val.val-status-v1",
+  "source": "stub",
+  "types": {
+    "ContentDto": {
+      "content": {
+        "type": "string"
+      },
+      "locale": {
+        "type": "string"
+      }
+    },
+    "PlatformDataDto": {
+      "id": {
+        "type": "string"
+      },
+      "incidents": {
+        "items": {
+          "fields": {
+            "archive_at": {
+              "type": "string"
+            },
+            "created_at": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "incident_severity": {
+              "type": "string"
+            },
+            "maintenance_status": {
+              "type": "string"
+            },
+            "platforms": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "titles": {
+              "items": {
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "updated_at": {
+              "type": "string"
+            },
+            "updates": {
+              "items": {
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "locales": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "maintenances": {
+        "items": {
+          "fields": {
+            "archive_at": {
+              "type": "string"
+            },
+            "created_at": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "incident_severity": {
+              "type": "string"
+            },
+            "maintenance_status": {
+              "type": "string"
+            },
+            "platforms": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "titles": {
+              "items": {
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "updated_at": {
+              "type": "string"
+            },
+            "updates": {
+              "items": {
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "name": {
+        "type": "string"
+      }
+    },
+    "StatusDto": {
+      "archive_at": {
+        "type": "string"
+      },
+      "created_at": {
+        "type": "string"
+      },
+      "id": {
+        "type": "integer"
+      },
+      "incident_severity": {
+        "type": "string"
+      },
+      "maintenance_status": {
+        "type": "string"
+      },
+      "platforms": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "titles": {
+        "items": {
+          "fields": {
+            "content": {
+              "type": "string"
+            },
+            "locale": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "updated_at": {
+        "type": "string"
+      },
+      "updates": {
+        "items": {
+          "fields": {
+            "author": {
+              "type": "string"
+            },
+            "created_at": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "publish": {
+              "type": "boolean"
+            },
+            "publish_locations": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "translations": {
+              "items": {
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "updated_at": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "type": "array"
+      }
+    },
+    "UpdateDto": {
+      "author": {
+        "type": "string"
+      },
+      "created_at": {
+        "type": "string"
+      },
+      "id": {
+        "type": "integer"
+      },
+      "publish": {
+        "type": "boolean"
+      },
+      "publish_locations": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "translations": {
+        "items": {
+          "fields": {
+            "content": {
+              "type": "string"
+            },
+            "locale": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "updated_at": {
+        "type": "string"
+      }
+    }
+  }
+}
