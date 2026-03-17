@@ -57,8 +57,8 @@ Requirements for initial release. Each maps to roadmap phases.
 ### Schema Generation
 
 - [x] **SCHEMA-01**: Integration tests hit live API endpoints and capture response shapes as `.schema.json`
-- [ ] **SCHEMA-02**: TypeScript interface generator from `.schema.json` files
-- [ ] **SCHEMA-03**: Schema diff detection for Riot API response shape changes
+- [x] **SCHEMA-02**: TypeScript interface generator from `.schema.json` files
+- [x] **SCHEMA-03**: Schema diff detection for Riot API response shape changes
 
 ### Documentation
 
@@ -121,8 +121,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | CACHE-03 | Phase 2 | Complete |
 | CACHE-04 | Phase 2 | Complete |
 | SCHEMA-01 | Phase 3 | Complete |
-| SCHEMA-02 | Phase 3 | Pending |
-| SCHEMA-03 | Phase 3 | Pending |
+| SCHEMA-02 | Phase 3 | Complete |
+| SCHEMA-03 | Phase 3 | Complete |
 | ENDP-01 | Phase 4 | Pending |
 | ENDP-06 | Phase 4 | Pending |
 | ENDP-07 | Phase 4 | Pending |
