@@ -1,0 +1,51 @@
+{
+  "name": "@wardbox/whisper",
+  "version": "0.1.0",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    "./lol": {
+      "types": "./dist/lol/index.d.ts",
+      "import": "./dist/lol/index.js",
+      "require": "./dist/lol/index.cjs"
+    },
+    "./tft": {
+      "types": "./dist/tft/index.d.ts",
+      "import": "./dist/tft/index.js",
+      "require": "./dist/tft/index.cjs"
+    },
+    "./val": {
+      "types": "./dist/val/index.d.ts",
+      "import": "./dist/val/index.js",
+      "require": "./dist/val/index.cjs"
+    },
+    "./lor": {
+      "types": "./dist/lor/index.d.ts",
+      "import": "./dist/lor/index.js",
+      "require": "./dist/lor/index.cjs"
+    },
+    "./riftbound": {
+      "types": "./dist/riftbound/index.d.ts",
+      "import": "./dist/riftbound/index.js",
+      "require": "./dist/riftbound/index.cjs"
+    },
+    "./riot": {
+      "types": "./dist/riot/index.d.ts",
+      "import": "./dist/riot/index.js",
+      "require": "./dist/riot/index.cjs"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsdown",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "tsdown": "0.21.4",
+    "typescript": "~5.8.0",
+    "vitest": "4.1.0",
+    "@vitest/coverage-v8": "4.1.0",
+    "@arethetypeswrong/cli": "0.18.2",
+    "publint": "0.3.18"
+  }
+}
