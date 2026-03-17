@@ -70,20 +70,26 @@ export function normalizeKeyProvider(input: ApiKeyProvider): KeyProvider {
 
   let cached: string | undefined;
   let pending: Promise<string> | null = null;
+  let generation = 0;
 
   return {
     async getKey(): Promise<string> {
       if (cached !== undefined) return cached;
       if (pending) return pending;
 
+      const gen = generation;
       pending = input().then(
         (key) => {
-          cached = key;
-          pending = null;
+          if (gen === generation) {
+            cached = key;
+            pending = null;
+          }
           return key;
         },
         (err) => {
-          pending = null;
+          if (gen === generation) {
+            pending = null;
+          }
           throw err;
         },
       );
@@ -93,6 +99,7 @@ export function normalizeKeyProvider(input: ApiKeyProvider): KeyProvider {
     invalidate(): void {
       cached = undefined;
       pending = null;
+      generation++;
     },
   };
 }
