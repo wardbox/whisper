@@ -38,10 +38,10 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Caching
 
-- [ ] **CACHE-01**: In-memory cache as default (Map-based)
-- [ ] **CACHE-02**: Pluggable cache adapter interface (`get/set/delete`) for Redis, file, custom
-- [ ] **CACHE-03**: Per-method TTL configuration (summoner=long, match=short, live game=0)
-- [ ] **CACHE-04**: API-key-aware cache keys to prevent cross-key poisoning
+- [x] **CACHE-01**: In-memory cache as default (Map-based)
+- [x] **CACHE-02**: Pluggable cache adapter interface (`get/set/delete`) for Redis, file, custom
+- [x] **CACHE-03**: Per-method TTL configuration (summoner=long, match=short, live game=0)
+- [x] **CACHE-04**: API-key-aware cache keys to prevent cross-key poisoning
 
 ### Game Endpoints
 
@@ -116,10 +116,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | RATE-01 | Phase 2 | Pending |
 | RATE-02 | Phase 2 | Pending |
 | RATE-03 | Phase 2 | Pending |
-| CACHE-01 | Phase 2 | Pending |
-| CACHE-02 | Phase 2 | Pending |
-| CACHE-03 | Phase 2 | Pending |
-| CACHE-04 | Phase 2 | Pending |
+| CACHE-01 | Phase 2 | Complete |
+| CACHE-02 | Phase 2 | Complete |
+| CACHE-03 | Phase 2 | Complete |
+| CACHE-04 | Phase 2 | Complete |
 | SCHEMA-01 | Phase 3 | Pending |
 | SCHEMA-02 | Phase 3 | Pending |
 | SCHEMA-03 | Phase 3 | Pending |
