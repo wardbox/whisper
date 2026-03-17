@@ -215,10 +215,8 @@ export function createHttpClient(keyProvider: KeyProvider): HttpClient {
     const url = buildUrl(route, path);
     const method = options?.method ?? 'GET';
 
-    const requestHeaders: Record<string, string> = {
-      ...options?.headers,
-      'X-Riot-Token': apiKey,
-    };
+    const requestHeaders = new Headers(options?.headers);
+    requestHeaders.set('X-Riot-Token', apiKey);
 
     const response = await fetch(url, {
       method,
@@ -229,6 +227,9 @@ export function createHttpClient(keyProvider: KeyProvider): HttpClient {
     const responseHeaders = headersToRecord(response.headers);
 
     if (response.ok) {
+      if (response.status === 204 || response.status === 205) {
+        return { data: undefined as T, status: response.status, headers: responseHeaders };
+      }
       const data = (await response.json()) as T;
       return { data, status: response.status, headers: responseHeaders };
     }
