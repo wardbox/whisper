@@ -1,6 +1,5 @@
 {
   "$schema": "whisper-schema-v1",
-  "capturedAt": "2026-03-17T19:07:36.250Z",
   "group": "lol.summoner-v4",
   "source": "live",
   "types": {

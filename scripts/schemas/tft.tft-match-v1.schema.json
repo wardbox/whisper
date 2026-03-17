@@ -1,6 +1,5 @@
 {
   "$schema": "whisper-schema-v1",
-  "capturedAt": "2026-03-17T19:07:39.470Z",
   "group": "tft.tft-match-v1",
   "source": "live",
   "types": {

@@ -38,8 +38,6 @@ export interface SchemaFile {
   group: string;
   /** Whether data came from live API or a stub */
   source: 'live' | 'stub';
-  /** ISO timestamp of when schemas were captured */
-  capturedAt: string;
   /** Type schemas keyed by type name */
   types: Record<string, TypeSchema['fields']>;
 }

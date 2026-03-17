@@ -1,6 +1,5 @@
 {
   "$schema": "whisper-schema-v1",
-  "capturedAt": "2026-03-17T19:07:35.806Z",
   "group": "lol.match-v5",
   "source": "live",
   "types": {

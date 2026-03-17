@@ -1,6 +1,5 @@
 {
   "$schema": "whisper-schema-v1",
-  "capturedAt": "2026-03-17T19:07:40.141Z",
   "group": "lor.lor-ranked-v1",
   "source": "live",
   "types": {

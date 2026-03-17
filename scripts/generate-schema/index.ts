@@ -67,7 +67,6 @@ async function main() {
       $schema: 'whisper-schema-v1',
       group: `${group.game}.${group.name}`,
       source: 'live',
-      capturedAt: new Date().toISOString(),
       types: {},
     };
 
@@ -101,7 +100,7 @@ async function main() {
           skip = true;
           break;
         }
-        resolvedPath = resolvedPath.replace(`{${param}}`, String(value));
+        resolvedPath = resolvedPath.replace(`{${param}}`, encodeURIComponent(String(value)));
       }
       if (skip) continue;
 

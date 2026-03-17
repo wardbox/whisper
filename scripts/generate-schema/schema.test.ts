@@ -131,6 +131,24 @@ describe('mergeSchemas', () => {
     const merged = mergeSchemas(a, b);
     expect(merged.name).toBe('Original');
   });
+
+  it('recursively merges nested objects', () => {
+    const a = extractSchema({ meta: { x: 1 } }, 'Test');
+    const b = extractSchema({ meta: { x: 2, y: 'new' } }, 'Test');
+    const merged = mergeSchemas(a, b);
+    expect(merged.fields.meta.type).toBe('object');
+    expect(merged.fields.meta.fields?.x).toEqual({ type: 'integer' });
+    expect(merged.fields.meta.fields?.y).toEqual({ type: 'string', optional: true });
+  });
+
+  it('recursively merges array item objects', () => {
+    const a = extractSchema({ items: [{ a: 1 }] }, 'Test');
+    const b = extractSchema({ items: [{ a: 2, b: 'x' }] }, 'Test');
+    const merged = mergeSchemas(a, b);
+    expect(merged.fields.items.type).toBe('array');
+    expect(merged.fields.items.items?.fields?.a).toEqual({ type: 'integer' });
+    expect(merged.fields.items.items?.fields?.b).toEqual({ type: 'string', optional: true });
+  });
 });
 
 describe('sortKeys', () => {

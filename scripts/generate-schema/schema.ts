@@ -97,6 +97,31 @@ export function mergeSchemas(existing: TypeSchema, incoming: TypeSchema): TypeSc
       ) {
         // Incoming is null, existing has a type
         merged[key] = { ...existingField, nullable: true };
+      } else if (existingField.type === 'object' && incomingField.type === 'object') {
+        // Recursively merge nested objects
+        const mergedNested = mergeSchemas(
+          { name: key, fields: existingField.fields ?? {} },
+          { name: key, fields: incomingField.fields ?? {} },
+        );
+        merged[key] = {
+          ...existingField,
+          fields: mergedNested.fields,
+          nullable: existingField.nullable || incomingField.nullable || undefined,
+        };
+      } else if (existingField.type === 'array' && incomingField.type === 'array') {
+        // Recursively merge array item types
+        if (existingField.items?.type === 'object' && incomingField.items?.type === 'object') {
+          const mergedItems = mergeSchemas(
+            { name: key, fields: existingField.items.fields ?? {} },
+            { name: key, fields: incomingField.items.fields ?? {} },
+          );
+          merged[key] = {
+            ...existingField,
+            items: { type: 'object', fields: mergedItems.fields },
+          };
+        } else {
+          merged[key] = { ...existingField };
+        }
       } else {
         // Same type in both -- keep existing
         merged[key] = { ...existingField };
