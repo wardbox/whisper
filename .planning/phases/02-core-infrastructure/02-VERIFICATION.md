@@ -1,35 +1,25 @@
 ---
 phase: 02-core-infrastructure
 verified: 2026-03-17T10:07:00Z
-status: gaps_found
-score: 19/20 must-haves verified
-re_verification: false
-gaps:
+re_verified: 2026-03-17T18:00:00Z
+status: passed
+score: 20/20 must-haves verified
+re_verification: true
+gaps: []
+resolved_gaps:
   - truth: "TypeScript compiles cleanly with no type errors"
-    status: failed
-    reason: "exactOptionalPropertyTypes violation in http.ts line 209: body field passed as 'string | undefined' to fetch() which expects 'BodyInit | null', not undefined"
-    artifacts:
-      - path: "packages/whisper/src/core/http.ts"
-        issue: "Line 209: `body: options?.body` passes `string | undefined` to `RequestInit.body` which does not accept `undefined` under exactOptionalPropertyTypes"
-    missing:
-      - "Fix: change `body: options?.body` to `body: options?.body ?? null` or use a conditional to omit the body field entirely when undefined"
+    resolved: "http.ts now uses `body: options?.body ?? null` (line 218); `npx tsc --noEmit` exits 0"
   - truth: "CacheAdapter type is sourced from a single canonical location"
-    status: partial
-    reason: "cache.ts defines its own CacheAdapter and CacheTtlConfig interfaces locally with a TODO comment to import from types.ts. The interfaces are structurally identical so runtime behavior is correct, but there are now two independent definitions of the same contract."
-    artifacts:
-      - path: "packages/whisper/src/core/cache.ts"
-        issue: "Lines 29-59 define CacheAdapter and CacheTtlConfig locally. types.ts already exports these. The TODO comment on line 10 acknowledges this debt."
-    missing:
-      - "Remove local CacheAdapter and CacheTtlConfig definitions from cache.ts and import from ./types.js instead"
-      - "Ensure MemoryCache continues to implement the types.ts CacheAdapter interface"
+    resolved: "cache.ts now imports CacheAdapter and CacheTtlConfig from ./types.js (line 10); local definitions removed"
 ---
 
 # Phase 02: Core Infrastructure Verification Report
 
 **Phase Goal:** A developer can instantiate a client with an API key (string or async function), make a request, and have rate limits handled proactively — no 429s under normal usage, and all three 429 types handled correctly when limits are exceeded.
 **Verified:** 2026-03-17T10:07:00Z
-**Status:** gaps_found
-**Re-verification:** No — initial verification
+**Re-verified:** 2026-03-17T18:00:00Z
+**Status:** passed
+**Re-verification:** Yes — both gaps resolved
 
 ## Goal Achievement
 
@@ -56,9 +46,9 @@ gaps:
 | 17 | Rate limit scopes are per-region (app:na1 independent of app:euw1) | VERIFIED | rate-limiter.ts L201-202: appKey=`app:${route}`, methodKey=`method:${route}:${methodId}` |
 | 18 | createClient accepts string and async function API keys | VERIFIED | http.ts L61-92: normalizeKeyProvider() handles both; string returns immediately, fn caches with pending dedupe |
 | 19 | createClient integrates rate limiter, cache, and middleware pipeline | VERIFIED | client.ts L91-193: all subsystems wired; executePipeline wraps acquire->http.request->update |
-| 20 | TypeScript compiles cleanly with no type errors | FAILED | `npx tsc --noEmit` exits 2: http.ts L209 exactOptionalPropertyTypes violation (`body: string \| undefined` not assignable to `BodyInit \| null`) |
+| 20 | TypeScript compiles cleanly with no type errors | VERIFIED | `npx tsc --noEmit` exits 0; http.ts L218 uses `body: options?.body ?? null` |
 
-**Score:** 19/20 truths verified
+**Score:** 20/20 truths verified
 
 ### Required Artifacts
 
@@ -95,7 +85,7 @@ gaps:
 | client.ts | rate-limiter.ts | `import { RateLimiter } from './rate-limiter.js'` | WIRED | Line 8 of client.ts |
 | client.ts | cache.ts | `import { buildCacheKey, MemoryCache, resolveTtl } from './cache.js'` | WIRED | Line 3 of client.ts |
 | client.ts | middleware.ts | `import { executePipeline } from './middleware.js'` | WIRED | Line 7 of client.ts |
-| cache.ts | types.ts | NOT WIRED — cache.ts defines its own CacheAdapter and CacheTtlConfig locally | PARTIAL | TODO comment on line 10 of cache.ts acknowledges this. Interfaces are structurally identical so no runtime impact, but creates type duplication. |
+| cache.ts | types.ts | `import type { CacheAdapter, CacheTtlConfig } from './types.js'` | WIRED | Line 10 of cache.ts; local definitions removed |
 
 ### Requirements Coverage
 
@@ -119,10 +109,12 @@ All 11 requirement IDs declared across plans are accounted for. No orphaned requ
 
 | File | Line | Pattern | Severity | Impact |
 |------|------|---------|----------|--------|
-| `cache.ts` | 10 | `TODO: Import CacheAdapter and CacheTtlConfig from ./types.js` | Warning | Two definitions of the same interface exist. Structurally identical today, but drift risk if one is updated. |
-| `http.ts` | 209 | `body: options?.body` passes `string \| undefined` to `RequestInit.body` | Blocker | `tsc --noEmit` exits with code 2. The build succeeds (tsdown may be more lenient) but TypeScript strict mode rejects this. |
 | `rate-limiter.ts` | 358 | `methodId` parameter unused in `handle429()` | Info | Biome warning only. Parameter exists for future use (e.g., per-method retry tracking). No correctness impact. |
-| `http.ts` | 248-250 | `try { return await doFetch(...) } catch (retryErr) { throw retryErr }` | Info | Biome info: catch clause only rethrows. No correctness impact. |
+
+Previously reported anti-patterns resolved:
+- `cache.ts` TODO for types import — resolved: now imports from `./types.js`
+- `http.ts` body typing violation — resolved: uses `?? null`
+- `http.ts` redundant try-catch on retry — resolved: removed
 
 ### Human Verification Required
 
@@ -140,13 +132,10 @@ All 11 requirement IDs declared across plans are accounted for. No orphaned requ
 
 ### Gaps Summary
 
-Two gaps block full goal achievement:
+All gaps resolved. Both previously identified issues have been fixed:
 
-**Gap 1 (Blocker): TypeScript type error in http.ts.** The `body` field in the `fetch()` call passes `string | undefined` but `RequestInit.body` under `exactOptionalPropertyTypes` requires `BodyInit | null`. The fix is one line: change `body: options?.body` to `body: options?.body ?? null`. This is a known TypeScript pitfall documented in the phase CONTEXT (Pitfall 7). The build succeeds via tsdown (which may be less strict) but `npx tsc --noEmit` exits with code 2, violating the plan's own verification step.
-
-**Gap 2 (Warning): Duplicate CacheAdapter definition.** `cache.ts` defines its own `CacheAdapter` and `CacheTtlConfig` locally with a TODO to import from `types.ts`. Both interfaces are structurally identical today, so there is no runtime impact and all tests pass. However the TODO was left unresolved and the duplication creates maintenance risk. The plan's acceptance criteria state "packages/whisper/src/core/cache.ts contains `CacheAdapter` (imported or defined)" — the "imported" preferred path was not taken.
-
-The first gap is a blocker because `npx tsc --noEmit` is one of the phase's own verification commands (listed in plan 02-04's `<verification>` block) and it exits non-zero.
+- **Gap 1 (resolved):** `http.ts` body typing — now uses `options?.body ?? null`; `npx tsc --noEmit` exits 0
+- **Gap 2 (resolved):** `cache.ts` duplicate types — now imports `CacheAdapter` and `CacheTtlConfig` from `./types.js`
 
 ---
 

@@ -79,23 +79,49 @@ describe('normalizeKeyProvider', () => {
     expect(fn).toHaveBeenCalledTimes(2);
   });
 
-  it('invalidate during in-flight fetch causes single re-fetch', async () => {
-    let callCount = 0;
-    const fn = vi.fn().mockImplementation(async () => {
-      callCount++;
-      return `RGAPI-key-${callCount}`;
-    });
+  it('invalidate during in-flight fetch discards stale result', async () => {
+    let resolveFirst!: (val: string) => void;
+    let resolveSecond!: (val: string) => void;
+    const fn = vi
+      .fn()
+      .mockImplementationOnce(
+        () =>
+          new Promise<string>((resolve) => {
+            resolveFirst = resolve;
+          }),
+      )
+      .mockImplementationOnce(
+        () =>
+          new Promise<string>((resolve) => {
+            resolveSecond = resolve;
+          }),
+      );
     const provider = normalizeKeyProvider(fn);
 
-    // First fetch
-    const key1 = await provider.getKey();
-    expect(key1).toBe('RGAPI-key-1');
+    // Start first fetch (not awaited)
+    const p1 = provider.getKey();
 
-    // Invalidate and make concurrent requests
+    // Invalidate while first fetch is still in-flight
     provider.invalidate();
-    const [k2, k3] = await Promise.all([provider.getKey(), provider.getKey()]);
-    expect(k2).toBe('RGAPI-key-2');
-    expect(k3).toBe('RGAPI-key-2');
+
+    // Start second fetch (post-invalidation)
+    const p2 = provider.getKey();
+
+    // Resolve the stale first promise
+    resolveFirst('RGAPI-stale');
+    // Resolve the fresh second promise
+    resolveSecond('RGAPI-fresh');
+
+    const k1 = await p1;
+    const k2 = await p2;
+
+    // p1 still gets 'RGAPI-stale' as its return value (promise already wired)
+    expect(k1).toBe('RGAPI-stale');
+    // p2 gets the fresh key
+    expect(k2).toBe('RGAPI-fresh');
+    // Subsequent calls use the fresh cached value, not the stale one
+    const k3 = await provider.getKey();
+    expect(k3).toBe('RGAPI-fresh');
     expect(fn).toHaveBeenCalledTimes(2);
   });
 });
