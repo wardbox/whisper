@@ -171,6 +171,26 @@ None - no external service configuration required.
 - Routing types (PlatformRoute, RegionalRoute, toRegional) are the next deliverable in plan 01-02
 - No blockers for Phase 2 core infrastructure work
 
+## Self-Check: PASSED
+
+All created files verified present. Both task commits confirmed in git log.
+
+- pnpm-workspace.yaml: FOUND
+- package.json (root): FOUND
+- tsconfig.base.json: FOUND
+- biome.json: FOUND
+- packages/whisper/package.json: FOUND
+- packages/whisper/tsdown.config.ts: FOUND
+- packages/whisper/vitest.config.ts: FOUND
+- .github/workflows/ci.yml: FOUND
+- packages/whisper/dist/lol/index.js: FOUND
+- packages/whisper/dist/lol/index.cjs: FOUND
+- .planning/phases/01-foundation/01-01-SUMMARY.md: FOUND
+
+Commits:
+- 8ca732e: chore(01-01): create workspace structure, root configs, and package manifests
+- eaafe9a: feat(01-01): add build config, stub entry points, vitest, CI workflow
+
 ---
 *Phase: 01-foundation*
 *Completed: 2026-03-17*
