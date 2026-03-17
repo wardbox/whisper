@@ -52,9 +52,7 @@ describe('RiotApiError', () => {
       ...baseArgs,
       url: 'https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/abc',
     });
-    expect(err.url).toBe(
-      'https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/abc',
-    );
+    expect(err.url).toBe('https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/abc');
   });
 
   it('exposes riotMessage when provided', () => {

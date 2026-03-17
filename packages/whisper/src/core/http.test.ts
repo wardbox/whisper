@@ -1,5 +1,5 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { buildUrl, normalizeKeyProvider, createHttpClient } from './http.js';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { buildUrl, createHttpClient, normalizeKeyProvider } from './http.js';
 
 describe('buildUrl', () => {
   it('builds platform route URL', () => {
@@ -9,9 +9,7 @@ describe('buildUrl', () => {
   });
 
   it('builds regional route URL', () => {
-    expect(
-      buildUrl('americas', '/riot/account/v1/accounts/by-puuid/xyz'),
-    ).toBe(
+    expect(buildUrl('americas', '/riot/account/v1/accounts/by-puuid/xyz')).toBe(
       'https://americas.api.riotgames.com/riot/account/v1/accounts/by-puuid/xyz',
     );
   });
@@ -34,10 +32,7 @@ describe('normalizeKeyProvider', () => {
   });
 
   it('re-invokes function after invalidate()', async () => {
-    const fn = vi
-      .fn()
-      .mockResolvedValueOnce('RGAPI-first')
-      .mockResolvedValueOnce('RGAPI-second');
+    const fn = vi.fn().mockResolvedValueOnce('RGAPI-first').mockResolvedValueOnce('RGAPI-second');
     const provider = normalizeKeyProvider(fn);
 
     expect(await provider.getKey()).toBe('RGAPI-first');
@@ -100,11 +95,7 @@ describe('createHttpClient', () => {
     globalThis.fetch = originalFetch;
   });
 
-  function mockFetch(
-    status: number,
-    body: unknown,
-    headers: Record<string, string> = {},
-  ) {
+  function mockFetch(status: number, body: unknown, headers: Record<string, string> = {}) {
     const mockFn = vi.fn().mockResolvedValue({
       ok: status >= 200 && status < 300,
       status,
@@ -157,10 +148,14 @@ describe('createHttpClient', () => {
   });
 
   it('throws RateLimitError on 429 with retryAfter and limitType', async () => {
-    mockFetch(429, { status: { message: 'Rate limit exceeded' } }, {
-      'retry-after': '5',
-      'x-rate-limit-type': 'method',
-    });
+    mockFetch(
+      429,
+      { status: { message: 'Rate limit exceeded' } },
+      {
+        'retry-after': '5',
+        'x-rate-limit-type': 'method',
+      },
+    );
     const provider = normalizeKeyProvider('RGAPI-test');
     const http = createHttpClient(provider);
 
@@ -182,9 +177,9 @@ describe('createHttpClient', () => {
     const http = createHttpClient(provider);
 
     const { ServiceUnavailableError } = await import('./errors.js');
-    await expect(
-      http.request('na1', '/test', 'test.method'),
-    ).rejects.toThrow(ServiceUnavailableError);
+    await expect(http.request('na1', '/test', 'test.method')).rejects.toThrow(
+      ServiceUnavailableError,
+    );
   });
 
   it('throws RiotApiError on other non-2xx status codes', async () => {
@@ -193,9 +188,7 @@ describe('createHttpClient', () => {
     const http = createHttpClient(provider);
 
     const { RiotApiError } = await import('./errors.js');
-    await expect(
-      http.request('na1', '/test', 'test.method'),
-    ).rejects.toThrow(RiotApiError);
+    await expect(http.request('na1', '/test', 'test.method')).rejects.toThrow(RiotApiError);
   });
 
   it('on 401, invalidates key, retries once with new key, succeeds', async () => {
@@ -207,27 +200,29 @@ describe('createHttpClient', () => {
     const http = createHttpClient(provider);
 
     let callCount = 0;
-    globalThis.fetch = vi.fn().mockImplementation((_url: string, init: { headers: Record<string, string> }) => {
-      callCount++;
-      if (callCount === 1) {
-        // First call with old key returns 401
+    globalThis.fetch = vi
+      .fn()
+      .mockImplementation((_url: string, init: { headers: Record<string, string> }) => {
+        callCount++;
+        if (callCount === 1) {
+          // First call with old key returns 401
+          return Promise.resolve({
+            ok: false,
+            status: 401,
+            statusText: 'Unauthorized',
+            headers: new Headers(),
+            json: async () => ({ status: { message: 'Unauthorized' } }),
+          });
+        }
+        // Second call with new key succeeds
         return Promise.resolve({
-          ok: false,
-          status: 401,
-          statusText: 'Unauthorized',
+          ok: true,
+          status: 200,
+          statusText: 'OK',
           headers: new Headers(),
-          json: async () => ({ status: { message: 'Unauthorized' } }),
+          json: async () => ({ success: true }),
         });
-      }
-      // Second call with new key succeeds
-      return Promise.resolve({
-        ok: true,
-        status: 200,
-        statusText: 'OK',
-        headers: new Headers(),
-        json: async () => ({ success: true }),
       });
-    });
 
     const response = await http.request('na1', '/test', 'test.method');
     expect(response.data).toEqual({ success: true });
@@ -237,17 +232,12 @@ describe('createHttpClient', () => {
 
   it('on 403, invalidates key, retries once, throws ForbiddenError if retry fails', async () => {
     mockFetch(403, { status: { message: 'Forbidden' } });
-    const fn = vi
-      .fn()
-      .mockResolvedValueOnce('RGAPI-old')
-      .mockResolvedValueOnce('RGAPI-new');
+    const fn = vi.fn().mockResolvedValueOnce('RGAPI-old').mockResolvedValueOnce('RGAPI-new');
     const provider = normalizeKeyProvider(fn);
     const http = createHttpClient(provider);
 
     const { ForbiddenError } = await import('./errors.js');
-    await expect(
-      http.request('na1', '/test', 'test.method'),
-    ).rejects.toThrow(ForbiddenError);
+    await expect(http.request('na1', '/test', 'test.method')).rejects.toThrow(ForbiddenError);
     // Both keys attempted
     expect(fn).toHaveBeenCalledTimes(2);
   });
