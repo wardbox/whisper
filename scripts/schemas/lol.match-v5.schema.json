@@ -1,0 +1,2869 @@
+{
+  "$schema": "whisper-schema-v1",
+  "capturedAt": "2026-03-17T19:07:35.806Z",
+  "group": "lol.match-v5",
+  "source": "live",
+  "types": {
+    "MatchDTO": {
+      "info": {
+        "fields": {
+          "endOfGameResult": {
+            "type": "string"
+          },
+          "gameCreation": {
+            "type": "integer"
+          },
+          "gameDuration": {
+            "type": "integer"
+          },
+          "gameEndTimestamp": {
+            "type": "integer"
+          },
+          "gameId": {
+            "type": "integer"
+          },
+          "gameMode": {
+            "type": "string"
+          },
+          "gameName": {
+            "type": "string"
+          },
+          "gameStartTimestamp": {
+            "type": "integer"
+          },
+          "gameType": {
+            "type": "string"
+          },
+          "gameVersion": {
+            "type": "string"
+          },
+          "mapId": {
+            "type": "integer"
+          },
+          "participants": {
+            "items": {
+              "fields": {
+                "PlayerBehavior": {
+                  "fields": {
+                    "PlayerBehavior_IsHeroInCombat": {
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "PlayerScore0": {
+                  "type": "integer"
+                },
+                "PlayerScore1": {
+                  "type": "integer"
+                },
+                "PlayerScore10": {
+                  "type": "integer"
+                },
+                "PlayerScore11": {
+                  "type": "integer"
+                },
+                "PlayerScore2": {
+                  "type": "integer"
+                },
+                "PlayerScore3": {
+                  "type": "integer"
+                },
+                "PlayerScore4": {
+                  "type": "integer"
+                },
+                "PlayerScore5": {
+                  "type": "integer"
+                },
+                "PlayerScore6": {
+                  "type": "integer"
+                },
+                "PlayerScore7": {
+                  "type": "integer"
+                },
+                "PlayerScore8": {
+                  "type": "integer"
+                },
+                "PlayerScore9": {
+                  "type": "integer"
+                },
+                "allInPings": {
+                  "type": "integer"
+                },
+                "assistMePings": {
+                  "type": "integer"
+                },
+                "assists": {
+                  "type": "integer"
+                },
+                "baronKills": {
+                  "type": "integer"
+                },
+                "basicPings": {
+                  "type": "integer"
+                },
+                "challenges": {
+                  "fields": {
+                    "12AssistStreakCount": {
+                      "type": "integer"
+                    },
+                    "HealFromMapSources": {
+                      "type": "integer"
+                    },
+                    "InfernalScalePickup": {
+                      "type": "integer"
+                    },
+                    "SWARM_DefeatAatrox": {
+                      "type": "integer"
+                    },
+                    "SWARM_DefeatBriar": {
+                      "type": "integer"
+                    },
+                    "SWARM_DefeatMiniBosses": {
+                      "type": "integer"
+                    },
+                    "SWARM_EvolveWeapon": {
+                      "type": "integer"
+                    },
+                    "SWARM_Have3Passives": {
+                      "type": "integer"
+                    },
+                    "SWARM_KillEnemy": {
+                      "type": "integer"
+                    },
+                    "SWARM_PickupGold": {
+                      "type": "integer"
+                    },
+                    "SWARM_ReachLevel50": {
+                      "type": "integer"
+                    },
+                    "SWARM_Survive15Min": {
+                      "type": "integer"
+                    },
+                    "SWARM_WinWith5EvolvedWeapons": {
+                      "type": "integer"
+                    },
+                    "abilityUses": {
+                      "type": "integer"
+                    },
+                    "acesBefore15Minutes": {
+                      "type": "integer"
+                    },
+                    "alliedJungleMonsterKills": {
+                      "type": "integer"
+                    },
+                    "baronTakedowns": {
+                      "type": "integer"
+                    },
+                    "blastConeOppositeOpponentCount": {
+                      "type": "integer"
+                    },
+                    "bountyGold": {
+                      "type": "number"
+                    },
+                    "buffsStolen": {
+                      "type": "integer"
+                    },
+                    "completeSupportQuestInTime": {
+                      "type": "integer"
+                    },
+                    "controlWardsPlaced": {
+                      "type": "integer"
+                    },
+                    "damagePerMinute": {
+                      "type": "number"
+                    },
+                    "damageTakenOnTeamPercentage": {
+                      "type": "number"
+                    },
+                    "dancedWithRiftHerald": {
+                      "type": "integer"
+                    },
+                    "deathsByEnemyChamps": {
+                      "type": "integer"
+                    },
+                    "dodgeSkillShotsSmallWindow": {
+                      "type": "integer"
+                    },
+                    "doubleAces": {
+                      "type": "integer"
+                    },
+                    "dragonTakedowns": {
+                      "type": "integer"
+                    },
+                    "earliestDragonTakedown": {
+                      "type": "number"
+                    },
+                    "earlyLaningPhaseGoldExpAdvantage": {
+                      "type": "integer"
+                    },
+                    "effectiveHealAndShielding": {
+                      "type": "integer"
+                    },
+                    "elderDragonKillsWithOpposingSoul": {
+                      "type": "integer"
+                    },
+                    "elderDragonMultikills": {
+                      "type": "integer"
+                    },
+                    "enemyChampionImmobilizations": {
+                      "type": "integer"
+                    },
+                    "enemyJungleMonsterKills": {
+                      "type": "integer"
+                    },
+                    "epicMonsterKillsNearEnemyJungler": {
+                      "type": "integer"
+                    },
+                    "epicMonsterKillsWithin30SecondsOfSpawn": {
+                      "type": "integer"
+                    },
+                    "epicMonsterSteals": {
+                      "type": "integer"
+                    },
+                    "epicMonsterStolenWithoutSmite": {
+                      "type": "integer"
+                    },
+                    "firstTurretKilled": {
+                      "type": "integer"
+                    },
+                    "fistBumpParticipation": {
+                      "type": "integer"
+                    },
+                    "flawlessAces": {
+                      "type": "integer"
+                    },
+                    "fullTeamTakedown": {
+                      "type": "integer"
+                    },
+                    "gameLength": {
+                      "type": "number"
+                    },
+                    "getTakedownsInAllLanesEarlyJungleAsLaner": {
+                      "type": "integer"
+                    },
+                    "goldPerMinute": {
+                      "type": "number"
+                    },
+                    "hadOpenNexus": {
+                      "type": "integer"
+                    },
+                    "immobilizeAndKillWithAlly": {
+                      "type": "integer"
+                    },
+                    "initialBuffCount": {
+                      "type": "integer"
+                    },
+                    "initialCrabCount": {
+                      "type": "integer"
+                    },
+                    "jungleCsBefore10Minutes": {
+                      "type": "integer"
+                    },
+                    "junglerTakedownsNearDamagedEpicMonster": {
+                      "type": "integer"
+                    },
+                    "kTurretsDestroyedBeforePlatesFall": {
+                      "type": "integer"
+                    },
+                    "kda": {
+                      "type": "number"
+                    },
+                    "killAfterHiddenWithAlly": {
+                      "type": "integer"
+                    },
+                    "killParticipation": {
+                      "type": "number"
+                    },
+                    "killedChampTookFullTeamDamageSurvived": {
+                      "type": "integer"
+                    },
+                    "killingSprees": {
+                      "type": "integer"
+                    },
+                    "killsNearEnemyTurret": {
+                      "type": "integer"
+                    },
+                    "killsOnOtherLanesEarlyJungleAsLaner": {
+                      "type": "integer"
+                    },
+                    "killsOnRecentlyHealedByAramPack": {
+                      "type": "integer"
+                    },
+                    "killsUnderOwnTurret": {
+                      "type": "integer"
+                    },
+                    "killsWithHelpFromEpicMonster": {
+                      "type": "integer"
+                    },
+                    "knockEnemyIntoTeamAndKill": {
+                      "type": "integer"
+                    },
+                    "landSkillShotsEarlyGame": {
+                      "type": "integer"
+                    },
+                    "laneMinionsFirst10Minutes": {
+                      "type": "integer"
+                    },
+                    "laningPhaseGoldExpAdvantage": {
+                      "type": "integer"
+                    },
+                    "legendaryCount": {
+                      "type": "integer"
+                    },
+                    "legendaryItemUsed": {
+                      "items": {
+                        "type": "integer"
+                      },
+                      "type": "array"
+                    },
+                    "lostAnInhibitor": {
+                      "type": "integer"
+                    },
+                    "maxCsAdvantageOnLaneOpponent": {
+                      "type": "integer"
+                    },
+                    "maxKillDeficit": {
+                      "type": "integer"
+                    },
+                    "maxLevelLeadLaneOpponent": {
+                      "type": "integer"
+                    },
+                    "mejaisFullStackInTime": {
+                      "type": "integer"
+                    },
+                    "moreEnemyJungleThanOpponent": {
+                      "type": "integer"
+                    },
+                    "multiKillOneSpell": {
+                      "type": "integer"
+                    },
+                    "multiTurretRiftHeraldCount": {
+                      "type": "integer"
+                    },
+                    "multikills": {
+                      "type": "integer"
+                    },
+                    "multikillsAfterAggressiveFlash": {
+                      "type": "integer"
+                    },
+                    "outerTurretExecutesBefore10Minutes": {
+                      "type": "integer"
+                    },
+                    "outnumberedKills": {
+                      "type": "integer"
+                    },
+                    "outnumberedNexusKill": {
+                      "type": "integer"
+                    },
+                    "perfectDragonSoulsTaken": {
+                      "type": "integer"
+                    },
+                    "perfectGame": {
+                      "type": "integer"
+                    },
+                    "pickKillWithAlly": {
+                      "type": "integer"
+                    },
+                    "playedChampSelectPosition": {
+                      "type": "integer"
+                    },
+                    "poroExplosions": {
+                      "type": "integer"
+                    },
+                    "quickCleanse": {
+                      "type": "integer"
+                    },
+                    "quickFirstTurret": {
+                      "type": "integer"
+                    },
+                    "quickSoloKills": {
+                      "type": "integer"
+                    },
+                    "riftHeraldTakedowns": {
+                      "type": "integer"
+                    },
+                    "saveAllyFromDeath": {
+                      "type": "integer"
+                    },
+                    "scuttleCrabKills": {
+                      "type": "integer"
+                    },
+                    "skillshotsDodged": {
+                      "type": "integer"
+                    },
+                    "skillshotsHit": {
+                      "type": "integer"
+                    },
+                    "snowballsHit": {
+                      "type": "integer"
+                    },
+                    "soloBaronKills": {
+                      "type": "integer"
+                    },
+                    "soloKills": {
+                      "type": "integer"
+                    },
+                    "stealthWardsPlaced": {
+                      "type": "integer"
+                    },
+                    "survivedSingleDigitHpCount": {
+                      "type": "integer"
+                    },
+                    "survivedThreeImmobilizesInFight": {
+                      "type": "integer"
+                    },
+                    "takedownOnFirstTurret": {
+                      "type": "integer"
+                    },
+                    "takedowns": {
+                      "type": "integer"
+                    },
+                    "takedownsAfterGainingLevelAdvantage": {
+                      "type": "integer"
+                    },
+                    "takedownsBeforeJungleMinionSpawn": {
+                      "type": "integer"
+                    },
+                    "takedownsFirstXMinutes": {
+                      "type": "integer"
+                    },
+                    "takedownsInAlcove": {
+                      "type": "integer"
+                    },
+                    "takedownsInEnemyFountain": {
+                      "type": "integer"
+                    },
+                    "teamBaronKills": {
+                      "type": "integer"
+                    },
+                    "teamDamagePercentage": {
+                      "type": "number"
+                    },
+                    "teamElderDragonKills": {
+                      "type": "integer"
+                    },
+                    "teamRiftHeraldKills": {
+                      "type": "integer"
+                    },
+                    "tookLargeDamageSurvived": {
+                      "type": "integer"
+                    },
+                    "turretPlatesTaken": {
+                      "type": "integer"
+                    },
+                    "turretTakedowns": {
+                      "type": "integer"
+                    },
+                    "turretsTakenWithRiftHerald": {
+                      "type": "integer"
+                    },
+                    "twentyMinionsIn3SecondsCount": {
+                      "type": "integer"
+                    },
+                    "twoWardsOneSweeperCount": {
+                      "type": "integer"
+                    },
+                    "unseenRecalls": {
+                      "type": "integer"
+                    },
+                    "visionScoreAdvantageLaneOpponent": {
+                      "type": "number"
+                    },
+                    "visionScorePerMinute": {
+                      "type": "number"
+                    },
+                    "voidMonsterKill": {
+                      "type": "integer"
+                    },
+                    "wardTakedowns": {
+                      "type": "integer"
+                    },
+                    "wardTakedownsBefore20M": {
+                      "type": "integer"
+                    },
+                    "wardsGuarded": {
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "champExperience": {
+                  "type": "integer"
+                },
+                "champLevel": {
+                  "type": "integer"
+                },
+                "championId": {
+                  "type": "integer"
+                },
+                "championName": {
+                  "type": "string"
+                },
+                "championTransform": {
+                  "type": "integer"
+                },
+                "commandPings": {
+                  "type": "integer"
+                },
+                "consumablesPurchased": {
+                  "type": "integer"
+                },
+                "damageDealtToBuildings": {
+                  "type": "integer"
+                },
+                "damageDealtToEpicMonsters": {
+                  "type": "integer"
+                },
+                "damageDealtToObjectives": {
+                  "type": "integer"
+                },
+                "damageDealtToTurrets": {
+                  "type": "integer"
+                },
+                "damageSelfMitigated": {
+                  "type": "integer"
+                },
+                "dangerPings": {
+                  "type": "integer"
+                },
+                "deaths": {
+                  "type": "integer"
+                },
+                "detectorWardsPlaced": {
+                  "type": "integer"
+                },
+                "doubleKills": {
+                  "type": "integer"
+                },
+                "dragonKills": {
+                  "type": "integer"
+                },
+                "eligibleForProgression": {
+                  "type": "boolean"
+                },
+                "enemyMissingPings": {
+                  "type": "integer"
+                },
+                "enemyVisionPings": {
+                  "type": "integer"
+                },
+                "firstBloodAssist": {
+                  "type": "boolean"
+                },
+                "firstBloodKill": {
+                  "type": "boolean"
+                },
+                "firstTowerAssist": {
+                  "type": "boolean"
+                },
+                "firstTowerKill": {
+                  "type": "boolean"
+                },
+                "gameEndedInEarlySurrender": {
+                  "type": "boolean"
+                },
+                "gameEndedInSurrender": {
+                  "type": "boolean"
+                },
+                "getBackPings": {
+                  "type": "integer"
+                },
+                "goldEarned": {
+                  "type": "integer"
+                },
+                "goldSpent": {
+                  "type": "integer"
+                },
+                "holdPings": {
+                  "type": "integer"
+                },
+                "individualPosition": {
+                  "type": "string"
+                },
+                "inhibitorKills": {
+                  "type": "integer"
+                },
+                "inhibitorTakedowns": {
+                  "type": "integer"
+                },
+                "inhibitorsLost": {
+                  "type": "integer"
+                },
+                "item0": {
+                  "type": "integer"
+                },
+                "item1": {
+                  "type": "integer"
+                },
+                "item2": {
+                  "type": "integer"
+                },
+                "item3": {
+                  "type": "integer"
+                },
+                "item4": {
+                  "type": "integer"
+                },
+                "item5": {
+                  "type": "integer"
+                },
+                "item6": {
+                  "type": "integer"
+                },
+                "itemsPurchased": {
+                  "type": "integer"
+                },
+                "killingSprees": {
+                  "type": "integer"
+                },
+                "kills": {
+                  "type": "integer"
+                },
+                "lane": {
+                  "type": "string"
+                },
+                "largestCriticalStrike": {
+                  "type": "integer"
+                },
+                "largestKillingSpree": {
+                  "type": "integer"
+                },
+                "largestMultiKill": {
+                  "type": "integer"
+                },
+                "longestTimeSpentLiving": {
+                  "type": "integer"
+                },
+                "magicDamageDealt": {
+                  "type": "integer"
+                },
+                "magicDamageDealtToChampions": {
+                  "type": "integer"
+                },
+                "magicDamageTaken": {
+                  "type": "integer"
+                },
+                "missions": {
+                  "fields": {
+                    "playerScore0": {
+                      "type": "integer"
+                    },
+                    "playerScore1": {
+                      "type": "integer"
+                    },
+                    "playerScore10": {
+                      "type": "integer"
+                    },
+                    "playerScore11": {
+                      "type": "integer"
+                    },
+                    "playerScore2": {
+                      "type": "integer"
+                    },
+                    "playerScore3": {
+                      "type": "integer"
+                    },
+                    "playerScore4": {
+                      "type": "integer"
+                    },
+                    "playerScore5": {
+                      "type": "integer"
+                    },
+                    "playerScore6": {
+                      "type": "integer"
+                    },
+                    "playerScore7": {
+                      "type": "integer"
+                    },
+                    "playerScore8": {
+                      "type": "integer"
+                    },
+                    "playerScore9": {
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "needVisionPings": {
+                  "type": "integer"
+                },
+                "neutralMinionsKilled": {
+                  "type": "integer"
+                },
+                "nexusKills": {
+                  "type": "integer"
+                },
+                "nexusLost": {
+                  "type": "integer"
+                },
+                "nexusTakedowns": {
+                  "type": "integer"
+                },
+                "objectivesStolen": {
+                  "type": "integer"
+                },
+                "objectivesStolenAssists": {
+                  "type": "integer"
+                },
+                "onMyWayPings": {
+                  "type": "integer"
+                },
+                "participantId": {
+                  "type": "integer"
+                },
+                "pentaKills": {
+                  "type": "integer"
+                },
+                "perks": {
+                  "fields": {
+                    "statPerks": {
+                      "fields": {
+                        "defense": {
+                          "type": "integer"
+                        },
+                        "flex": {
+                          "type": "integer"
+                        },
+                        "offense": {
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "styles": {
+                      "items": {
+                        "fields": {
+                          "description": {
+                            "type": "string"
+                          },
+                          "selections": {
+                            "items": {
+                              "fields": {
+                                "perk": {
+                                  "type": "integer"
+                                },
+                                "var1": {
+                                  "type": "integer"
+                                },
+                                "var2": {
+                                  "type": "integer"
+                                },
+                                "var3": {
+                                  "type": "integer"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "style": {
+                            "type": "integer"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                },
+                "physicalDamageDealt": {
+                  "type": "integer"
+                },
+                "physicalDamageDealtToChampions": {
+                  "type": "integer"
+                },
+                "physicalDamageTaken": {
+                  "type": "integer"
+                },
+                "placement": {
+                  "type": "integer"
+                },
+                "playerAugment1": {
+                  "type": "integer"
+                },
+                "playerAugment2": {
+                  "type": "integer"
+                },
+                "playerAugment3": {
+                  "type": "integer"
+                },
+                "playerAugment4": {
+                  "type": "integer"
+                },
+                "playerAugment5": {
+                  "type": "integer"
+                },
+                "playerAugment6": {
+                  "type": "integer"
+                },
+                "playerSubteamId": {
+                  "type": "integer"
+                },
+                "profileIcon": {
+                  "type": "integer"
+                },
+                "pushPings": {
+                  "type": "integer"
+                },
+                "puuid": {
+                  "type": "string"
+                },
+                "quadraKills": {
+                  "type": "integer"
+                },
+                "retreatPings": {
+                  "type": "integer"
+                },
+                "riotIdGameName": {
+                  "type": "string"
+                },
+                "riotIdTagline": {
+                  "type": "string"
+                },
+                "role": {
+                  "type": "string"
+                },
+                "roleBoundItem": {
+                  "type": "integer"
+                },
+                "sightWardsBoughtInGame": {
+                  "type": "integer"
+                },
+                "spell1Casts": {
+                  "type": "integer"
+                },
+                "spell2Casts": {
+                  "type": "integer"
+                },
+                "spell3Casts": {
+                  "type": "integer"
+                },
+                "spell4Casts": {
+                  "type": "integer"
+                },
+                "subteamPlacement": {
+                  "type": "integer"
+                },
+                "summoner1Casts": {
+                  "type": "integer"
+                },
+                "summoner1Id": {
+                  "type": "integer"
+                },
+                "summoner2Casts": {
+                  "type": "integer"
+                },
+                "summoner2Id": {
+                  "type": "integer"
+                },
+                "summonerId": {
+                  "type": "string"
+                },
+                "summonerLevel": {
+                  "type": "integer"
+                },
+                "summonerName": {
+                  "type": "string"
+                },
+                "teamEarlySurrendered": {
+                  "type": "boolean"
+                },
+                "teamId": {
+                  "type": "integer"
+                },
+                "teamPosition": {
+                  "type": "string"
+                },
+                "timeCCingOthers": {
+                  "type": "integer"
+                },
+                "timePlayed": {
+                  "type": "integer"
+                },
+                "totalAllyJungleMinionsKilled": {
+                  "type": "integer"
+                },
+                "totalDamageDealt": {
+                  "type": "integer"
+                },
+                "totalDamageDealtToChampions": {
+                  "type": "integer"
+                },
+                "totalDamageShieldedOnTeammates": {
+                  "type": "integer"
+                },
+                "totalDamageTaken": {
+                  "type": "integer"
+                },
+                "totalEnemyJungleMinionsKilled": {
+                  "type": "integer"
+                },
+                "totalHeal": {
+                  "type": "integer"
+                },
+                "totalHealsOnTeammates": {
+                  "type": "integer"
+                },
+                "totalMinionsKilled": {
+                  "type": "integer"
+                },
+                "totalTimeCCDealt": {
+                  "type": "integer"
+                },
+                "totalTimeSpentDead": {
+                  "type": "integer"
+                },
+                "totalUnitsHealed": {
+                  "type": "integer"
+                },
+                "tripleKills": {
+                  "type": "integer"
+                },
+                "trueDamageDealt": {
+                  "type": "integer"
+                },
+                "trueDamageDealtToChampions": {
+                  "type": "integer"
+                },
+                "trueDamageTaken": {
+                  "type": "integer"
+                },
+                "turretKills": {
+                  "type": "integer"
+                },
+                "turretTakedowns": {
+                  "type": "integer"
+                },
+                "turretsLost": {
+                  "type": "integer"
+                },
+                "unrealKills": {
+                  "type": "integer"
+                },
+                "visionClearedPings": {
+                  "type": "integer"
+                },
+                "visionScore": {
+                  "type": "integer"
+                },
+                "visionWardsBoughtInGame": {
+                  "type": "integer"
+                },
+                "wardsKilled": {
+                  "type": "integer"
+                },
+                "wardsPlaced": {
+                  "type": "integer"
+                },
+                "win": {
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "platformId": {
+            "type": "string"
+          },
+          "queueId": {
+            "type": "integer"
+          },
+          "teams": {
+            "items": {
+              "fields": {
+                "bans": {
+                  "items": {
+                    "fields": {
+                      "championId": {
+                        "type": "integer"
+                      },
+                      "pickTurn": {
+                        "type": "integer"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "feats": {
+                  "fields": {
+                    "EPIC_MONSTER_KILL": {
+                      "fields": {
+                        "featState": {
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "FIRST_BLOOD": {
+                      "fields": {
+                        "featState": {
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "FIRST_TURRET": {
+                      "fields": {
+                        "featState": {
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "objectives": {
+                  "fields": {
+                    "atakhan": {
+                      "fields": {
+                        "first": {
+                          "type": "boolean"
+                        },
+                        "kills": {
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "baron": {
+                      "fields": {
+                        "first": {
+                          "type": "boolean"
+                        },
+                        "kills": {
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "champion": {
+                      "fields": {
+                        "first": {
+                          "type": "boolean"
+                        },
+                        "kills": {
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "dragon": {
+                      "fields": {
+                        "first": {
+                          "type": "boolean"
+                        },
+                        "kills": {
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "horde": {
+                      "fields": {
+                        "first": {
+                          "type": "boolean"
+                        },
+                        "kills": {
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "inhibitor": {
+                      "fields": {
+                        "first": {
+                          "type": "boolean"
+                        },
+                        "kills": {
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "riftHerald": {
+                      "fields": {
+                        "first": {
+                          "type": "boolean"
+                        },
+                        "kills": {
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "tower": {
+                      "fields": {
+                        "first": {
+                          "type": "boolean"
+                        },
+                        "kills": {
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "teamId": {
+                  "type": "integer"
+                },
+                "win": {
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "tournamentCode": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "metadata": {
+        "fields": {
+          "dataVersion": {
+            "type": "string"
+          },
+          "matchId": {
+            "type": "string"
+          },
+          "participants": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "MatchTimelineDTO": {
+      "info": {
+        "fields": {
+          "endOfGameResult": {
+            "type": "string"
+          },
+          "frameInterval": {
+            "type": "integer"
+          },
+          "frames": {
+            "items": {
+              "fields": {
+                "events": {
+                  "items": {
+                    "fields": {
+                      "realTimestamp": {
+                        "type": "integer"
+                      },
+                      "timestamp": {
+                        "type": "integer"
+                      },
+                      "type": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "participantFrames": {
+                  "fields": {
+                    "1": {
+                      "fields": {
+                        "championStats": {
+                          "fields": {
+                            "abilityHaste": {
+                              "type": "integer"
+                            },
+                            "abilityPower": {
+                              "type": "integer"
+                            },
+                            "armor": {
+                              "type": "integer"
+                            },
+                            "armorPen": {
+                              "type": "integer"
+                            },
+                            "armorPenPercent": {
+                              "type": "integer"
+                            },
+                            "attackDamage": {
+                              "type": "integer"
+                            },
+                            "attackSpeed": {
+                              "type": "integer"
+                            },
+                            "bonusArmorPenPercent": {
+                              "type": "integer"
+                            },
+                            "bonusMagicPenPercent": {
+                              "type": "integer"
+                            },
+                            "ccReduction": {
+                              "type": "integer"
+                            },
+                            "cooldownReduction": {
+                              "type": "integer"
+                            },
+                            "health": {
+                              "type": "integer"
+                            },
+                            "healthMax": {
+                              "type": "integer"
+                            },
+                            "healthRegen": {
+                              "type": "integer"
+                            },
+                            "lifesteal": {
+                              "type": "integer"
+                            },
+                            "magicPen": {
+                              "type": "integer"
+                            },
+                            "magicPenPercent": {
+                              "type": "integer"
+                            },
+                            "magicResist": {
+                              "type": "integer"
+                            },
+                            "movementSpeed": {
+                              "type": "integer"
+                            },
+                            "omnivamp": {
+                              "type": "integer"
+                            },
+                            "physicalVamp": {
+                              "type": "integer"
+                            },
+                            "power": {
+                              "type": "integer"
+                            },
+                            "powerMax": {
+                              "type": "integer"
+                            },
+                            "powerRegen": {
+                              "type": "integer"
+                            },
+                            "spellVamp": {
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "currentGold": {
+                          "type": "integer"
+                        },
+                        "damageStats": {
+                          "fields": {
+                            "magicDamageDone": {
+                              "type": "integer"
+                            },
+                            "magicDamageDoneToChampions": {
+                              "type": "integer"
+                            },
+                            "magicDamageTaken": {
+                              "type": "integer"
+                            },
+                            "physicalDamageDone": {
+                              "type": "integer"
+                            },
+                            "physicalDamageDoneToChampions": {
+                              "type": "integer"
+                            },
+                            "physicalDamageTaken": {
+                              "type": "integer"
+                            },
+                            "totalDamageDone": {
+                              "type": "integer"
+                            },
+                            "totalDamageDoneToChampions": {
+                              "type": "integer"
+                            },
+                            "totalDamageTaken": {
+                              "type": "integer"
+                            },
+                            "trueDamageDone": {
+                              "type": "integer"
+                            },
+                            "trueDamageDoneToChampions": {
+                              "type": "integer"
+                            },
+                            "trueDamageTaken": {
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "goldPerSecond": {
+                          "type": "integer"
+                        },
+                        "jungleMinionsKilled": {
+                          "type": "integer"
+                        },
+                        "level": {
+                          "type": "integer"
+                        },
+                        "minionsKilled": {
+                          "type": "integer"
+                        },
+                        "participantId": {
+                          "type": "integer"
+                        },
+                        "position": {
+                          "fields": {
+                            "x": {
+                              "type": "integer"
+                            },
+                            "y": {
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "timeEnemySpentControlled": {
+                          "type": "integer"
+                        },
+                        "totalGold": {
+                          "type": "integer"
+                        },
+                        "xp": {
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "2": {
+                      "fields": {
+                        "championStats": {
+                          "fields": {
+                            "abilityHaste": {
+                              "type": "integer"
+                            },
+                            "abilityPower": {
+                              "type": "integer"
+                            },
+                            "armor": {
+                              "type": "integer"
+                            },
+                            "armorPen": {
+                              "type": "integer"
+                            },
+                            "armorPenPercent": {
+                              "type": "integer"
+                            },
+                            "attackDamage": {
+                              "type": "integer"
+                            },
+                            "attackSpeed": {
+                              "type": "integer"
+                            },
+                            "bonusArmorPenPercent": {
+                              "type": "integer"
+                            },
+                            "bonusMagicPenPercent": {
+                              "type": "integer"
+                            },
+                            "ccReduction": {
+                              "type": "integer"
+                            },
+                            "cooldownReduction": {
+                              "type": "integer"
+                            },
+                            "health": {
+                              "type": "integer"
+                            },
+                            "healthMax": {
+                              "type": "integer"
+                            },
+                            "healthRegen": {
+                              "type": "integer"
+                            },
+                            "lifesteal": {
+                              "type": "integer"
+                            },
+                            "magicPen": {
+                              "type": "integer"
+                            },
+                            "magicPenPercent": {
+                              "type": "integer"
+                            },
+                            "magicResist": {
+                              "type": "integer"
+                            },
+                            "movementSpeed": {
+                              "type": "integer"
+                            },
+                            "omnivamp": {
+                              "type": "integer"
+                            },
+                            "physicalVamp": {
+                              "type": "integer"
+                            },
+                            "power": {
+                              "type": "integer"
+                            },
+                            "powerMax": {
+                              "type": "integer"
+                            },
+                            "powerRegen": {
+                              "type": "integer"
+                            },
+                            "spellVamp": {
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "currentGold": {
+                          "type": "integer"
+                        },
+                        "damageStats": {
+                          "fields": {
+                            "magicDamageDone": {
+                              "type": "integer"
+                            },
+                            "magicDamageDoneToChampions": {
+                              "type": "integer"
+                            },
+                            "magicDamageTaken": {
+                              "type": "integer"
+                            },
+                            "physicalDamageDone": {
+                              "type": "integer"
+                            },
+                            "physicalDamageDoneToChampions": {
+                              "type": "integer"
+                            },
+                            "physicalDamageTaken": {
+                              "type": "integer"
+                            },
+                            "totalDamageDone": {
+                              "type": "integer"
+                            },
+                            "totalDamageDoneToChampions": {
+                              "type": "integer"
+                            },
+                            "totalDamageTaken": {
+                              "type": "integer"
+                            },
+                            "trueDamageDone": {
+                              "type": "integer"
+                            },
+                            "trueDamageDoneToChampions": {
+                              "type": "integer"
+                            },
+                            "trueDamageTaken": {
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "goldPerSecond": {
+                          "type": "integer"
+                        },
+                        "jungleMinionsKilled": {
+                          "type": "integer"
+                        },
+                        "level": {
+                          "type": "integer"
+                        },
+                        "minionsKilled": {
+                          "type": "integer"
+                        },
+                        "participantId": {
+                          "type": "integer"
+                        },
+                        "position": {
+                          "fields": {
+                            "x": {
+                              "type": "integer"
+                            },
+                            "y": {
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "timeEnemySpentControlled": {
+                          "type": "integer"
+                        },
+                        "totalGold": {
+                          "type": "integer"
+                        },
+                        "xp": {
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "3": {
+                      "fields": {
+                        "championStats": {
+                          "fields": {
+                            "abilityHaste": {
+                              "type": "integer"
+                            },
+                            "abilityPower": {
+                              "type": "integer"
+                            },
+                            "armor": {
+                              "type": "integer"
+                            },
+                            "armorPen": {
+                              "type": "integer"
+                            },
+                            "armorPenPercent": {
+                              "type": "integer"
+                            },
+                            "attackDamage": {
+                              "type": "integer"
+                            },
+                            "attackSpeed": {
+                              "type": "integer"
+                            },
+                            "bonusArmorPenPercent": {
+                              "type": "integer"
+                            },
+                            "bonusMagicPenPercent": {
+                              "type": "integer"
+                            },
+                            "ccReduction": {
+                              "type": "integer"
+                            },
+                            "cooldownReduction": {
+                              "type": "integer"
+                            },
+                            "health": {
+                              "type": "integer"
+                            },
+                            "healthMax": {
+                              "type": "integer"
+                            },
+                            "healthRegen": {
+                              "type": "integer"
+                            },
+                            "lifesteal": {
+                              "type": "integer"
+                            },
+                            "magicPen": {
+                              "type": "integer"
+                            },
+                            "magicPenPercent": {
+                              "type": "integer"
+                            },
+                            "magicResist": {
+                              "type": "integer"
+                            },
+                            "movementSpeed": {
+                              "type": "integer"
+                            },
+                            "omnivamp": {
+                              "type": "integer"
+                            },
+                            "physicalVamp": {
+                              "type": "integer"
+                            },
+                            "power": {
+                              "type": "integer"
+                            },
+                            "powerMax": {
+                              "type": "integer"
+                            },
+                            "powerRegen": {
+                              "type": "integer"
+                            },
+                            "spellVamp": {
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "currentGold": {
+                          "type": "integer"
+                        },
+                        "damageStats": {
+                          "fields": {
+                            "magicDamageDone": {
+                              "type": "integer"
+                            },
+                            "magicDamageDoneToChampions": {
+                              "type": "integer"
+                            },
+                            "magicDamageTaken": {
+                              "type": "integer"
+                            },
+                            "physicalDamageDone": {
+                              "type": "integer"
+                            },
+                            "physicalDamageDoneToChampions": {
+                              "type": "integer"
+                            },
+                            "physicalDamageTaken": {
+                              "type": "integer"
+                            },
+                            "totalDamageDone": {
+                              "type": "integer"
+                            },
+                            "totalDamageDoneToChampions": {
+                              "type": "integer"
+                            },
+                            "totalDamageTaken": {
+                              "type": "integer"
+                            },
+                            "trueDamageDone": {
+                              "type": "integer"
+                            },
+                            "trueDamageDoneToChampions": {
+                              "type": "integer"
+                            },
+                            "trueDamageTaken": {
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "goldPerSecond": {
+                          "type": "integer"
+                        },
+                        "jungleMinionsKilled": {
+                          "type": "integer"
+                        },
+                        "level": {
+                          "type": "integer"
+                        },
+                        "minionsKilled": {
+                          "type": "integer"
+                        },
+                        "participantId": {
+                          "type": "integer"
+                        },
+                        "position": {
+                          "fields": {
+                            "x": {
+                              "type": "integer"
+                            },
+                            "y": {
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "timeEnemySpentControlled": {
+                          "type": "integer"
+                        },
+                        "totalGold": {
+                          "type": "integer"
+                        },
+                        "xp": {
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "4": {
+                      "fields": {
+                        "championStats": {
+                          "fields": {
+                            "abilityHaste": {
+                              "type": "integer"
+                            },
+                            "abilityPower": {
+                              "type": "integer"
+                            },
+                            "armor": {
+                              "type": "integer"
+                            },
+                            "armorPen": {
+                              "type": "integer"
+                            },
+                            "armorPenPercent": {
+                              "type": "integer"
+                            },
+                            "attackDamage": {
+                              "type": "integer"
+                            },
+                            "attackSpeed": {
+                              "type": "integer"
+                            },
+                            "bonusArmorPenPercent": {
+                              "type": "integer"
+                            },
+                            "bonusMagicPenPercent": {
+                              "type": "integer"
+                            },
+                            "ccReduction": {
+                              "type": "integer"
+                            },
+                            "cooldownReduction": {
+                              "type": "integer"
+                            },
+                            "health": {
+                              "type": "integer"
+                            },
+                            "healthMax": {
+                              "type": "integer"
+                            },
+                            "healthRegen": {
+                              "type": "integer"
+                            },
+                            "lifesteal": {
+                              "type": "integer"
+                            },
+                            "magicPen": {
+                              "type": "integer"
+                            },
+                            "magicPenPercent": {
+                              "type": "integer"
+                            },
+                            "magicResist": {
+                              "type": "integer"
+                            },
+                            "movementSpeed": {
+                              "type": "integer"
+                            },
+                            "omnivamp": {
+                              "type": "integer"
+                            },
+                            "physicalVamp": {
+                              "type": "integer"
+                            },
+                            "power": {
+                              "type": "integer"
+                            },
+                            "powerMax": {
+                              "type": "integer"
+                            },
+                            "powerRegen": {
+                              "type": "integer"
+                            },
+                            "spellVamp": {
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "currentGold": {
+                          "type": "integer"
+                        },
+                        "damageStats": {
+                          "fields": {
+                            "magicDamageDone": {
+                              "type": "integer"
+                            },
+                            "magicDamageDoneToChampions": {
+                              "type": "integer"
+                            },
+                            "magicDamageTaken": {
+                              "type": "integer"
+                            },
+                            "physicalDamageDone": {
+                              "type": "integer"
+                            },
+                            "physicalDamageDoneToChampions": {
+                              "type": "integer"
+                            },
+                            "physicalDamageTaken": {
+                              "type": "integer"
+                            },
+                            "totalDamageDone": {
+                              "type": "integer"
+                            },
+                            "totalDamageDoneToChampions": {
+                              "type": "integer"
+                            },
+                            "totalDamageTaken": {
+                              "type": "integer"
+                            },
+                            "trueDamageDone": {
+                              "type": "integer"
+                            },
+                            "trueDamageDoneToChampions": {
+                              "type": "integer"
+                            },
+                            "trueDamageTaken": {
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "goldPerSecond": {
+                          "type": "integer"
+                        },
+                        "jungleMinionsKilled": {
+                          "type": "integer"
+                        },
+                        "level": {
+                          "type": "integer"
+                        },
+                        "minionsKilled": {
+                          "type": "integer"
+                        },
+                        "participantId": {
+                          "type": "integer"
+                        },
+                        "position": {
+                          "fields": {
+                            "x": {
+                              "type": "integer"
+                            },
+                            "y": {
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "timeEnemySpentControlled": {
+                          "type": "integer"
+                        },
+                        "totalGold": {
+                          "type": "integer"
+                        },
+                        "xp": {
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "5": {
+                      "fields": {
+                        "championStats": {
+                          "fields": {
+                            "abilityHaste": {
+                              "type": "integer"
+                            },
+                            "abilityPower": {
+                              "type": "integer"
+                            },
+                            "armor": {
+                              "type": "integer"
+                            },
+                            "armorPen": {
+                              "type": "integer"
+                            },
+                            "armorPenPercent": {
+                              "type": "integer"
+                            },
+                            "attackDamage": {
+                              "type": "integer"
+                            },
+                            "attackSpeed": {
+                              "type": "integer"
+                            },
+                            "bonusArmorPenPercent": {
+                              "type": "integer"
+                            },
+                            "bonusMagicPenPercent": {
+                              "type": "integer"
+                            },
+                            "ccReduction": {
+                              "type": "integer"
+                            },
+                            "cooldownReduction": {
+                              "type": "integer"
+                            },
+                            "health": {
+                              "type": "integer"
+                            },
+                            "healthMax": {
+                              "type": "integer"
+                            },
+                            "healthRegen": {
+                              "type": "integer"
+                            },
+                            "lifesteal": {
+                              "type": "integer"
+                            },
+                            "magicPen": {
+                              "type": "integer"
+                            },
+                            "magicPenPercent": {
+                              "type": "integer"
+                            },
+                            "magicResist": {
+                              "type": "integer"
+                            },
+                            "movementSpeed": {
+                              "type": "integer"
+                            },
+                            "omnivamp": {
+                              "type": "integer"
+                            },
+                            "physicalVamp": {
+                              "type": "integer"
+                            },
+                            "power": {
+                              "type": "integer"
+                            },
+                            "powerMax": {
+                              "type": "integer"
+                            },
+                            "powerRegen": {
+                              "type": "integer"
+                            },
+                            "spellVamp": {
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "currentGold": {
+                          "type": "integer"
+                        },
+                        "damageStats": {
+                          "fields": {
+                            "magicDamageDone": {
+                              "type": "integer"
+                            },
+                            "magicDamageDoneToChampions": {
+                              "type": "integer"
+                            },
+                            "magicDamageTaken": {
+                              "type": "integer"
+                            },
+                            "physicalDamageDone": {
+                              "type": "integer"
+                            },
+                            "physicalDamageDoneToChampions": {
+                              "type": "integer"
+                            },
+                            "physicalDamageTaken": {
+                              "type": "integer"
+                            },
+                            "totalDamageDone": {
+                              "type": "integer"
+                            },
+                            "totalDamageDoneToChampions": {
+                              "type": "integer"
+                            },
+                            "totalDamageTaken": {
+                              "type": "integer"
+                            },
+                            "trueDamageDone": {
+                              "type": "integer"
+                            },
+                            "trueDamageDoneToChampions": {
+                              "type": "integer"
+                            },
+                            "trueDamageTaken": {
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "goldPerSecond": {
+                          "type": "integer"
+                        },
+                        "jungleMinionsKilled": {
+                          "type": "integer"
+                        },
+                        "level": {
+                          "type": "integer"
+                        },
+                        "minionsKilled": {
+                          "type": "integer"
+                        },
+                        "participantId": {
+                          "type": "integer"
+                        },
+                        "position": {
+                          "fields": {
+                            "x": {
+                              "type": "integer"
+                            },
+                            "y": {
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "timeEnemySpentControlled": {
+                          "type": "integer"
+                        },
+                        "totalGold": {
+                          "type": "integer"
+                        },
+                        "xp": {
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "6": {
+                      "fields": {
+                        "championStats": {
+                          "fields": {
+                            "abilityHaste": {
+                              "type": "integer"
+                            },
+                            "abilityPower": {
+                              "type": "integer"
+                            },
+                            "armor": {
+                              "type": "integer"
+                            },
+                            "armorPen": {
+                              "type": "integer"
+                            },
+                            "armorPenPercent": {
+                              "type": "integer"
+                            },
+                            "attackDamage": {
+                              "type": "integer"
+                            },
+                            "attackSpeed": {
+                              "type": "integer"
+                            },
+                            "bonusArmorPenPercent": {
+                              "type": "integer"
+                            },
+                            "bonusMagicPenPercent": {
+                              "type": "integer"
+                            },
+                            "ccReduction": {
+                              "type": "integer"
+                            },
+                            "cooldownReduction": {
+                              "type": "integer"
+                            },
+                            "health": {
+                              "type": "integer"
+                            },
+                            "healthMax": {
+                              "type": "integer"
+                            },
+                            "healthRegen": {
+                              "type": "integer"
+                            },
+                            "lifesteal": {
+                              "type": "integer"
+                            },
+                            "magicPen": {
+                              "type": "integer"
+                            },
+                            "magicPenPercent": {
+                              "type": "integer"
+                            },
+                            "magicResist": {
+                              "type": "integer"
+                            },
+                            "movementSpeed": {
+                              "type": "integer"
+                            },
+                            "omnivamp": {
+                              "type": "integer"
+                            },
+                            "physicalVamp": {
+                              "type": "integer"
+                            },
+                            "power": {
+                              "type": "integer"
+                            },
+                            "powerMax": {
+                              "type": "integer"
+                            },
+                            "powerRegen": {
+                              "type": "integer"
+                            },
+                            "spellVamp": {
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "currentGold": {
+                          "type": "integer"
+                        },
+                        "damageStats": {
+                          "fields": {
+                            "magicDamageDone": {
+                              "type": "integer"
+                            },
+                            "magicDamageDoneToChampions": {
+                              "type": "integer"
+                            },
+                            "magicDamageTaken": {
+                              "type": "integer"
+                            },
+                            "physicalDamageDone": {
+                              "type": "integer"
+                            },
+                            "physicalDamageDoneToChampions": {
+                              "type": "integer"
+                            },
+                            "physicalDamageTaken": {
+                              "type": "integer"
+                            },
+                            "totalDamageDone": {
+                              "type": "integer"
+                            },
+                            "totalDamageDoneToChampions": {
+                              "type": "integer"
+                            },
+                            "totalDamageTaken": {
+                              "type": "integer"
+                            },
+                            "trueDamageDone": {
+                              "type": "integer"
+                            },
+                            "trueDamageDoneToChampions": {
+                              "type": "integer"
+                            },
+                            "trueDamageTaken": {
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "goldPerSecond": {
+                          "type": "integer"
+                        },
+                        "jungleMinionsKilled": {
+                          "type": "integer"
+                        },
+                        "level": {
+                          "type": "integer"
+                        },
+                        "minionsKilled": {
+                          "type": "integer"
+                        },
+                        "participantId": {
+                          "type": "integer"
+                        },
+                        "position": {
+                          "fields": {
+                            "x": {
+                              "type": "integer"
+                            },
+                            "y": {
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "timeEnemySpentControlled": {
+                          "type": "integer"
+                        },
+                        "totalGold": {
+                          "type": "integer"
+                        },
+                        "xp": {
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "7": {
+                      "fields": {
+                        "championStats": {
+                          "fields": {
+                            "abilityHaste": {
+                              "type": "integer"
+                            },
+                            "abilityPower": {
+                              "type": "integer"
+                            },
+                            "armor": {
+                              "type": "integer"
+                            },
+                            "armorPen": {
+                              "type": "integer"
+                            },
+                            "armorPenPercent": {
+                              "type": "integer"
+                            },
+                            "attackDamage": {
+                              "type": "integer"
+                            },
+                            "attackSpeed": {
+                              "type": "integer"
+                            },
+                            "bonusArmorPenPercent": {
+                              "type": "integer"
+                            },
+                            "bonusMagicPenPercent": {
+                              "type": "integer"
+                            },
+                            "ccReduction": {
+                              "type": "integer"
+                            },
+                            "cooldownReduction": {
+                              "type": "integer"
+                            },
+                            "health": {
+                              "type": "integer"
+                            },
+                            "healthMax": {
+                              "type": "integer"
+                            },
+                            "healthRegen": {
+                              "type": "integer"
+                            },
+                            "lifesteal": {
+                              "type": "integer"
+                            },
+                            "magicPen": {
+                              "type": "integer"
+                            },
+                            "magicPenPercent": {
+                              "type": "integer"
+                            },
+                            "magicResist": {
+                              "type": "integer"
+                            },
+                            "movementSpeed": {
+                              "type": "integer"
+                            },
+                            "omnivamp": {
+                              "type": "integer"
+                            },
+                            "physicalVamp": {
+                              "type": "integer"
+                            },
+                            "power": {
+                              "type": "integer"
+                            },
+                            "powerMax": {
+                              "type": "integer"
+                            },
+                            "powerRegen": {
+                              "type": "integer"
+                            },
+                            "spellVamp": {
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "currentGold": {
+                          "type": "integer"
+                        },
+                        "damageStats": {
+                          "fields": {
+                            "magicDamageDone": {
+                              "type": "integer"
+                            },
+                            "magicDamageDoneToChampions": {
+                              "type": "integer"
+                            },
+                            "magicDamageTaken": {
+                              "type": "integer"
+                            },
+                            "physicalDamageDone": {
+                              "type": "integer"
+                            },
+                            "physicalDamageDoneToChampions": {
+                              "type": "integer"
+                            },
+                            "physicalDamageTaken": {
+                              "type": "integer"
+                            },
+                            "totalDamageDone": {
+                              "type": "integer"
+                            },
+                            "totalDamageDoneToChampions": {
+                              "type": "integer"
+                            },
+                            "totalDamageTaken": {
+                              "type": "integer"
+                            },
+                            "trueDamageDone": {
+                              "type": "integer"
+                            },
+                            "trueDamageDoneToChampions": {
+                              "type": "integer"
+                            },
+                            "trueDamageTaken": {
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "goldPerSecond": {
+                          "type": "integer"
+                        },
+                        "jungleMinionsKilled": {
+                          "type": "integer"
+                        },
+                        "level": {
+                          "type": "integer"
+                        },
+                        "minionsKilled": {
+                          "type": "integer"
+                        },
+                        "participantId": {
+                          "type": "integer"
+                        },
+                        "position": {
+                          "fields": {
+                            "x": {
+                              "type": "integer"
+                            },
+                            "y": {
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "timeEnemySpentControlled": {
+                          "type": "integer"
+                        },
+                        "totalGold": {
+                          "type": "integer"
+                        },
+                        "xp": {
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "8": {
+                      "fields": {
+                        "championStats": {
+                          "fields": {
+                            "abilityHaste": {
+                              "type": "integer"
+                            },
+                            "abilityPower": {
+                              "type": "integer"
+                            },
+                            "armor": {
+                              "type": "integer"
+                            },
+                            "armorPen": {
+                              "type": "integer"
+                            },
+                            "armorPenPercent": {
+                              "type": "integer"
+                            },
+                            "attackDamage": {
+                              "type": "integer"
+                            },
+                            "attackSpeed": {
+                              "type": "integer"
+                            },
+                            "bonusArmorPenPercent": {
+                              "type": "integer"
+                            },
+                            "bonusMagicPenPercent": {
+                              "type": "integer"
+                            },
+                            "ccReduction": {
+                              "type": "integer"
+                            },
+                            "cooldownReduction": {
+                              "type": "integer"
+                            },
+                            "health": {
+                              "type": "integer"
+                            },
+                            "healthMax": {
+                              "type": "integer"
+                            },
+                            "healthRegen": {
+                              "type": "integer"
+                            },
+                            "lifesteal": {
+                              "type": "integer"
+                            },
+                            "magicPen": {
+                              "type": "integer"
+                            },
+                            "magicPenPercent": {
+                              "type": "integer"
+                            },
+                            "magicResist": {
+                              "type": "integer"
+                            },
+                            "movementSpeed": {
+                              "type": "integer"
+                            },
+                            "omnivamp": {
+                              "type": "integer"
+                            },
+                            "physicalVamp": {
+                              "type": "integer"
+                            },
+                            "power": {
+                              "type": "integer"
+                            },
+                            "powerMax": {
+                              "type": "integer"
+                            },
+                            "powerRegen": {
+                              "type": "integer"
+                            },
+                            "spellVamp": {
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "currentGold": {
+                          "type": "integer"
+                        },
+                        "damageStats": {
+                          "fields": {
+                            "magicDamageDone": {
+                              "type": "integer"
+                            },
+                            "magicDamageDoneToChampions": {
+                              "type": "integer"
+                            },
+                            "magicDamageTaken": {
+                              "type": "integer"
+                            },
+                            "physicalDamageDone": {
+                              "type": "integer"
+                            },
+                            "physicalDamageDoneToChampions": {
+                              "type": "integer"
+                            },
+                            "physicalDamageTaken": {
+                              "type": "integer"
+                            },
+                            "totalDamageDone": {
+                              "type": "integer"
+                            },
+                            "totalDamageDoneToChampions": {
+                              "type": "integer"
+                            },
+                            "totalDamageTaken": {
+                              "type": "integer"
+                            },
+                            "trueDamageDone": {
+                              "type": "integer"
+                            },
+                            "trueDamageDoneToChampions": {
+                              "type": "integer"
+                            },
+                            "trueDamageTaken": {
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "goldPerSecond": {
+                          "type": "integer"
+                        },
+                        "jungleMinionsKilled": {
+                          "type": "integer"
+                        },
+                        "level": {
+                          "type": "integer"
+                        },
+                        "minionsKilled": {
+                          "type": "integer"
+                        },
+                        "participantId": {
+                          "type": "integer"
+                        },
+                        "position": {
+                          "fields": {
+                            "x": {
+                              "type": "integer"
+                            },
+                            "y": {
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "timeEnemySpentControlled": {
+                          "type": "integer"
+                        },
+                        "totalGold": {
+                          "type": "integer"
+                        },
+                        "xp": {
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "9": {
+                      "fields": {
+                        "championStats": {
+                          "fields": {
+                            "abilityHaste": {
+                              "type": "integer"
+                            },
+                            "abilityPower": {
+                              "type": "integer"
+                            },
+                            "armor": {
+                              "type": "integer"
+                            },
+                            "armorPen": {
+                              "type": "integer"
+                            },
+                            "armorPenPercent": {
+                              "type": "integer"
+                            },
+                            "attackDamage": {
+                              "type": "integer"
+                            },
+                            "attackSpeed": {
+                              "type": "integer"
+                            },
+                            "bonusArmorPenPercent": {
+                              "type": "integer"
+                            },
+                            "bonusMagicPenPercent": {
+                              "type": "integer"
+                            },
+                            "ccReduction": {
+                              "type": "integer"
+                            },
+                            "cooldownReduction": {
+                              "type": "integer"
+                            },
+                            "health": {
+                              "type": "integer"
+                            },
+                            "healthMax": {
+                              "type": "integer"
+                            },
+                            "healthRegen": {
+                              "type": "integer"
+                            },
+                            "lifesteal": {
+                              "type": "integer"
+                            },
+                            "magicPen": {
+                              "type": "integer"
+                            },
+                            "magicPenPercent": {
+                              "type": "integer"
+                            },
+                            "magicResist": {
+                              "type": "integer"
+                            },
+                            "movementSpeed": {
+                              "type": "integer"
+                            },
+                            "omnivamp": {
+                              "type": "integer"
+                            },
+                            "physicalVamp": {
+                              "type": "integer"
+                            },
+                            "power": {
+                              "type": "integer"
+                            },
+                            "powerMax": {
+                              "type": "integer"
+                            },
+                            "powerRegen": {
+                              "type": "integer"
+                            },
+                            "spellVamp": {
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "currentGold": {
+                          "type": "integer"
+                        },
+                        "damageStats": {
+                          "fields": {
+                            "magicDamageDone": {
+                              "type": "integer"
+                            },
+                            "magicDamageDoneToChampions": {
+                              "type": "integer"
+                            },
+                            "magicDamageTaken": {
+                              "type": "integer"
+                            },
+                            "physicalDamageDone": {
+                              "type": "integer"
+                            },
+                            "physicalDamageDoneToChampions": {
+                              "type": "integer"
+                            },
+                            "physicalDamageTaken": {
+                              "type": "integer"
+                            },
+                            "totalDamageDone": {
+                              "type": "integer"
+                            },
+                            "totalDamageDoneToChampions": {
+                              "type": "integer"
+                            },
+                            "totalDamageTaken": {
+                              "type": "integer"
+                            },
+                            "trueDamageDone": {
+                              "type": "integer"
+                            },
+                            "trueDamageDoneToChampions": {
+                              "type": "integer"
+                            },
+                            "trueDamageTaken": {
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "goldPerSecond": {
+                          "type": "integer"
+                        },
+                        "jungleMinionsKilled": {
+                          "type": "integer"
+                        },
+                        "level": {
+                          "type": "integer"
+                        },
+                        "minionsKilled": {
+                          "type": "integer"
+                        },
+                        "participantId": {
+                          "type": "integer"
+                        },
+                        "position": {
+                          "fields": {
+                            "x": {
+                              "type": "integer"
+                            },
+                            "y": {
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "timeEnemySpentControlled": {
+                          "type": "integer"
+                        },
+                        "totalGold": {
+                          "type": "integer"
+                        },
+                        "xp": {
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "10": {
+                      "fields": {
+                        "championStats": {
+                          "fields": {
+                            "abilityHaste": {
+                              "type": "integer"
+                            },
+                            "abilityPower": {
+                              "type": "integer"
+                            },
+                            "armor": {
+                              "type": "integer"
+                            },
+                            "armorPen": {
+                              "type": "integer"
+                            },
+                            "armorPenPercent": {
+                              "type": "integer"
+                            },
+                            "attackDamage": {
+                              "type": "integer"
+                            },
+                            "attackSpeed": {
+                              "type": "integer"
+                            },
+                            "bonusArmorPenPercent": {
+                              "type": "integer"
+                            },
+                            "bonusMagicPenPercent": {
+                              "type": "integer"
+                            },
+                            "ccReduction": {
+                              "type": "integer"
+                            },
+                            "cooldownReduction": {
+                              "type": "integer"
+                            },
+                            "health": {
+                              "type": "integer"
+                            },
+                            "healthMax": {
+                              "type": "integer"
+                            },
+                            "healthRegen": {
+                              "type": "integer"
+                            },
+                            "lifesteal": {
+                              "type": "integer"
+                            },
+                            "magicPen": {
+                              "type": "integer"
+                            },
+                            "magicPenPercent": {
+                              "type": "integer"
+                            },
+                            "magicResist": {
+                              "type": "integer"
+                            },
+                            "movementSpeed": {
+                              "type": "integer"
+                            },
+                            "omnivamp": {
+                              "type": "integer"
+                            },
+                            "physicalVamp": {
+                              "type": "integer"
+                            },
+                            "power": {
+                              "type": "integer"
+                            },
+                            "powerMax": {
+                              "type": "integer"
+                            },
+                            "powerRegen": {
+                              "type": "integer"
+                            },
+                            "spellVamp": {
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "currentGold": {
+                          "type": "integer"
+                        },
+                        "damageStats": {
+                          "fields": {
+                            "magicDamageDone": {
+                              "type": "integer"
+                            },
+                            "magicDamageDoneToChampions": {
+                              "type": "integer"
+                            },
+                            "magicDamageTaken": {
+                              "type": "integer"
+                            },
+                            "physicalDamageDone": {
+                              "type": "integer"
+                            },
+                            "physicalDamageDoneToChampions": {
+                              "type": "integer"
+                            },
+                            "physicalDamageTaken": {
+                              "type": "integer"
+                            },
+                            "totalDamageDone": {
+                              "type": "integer"
+                            },
+                            "totalDamageDoneToChampions": {
+                              "type": "integer"
+                            },
+                            "totalDamageTaken": {
+                              "type": "integer"
+                            },
+                            "trueDamageDone": {
+                              "type": "integer"
+                            },
+                            "trueDamageDoneToChampions": {
+                              "type": "integer"
+                            },
+                            "trueDamageTaken": {
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "goldPerSecond": {
+                          "type": "integer"
+                        },
+                        "jungleMinionsKilled": {
+                          "type": "integer"
+                        },
+                        "level": {
+                          "type": "integer"
+                        },
+                        "minionsKilled": {
+                          "type": "integer"
+                        },
+                        "participantId": {
+                          "type": "integer"
+                        },
+                        "position": {
+                          "fields": {
+                            "x": {
+                              "type": "integer"
+                            },
+                            "y": {
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "timeEnemySpentControlled": {
+                          "type": "integer"
+                        },
+                        "totalGold": {
+                          "type": "integer"
+                        },
+                        "xp": {
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "timestamp": {
+                  "type": "integer"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "gameId": {
+            "type": "integer"
+          },
+          "participants": {
+            "items": {
+              "fields": {
+                "participantId": {
+                  "type": "integer"
+                },
+                "puuid": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "metadata": {
+        "fields": {
+          "dataVersion": {
+            "type": "string"
+          },
+          "matchId": {
+            "type": "string"
+          },
+          "participants": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      }
+    }
+  }
+}

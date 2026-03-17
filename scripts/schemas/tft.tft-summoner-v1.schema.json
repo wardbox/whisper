@@ -1,0 +1,22 @@
+{
+  "$schema": "whisper-schema-v1",
+  "capturedAt": "2026-03-17T19:07:39.600Z",
+  "group": "tft.tft-summoner-v1",
+  "source": "live",
+  "types": {
+    "SummonerDTO": {
+      "profileIconId": {
+        "type": "integer"
+      },
+      "puuid": {
+        "type": "string"
+      },
+      "revisionDate": {
+        "type": "integer"
+      },
+      "summonerLevel": {
+        "type": "integer"
+      }
+    }
+  }
+}

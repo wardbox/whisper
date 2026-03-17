@@ -1,0 +1,46 @@
+{
+  "$schema": "whisper-schema-v1",
+  "capturedAt": "2026-03-17T19:07:35.149Z",
+  "group": "lol.league-v4",
+  "source": "live",
+  "types": {
+    "LeagueEntryDTO": {
+      "freshBlood": {
+        "type": "boolean"
+      },
+      "hotStreak": {
+        "type": "boolean"
+      },
+      "inactive": {
+        "type": "boolean"
+      },
+      "leagueId": {
+        "type": "string"
+      },
+      "leaguePoints": {
+        "type": "integer"
+      },
+      "losses": {
+        "type": "integer"
+      },
+      "puuid": {
+        "type": "string"
+      },
+      "queueType": {
+        "type": "string"
+      },
+      "rank": {
+        "type": "string"
+      },
+      "tier": {
+        "type": "string"
+      },
+      "veteran": {
+        "type": "boolean"
+      },
+      "wins": {
+        "type": "integer"
+      }
+    }
+  }
+}
