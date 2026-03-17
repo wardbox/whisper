@@ -56,7 +56,7 @@ gaps:
 | 17 | Rate limit scopes are per-region (app:na1 independent of app:euw1) | VERIFIED | rate-limiter.ts L201-202: appKey=`app:${route}`, methodKey=`method:${route}:${methodId}` |
 | 18 | createClient accepts string and async function API keys | VERIFIED | http.ts L61-92: normalizeKeyProvider() handles both; string returns immediately, fn caches with pending dedupe |
 | 19 | createClient integrates rate limiter, cache, and middleware pipeline | VERIFIED | client.ts L91-193: all subsystems wired; executePipeline wraps acquire->http.request->update |
-| 20 | TypeScript compiles cleanly with no type errors | FAILED | `npx tsc --noEmit` exits 2: http.ts L209 exactOptionalPropertyTypes violation (`body: string | undefined` not assignable to `BodyInit | null`) |
+| 20 | TypeScript compiles cleanly with no type errors | FAILED | `npx tsc --noEmit` exits 2: http.ts L209 exactOptionalPropertyTypes violation (`body: string \| undefined` not assignable to `BodyInit \| null`) |
 
 **Score:** 19/20 truths verified
 

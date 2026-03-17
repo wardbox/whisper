@@ -125,7 +125,7 @@ export function buildCacheKey(
   params?: Record<string, string>,
 ): string {
   const keyPrefix = simpleHash(apiKey).slice(0, 8);
-  const paramStr = params ? '?' + new URLSearchParams(params).toString() : '';
+  const paramStr = params ? `?${new URLSearchParams(params).toString()}` : '';
   return `${keyPrefix}:${route}:${path}${paramStr}`;
 }
 

@@ -63,6 +63,22 @@ describe('normalizeKeyProvider', () => {
     expect(fn).toHaveBeenCalledTimes(1);
   });
 
+  it('clears pending promise on rejection so subsequent calls retry', async () => {
+    let callCount = 0;
+    const fn = vi.fn().mockImplementation(async () => {
+      callCount++;
+      if (callCount === 1) throw new Error('vault unavailable');
+      return 'RGAPI-recovered';
+    });
+    const provider = normalizeKeyProvider(fn);
+
+    await expect(provider.getKey()).rejects.toThrow('vault unavailable');
+    // Second call should retry, not re-throw cached rejection
+    const key = await provider.getKey();
+    expect(key).toBe('RGAPI-recovered');
+    expect(fn).toHaveBeenCalledTimes(2);
+  });
+
   it('invalidate during in-flight fetch causes single re-fetch', async () => {
     let callCount = 0;
     const fn = vi.fn().mockImplementation(async () => {
@@ -274,5 +290,18 @@ describe('createHttpClient', () => {
     expect(init.method).toBe('POST');
     expect(init.body).toBe('{"test":true}');
     expect(init.headers['Content-Type']).toBe('application/json');
+  });
+
+  it('provider X-Riot-Token cannot be overridden by caller headers', async () => {
+    const fetchMock = mockFetch(200, { ok: true });
+    const provider = normalizeKeyProvider('RGAPI-real-key');
+    const http = createHttpClient(provider);
+
+    await http.request('na1', '/test', 'test.method', {
+      headers: { 'X-Riot-Token': 'RGAPI-fake-key' },
+    });
+
+    const [, init] = fetchMock.mock.calls[0]!;
+    expect(init.headers['X-Riot-Token']).toBe('RGAPI-real-key');
   });
 });

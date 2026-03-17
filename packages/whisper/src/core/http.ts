@@ -76,11 +76,17 @@ export function normalizeKeyProvider(input: ApiKeyProvider): KeyProvider {
       if (cached !== undefined) return cached;
       if (pending) return pending;
 
-      pending = input().then((key) => {
-        cached = key;
-        pending = null;
-        return key;
-      });
+      pending = input().then(
+        (key) => {
+          cached = key;
+          pending = null;
+          return key;
+        },
+        (err) => {
+          pending = null;
+          throw err;
+        },
+      );
 
       return pending;
     },
@@ -202,8 +208,8 @@ export function createHttpClient(keyProvider: KeyProvider): HttpClient {
     const method = options?.method ?? 'GET';
 
     const requestHeaders: Record<string, string> = {
-      'X-Riot-Token': apiKey,
       ...options?.headers,
+      'X-Riot-Token': apiKey,
     };
 
     const response = await fetch(url, {
@@ -244,11 +250,7 @@ export function createHttpClient(keyProvider: KeyProvider): HttpClient {
         // On 401/403: invalidate key, retry once with fresh key
         if (err instanceof ForbiddenError) {
           keyProvider.invalidate();
-          try {
-            return await doFetch<T>(route, path, methodId, options);
-          } catch (retryErr) {
-            throw retryErr;
-          }
+          return await doFetch<T>(route, path, methodId, options);
         }
         throw err;
       }
