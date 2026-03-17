@@ -7,56 +7,9 @@
  * @module
  */
 
-// TODO: Import CacheAdapter and CacheTtlConfig from ./types.js once Plan 01 creates it.
-// For now, interfaces are defined locally.
+import type { CacheAdapter, CacheTtlConfig } from './types.js';
 
-/**
- * Pluggable cache adapter interface.
- *
- * All methods are async to support both in-memory and external (e.g. Redis)
- * cache backends.
- *
- * @example
- * ```typescript
- * const redis: CacheAdapter = {
- *   get: (key) => redisClient.get(key).then(v => v ? JSON.parse(v) : undefined),
- *   set: (key, value, ttl) => redisClient.set(key, JSON.stringify(value), 'EX', ttl),
- *   delete: (key) => redisClient.del(key).then(() => {}),
- *   has: (key) => redisClient.exists(key).then(Boolean),
- * };
- * ```
- */
-export interface CacheAdapter {
-  /** Retrieve a cached value. Returns `undefined` if not found or expired. */
-  get<T>(key: string): Promise<T | undefined>;
-  /** Store a value with a TTL in seconds. If `ttlSeconds <= 0`, the value should not be stored. */
-  set<T>(key: string, value: T, ttlSeconds: number): Promise<void>;
-  /** Remove a cached entry. */
-  delete(key: string): Promise<void>;
-  /** Check whether a non-expired entry exists. */
-  has(key: string): Promise<boolean>;
-}
-
-/**
- * Per-method TTL configuration.
- *
- * Keys are pattern strings matched against the request path via `String.includes()`.
- * The special `default` key provides the fallback TTL.
- *
- * @example
- * ```typescript
- * const ttlConfig: CacheTtlConfig = {
- *   summoner: 3600,   // 1 hour for summoner endpoints
- *   match: 60,        // 1 minute for match data
- *   spectator: 0,     // never cache live game data
- *   default: 300,     // 5 minutes for everything else
- * };
- * ```
- */
-export interface CacheTtlConfig {
-  [pattern: string]: number;
-  default: number;
-}
+export type { CacheAdapter, CacheTtlConfig };
 
 interface CacheEntry {
   value: unknown;
