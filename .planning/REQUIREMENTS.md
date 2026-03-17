@@ -18,10 +18,10 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Types & Routing
 
-- [ ] **TYPE-01**: Platform routing type as literal union (17 values: na1, euw1, kr, etc.)
-- [ ] **TYPE-02**: Regional routing type as literal union (4 values: americas, europe, asia, sea)
-- [ ] **TYPE-03**: Every API method typed to accept only the correct routing type
-- [ ] **TYPE-04**: Invalid routing produces a compile-time type error
+- [x] **TYPE-01**: Platform routing type as literal union (17 values: na1, euw1, kr, etc.)
+- [x] **TYPE-02**: Regional routing type as literal union (4 values: americas, europe, asia, sea)
+- [x] **TYPE-03**: Every API method typed to accept only the correct routing type
+- [x] **TYPE-04**: Invalid routing produces a compile-time type error
 
 ### HTTP Core
 
@@ -105,10 +105,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | FOUND-04 | Phase 1 | Complete |
 | FOUND-05 | Phase 1 | Complete |
 | FOUND-06 | Phase 1 | Complete |
-| TYPE-01 | Phase 1 | Pending |
-| TYPE-02 | Phase 1 | Pending |
-| TYPE-03 | Phase 1 | Pending |
-| TYPE-04 | Phase 1 | Pending |
+| TYPE-01 | Phase 1 | Complete |
+| TYPE-02 | Phase 1 | Complete |
+| TYPE-03 | Phase 1 | Complete |
+| TYPE-04 | Phase 1 | Complete |
 | HTTP-01 | Phase 2 | Pending |
 | HTTP-02 | Phase 2 | Pending |
 | HTTP-03 | Phase 2 | Pending |
