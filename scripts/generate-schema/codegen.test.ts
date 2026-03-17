@@ -1,10 +1,10 @@
 import { describe, expect, it } from 'vitest';
 import {
   AMBIGUOUS_NAMES,
-  KNOWN_ENUMS,
   generateInterface,
   generateInterfaces,
   hasOverride,
+  KNOWN_ENUMS,
   mapToTsType,
   resolveTypeName,
   stripDtoSuffix,
