@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: completed
-stopped_at: Phase 2 context gathered
-last_updated: "2026-03-17T15:14:45.249Z"
-last_activity: 2026-03-17 — Completed routing type system (01-02)
+status: in-progress
+stopped_at: Completed cache subsystem (02-02)
+last_updated: "2026-03-17T16:48:25Z"
+last_activity: 2026-03-17 — Completed cache subsystem (02-02)
 progress:
   total_phases: 7
   completed_phases: 1
-  total_plans: 2
-  completed_plans: 2
-  percent: 100
+  total_plans: 4
+  completed_plans: 4
+  percent: 57
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-17)
 
 **Core value:** Every Riot API endpoint accessible through a typed, tree-shakeable interface with proactive rate limiting that prevents 429s without requiring users to understand Riot's internals.
-**Current focus:** Phase 1 — Foundation
+**Current focus:** Phase 2 — Core Infrastructure
 
 ## Current Position
 
-Phase: 1 of 7 (Foundation)
-Plan: 2 of 2 in current phase
-Status: Phase 1 complete
-Last activity: 2026-03-17 — Completed routing type system (01-02)
+Phase: 2 of 7 (Core Infrastructure)
+Plan: 2 of N in current phase
+Status: In progress
+Last activity: 2026-03-17 — Completed cache subsystem (02-02)
 
-Progress: [██████████] 100%
+Progress: [█████░░░░░] 57%
 
 ## Performance Metrics
 
@@ -52,6 +52,7 @@ Progress: [██████████] 100%
 *Updated after each plan completion*
 | Phase 01-foundation P01 | 4 | 2 tasks | 20 files |
 | Phase 01-foundation P02 | 3min | 2 tasks | 8 files |
+| Phase 02-core-infrastructure P02 | 3min | 1 task | 2 files |
 
 ## Accumulated Context
 
@@ -68,6 +69,8 @@ Recent decisions affecting current work:
 - [Phase 01-foundation]: exports field uses nested import/require conditions with .d.cts for CJS consumers to pass attw node16 check
 - [Phase 01-foundation]: node10 attw failures are expected and non-blocking — no main field is intentional (no root barrel locked decision)
 - [Phase 01-foundation]: Set skipLibCheck: true in tsconfig.base.json — vitest 4.x types incompatible with exactOptionalPropertyTypes
+- [Phase 02-core-infrastructure]: CacheAdapter/CacheTtlConfig defined locally in cache.ts until types.ts is created by Plan 01
+- [Phase 02-core-infrastructure]: TTL 0 means do-not-cache, djb2 hash for API key prefix (non-crypto, edge-compatible)
 
 ### Pending Todos
 
@@ -82,6 +85,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-17T15:14:45.248Z
-Stopped at: Phase 2 context gathered
-Resume file: .planning/phases/02-core-infrastructure/02-CONTEXT.md
+Last session: 2026-03-17T16:48:25Z
+Stopped at: Completed cache subsystem (02-02)
+Resume file: .planning/phases/02-core-infrastructure/02-02-SUMMARY.md
