@@ -62,7 +62,10 @@ Plans:
   1. Running `pnpm generate-schema` with a valid API key writes one `.schema.json` per endpoint group
   2. Generated TypeScript interfaces in `src/types/generated/` compile without errors and match live API response shapes
   3. Modifying a `.schema.json` field causes `pnpm generate-schema` to surface a diff that would block CI
-**Plans**: TBD
+**Plans:** 2 plans
+Plans:
+- [ ] 03-01-PLAN.md — Schema runner types, endpoint registry, dynamic discovery, and schema extraction with unit tests
+- [ ] 03-02-PLAN.md — TypeScript codegen, orchestrator entry point, package.json script, and CI drift workflow
 
 ### Phase 4: LoL and Shared Endpoints
 **Goal**: A developer can import any of the 13 LoL API groups from `@wardbox/whisper/lol` and Account-V1 from `@wardbox/whisper/riot`, call any active endpoint with the correct routing type, and receive a fully-typed response with IDE-visible documentation.
@@ -119,7 +122,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 |-------|----------------|--------|-----------|
 | 1. Foundation | 2/2 | Complete | 2026-03-17 |
 | 2. Core Infrastructure | 1/4 | In Progress|  |
-| 3. Schema Generation | 0/TBD | Not started | - |
+| 3. Schema Generation | 0/2 | Not started | - |
 | 4. LoL and Shared Endpoints | 0/TBD | Not started | - |
 | 5. TFT, Valorant, LoR, and Riftbound Endpoints | 0/TBD | Not started | - |
 | 6. Documentation Site | 0/TBD | Not started | - |
