@@ -43,7 +43,7 @@ export async function discoverData(client: ApiClient): Promise<DiscoveredData> {
     );
     if (league.data.entries?.length > 0) {
       data.puuid = league.data.entries[0].puuid;
-      console.log(`[discovery] Found LoL PUUID: ${data.puuid.slice(0, 8)}...`);
+      console.log('[discovery] Found LoL PUUID: found');
     }
   } catch (err) {
     console.warn('[discovery] Failed to fetch LoL challenger league:', (err as Error).message);
@@ -93,7 +93,7 @@ export async function discoverData(client: ApiClient): Promise<DiscoveredData> {
     }>('na1', '/tft/league/v1/challenger', 'tft-league-v1.getChallenger');
     if (tftLeague.data.entries?.length > 0) {
       data.tftPuuid = tftLeague.data.entries[0].puuid;
-      console.log(`[discovery] Found TFT PUUID: ${data.tftPuuid.slice(0, 8)}...`);
+      console.log('[discovery] Found TFT PUUID: found');
 
       // Get TFT match IDs
       try {
@@ -147,7 +147,7 @@ export async function discoverData(client: ApiClient): Promise<DiscoveredData> {
           'account-v1.getByRiotId',
         );
         data.lorPuuid = lorAccount.data.puuid;
-        console.log(`[discovery] Found LoR PUUID: ${data.lorPuuid.slice(0, 8)}...`);
+        console.log('[discovery] Found LoR PUUID: found');
 
         // Get LoR match IDs
         try {

@@ -119,6 +119,12 @@ export function mergeSchemas(existing: TypeSchema, incoming: TypeSchema): TypeSc
             ...existingField,
             items: { type: 'object', fields: mergedItems.fields },
           };
+        } else if (existingField.items?.type === 'unknown' && incomingField.items) {
+          // Existing items unknown, incoming has concrete type — prefer incoming
+          merged[key] = { ...existingField, items: incomingField.items };
+        } else if (incomingField.items?.type === 'unknown' && existingField.items) {
+          // Incoming items unknown, existing has concrete type — keep existing
+          merged[key] = { ...existingField };
         } else {
           merged[key] = { ...existingField };
         }

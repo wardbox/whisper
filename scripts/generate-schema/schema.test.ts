@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { extractSchema, mergeSchemas, sortKeys } from './schema.js';
+import type { TypeSchema } from './types.js';
 
 describe('extractSchema', () => {
   it('extracts string fields', () => {
@@ -148,6 +149,19 @@ describe('mergeSchemas', () => {
     expect(merged.fields.items.type).toBe('array');
     expect(merged.fields.items.items?.fields?.a).toEqual({ type: 'integer' });
     expect(merged.fields.items.items?.fields?.b).toEqual({ type: 'string', optional: true });
+  });
+
+  it('upgrades unknown array items to concrete type', () => {
+    const a: TypeSchema = {
+      name: 'Test',
+      fields: { tags: { type: 'array', items: { type: 'unknown' } } },
+    };
+    const b: TypeSchema = {
+      name: 'Test',
+      fields: { tags: { type: 'array', items: { type: 'string' } } },
+    };
+    const merged = mergeSchemas(a, b);
+    expect(merged.fields.tags.items).toEqual({ type: 'string' });
   });
 });
 

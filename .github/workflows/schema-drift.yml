@@ -30,6 +30,8 @@ jobs:
         run: |
           if ! git diff --quiet scripts/schemas/ packages/whisper/src/types/generated/; then
             echo "changed=true" >> "$GITHUB_OUTPUT"
+          elif [ -n "$(git ls-files --others --exclude-standard -- scripts/schemas/ packages/whisper/src/types/generated/)" ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
       - name: Create PR
         if: steps.diff.outputs.changed == 'true'
