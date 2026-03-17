@@ -27,8 +27,8 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [ ] **HTTP-01**: HTTP client using native `fetch` (no polyfill, no deps)
 - [ ] **HTTP-02**: Client accepts API key as string or async function for key rotation
-- [ ] **HTTP-03**: Standard error types with Riot error codes and status mapping
-- [ ] **HTTP-04**: Middleware/interceptor pipeline for logging, metrics, retries, custom auth
+- [x] **HTTP-03**: Standard error types with Riot error codes and status mapping
+- [x] **HTTP-04**: Middleware/interceptor pipeline for logging, metrics, retries, custom auth
 
 ### Rate Limiting
 
@@ -111,8 +111,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | TYPE-04 | Phase 1 | Complete |
 | HTTP-01 | Phase 2 | Pending |
 | HTTP-02 | Phase 2 | Pending |
-| HTTP-03 | Phase 2 | Pending |
-| HTTP-04 | Phase 2 | Pending |
+| HTTP-03 | Phase 2 | Complete |
+| HTTP-04 | Phase 2 | Complete |
 | RATE-01 | Phase 2 | Pending |
 | RATE-02 | Phase 2 | Pending |
 | RATE-03 | Phase 2 | Pending |

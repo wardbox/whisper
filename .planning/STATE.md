@@ -2,14 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: in-progress
-stopped_at: Completed cache subsystem (02-02)
-last_updated: "2026-03-17T16:48:25Z"
+status: executing
+stopped_at: Completed 02-01-PLAN.md
+last_updated: "2026-03-17T16:50:40.643Z"
 last_activity: 2026-03-17 — Completed cache subsystem (02-02)
 progress:
   total_phases: 7
   completed_phases: 1
-  total_plans: 4
+  total_plans: 6
   completed_plans: 4
   percent: 57
 ---
@@ -52,6 +52,7 @@ Progress: [█████░░░░░] 57%
 *Updated after each plan completion*
 | Phase 01-foundation P01 | 4 | 2 tasks | 20 files |
 | Phase 01-foundation P02 | 3min | 2 tasks | 8 files |
+| Phase 02-core-infrastructure P01 | 3min | 2 tasks | 5 files |
 | Phase 02-core-infrastructure P02 | 3min | 1 task | 2 files |
 
 ## Accumulated Context
@@ -69,6 +70,8 @@ Recent decisions affecting current work:
 - [Phase 01-foundation]: exports field uses nested import/require conditions with .d.cts for CJS consumers to pass attw node16 check
 - [Phase 01-foundation]: node10 attw failures are expected and non-blocking — no main field is intentional (no root barrel locked decision)
 - [Phase 01-foundation]: Set skipLibCheck: true in tsconfig.base.json — vitest 4.x types incompatible with exactOptionalPropertyTypes
+- [Phase 02-core-infrastructure P01]: RiotApiError constructor uses options object pattern for readability/extensibility
+- [Phase 02-core-infrastructure P01]: API key redaction applied in RiotApiError constructor (all subclasses inherit)
 - [Phase 02-core-infrastructure]: CacheAdapter/CacheTtlConfig defined locally in cache.ts until types.ts is created by Plan 01
 - [Phase 02-core-infrastructure]: TTL 0 means do-not-cache, djb2 hash for API key prefix (non-crypto, edge-compatible)
 
@@ -85,6 +88,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-17T16:48:25Z
-Stopped at: Completed cache subsystem (02-02)
-Resume file: .planning/phases/02-core-infrastructure/02-02-SUMMARY.md
+Last session: 2026-03-17T16:50:40.641Z
+Stopped at: Completed 02-01-PLAN.md
+Resume file: None
