@@ -112,6 +112,78 @@
           "fields": {
             "cards": {
               "items": {
+                "fields": {
+                  "art": {
+                    "fields": {
+                      "artist": {
+                        "type": "string"
+                      },
+                      "fullURL": {
+                        "type": "string"
+                      },
+                      "thumbnailURL": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "collectorNumber": {
+                    "type": "integer"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "faction": {
+                    "type": "string"
+                  },
+                  "flavorText": {
+                    "type": "string"
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "keywords": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "rarity": {
+                    "type": "string"
+                  },
+                  "set": {
+                    "type": "string"
+                  },
+                  "stats": {
+                    "fields": {
+                      "cost": {
+                        "type": "integer"
+                      },
+                      "energy": {
+                        "type": "integer"
+                      },
+                      "might": {
+                        "type": "integer"
+                      },
+                      "power": {
+                        "type": "integer"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "tags": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "type": {
+                    "type": "string"
+                  }
+                },
                 "type": "object"
               },
               "type": "array"
@@ -136,6 +208,17 @@
         "items": {
           "fields": {
             "art": {
+              "fields": {
+                "artist": {
+                  "type": "string"
+                },
+                "fullURL": {
+                  "type": "string"
+                },
+                "thumbnailURL": {
+                  "type": "string"
+                }
+              },
               "type": "object"
             },
             "collectorNumber": {
@@ -169,6 +252,20 @@
               "type": "string"
             },
             "stats": {
+              "fields": {
+                "cost": {
+                  "type": "integer"
+                },
+                "energy": {
+                  "type": "integer"
+                },
+                "might": {
+                  "type": "integer"
+                },
+                "power": {
+                  "type": "integer"
+                }
+              },
               "type": "object"
             },
             "tags": {

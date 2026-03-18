@@ -33,12 +33,12 @@ export interface CardStats {
 export interface RiftboundContent {
   game: string;
   lastUpdated: string;
-  sets: ({ cards: Record<string, unknown>[]; id: string; name: string })[];
+  sets: ({ cards: ({ art: { artist: string; fullURL: string; thumbnailURL: string }; collectorNumber: number; description: string; faction: string; flavorText: string; id: string; keywords: string[]; name: string; rarity: string; set: string; stats: { cost: number; energy: number; might: number; power: number }; tags: string[]; type: 'CHAMPION' | 'ACCOUNT' })[]; id: string; name: string })[];
   version: string;
 }
 
 export interface Set {
-  cards: ({ art: Record<string, unknown>; collectorNumber: number; description: string; faction: string; flavorText: string; id: string; keywords: string[]; name: string; rarity: string; set: string; stats: Record<string, unknown>; tags: string[]; type: 'CHAMPION' | 'ACCOUNT' })[];
+  cards: ({ art: { artist: string; fullURL: string; thumbnailURL: string }; collectorNumber: number; description: string; faction: string; flavorText: string; id: string; keywords: string[]; name: string; rarity: string; set: string; stats: { cost: number; energy: number; might: number; power: number }; tags: string[]; type: 'CHAMPION' | 'ACCOUNT' })[];
   id: string;
   name: string;
 }

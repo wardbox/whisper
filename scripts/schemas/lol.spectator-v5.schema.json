@@ -72,11 +72,33 @@
             },
             "gameCustomizationObjects": {
               "items": {
+                "fields": {
+                  "category": {
+                    "type": "string"
+                  },
+                  "content": {
+                    "type": "string"
+                  }
+                },
                 "type": "object"
               },
               "type": "array"
             },
             "perks": {
+              "fields": {
+                "perkIds": {
+                  "items": {
+                    "type": "integer"
+                  },
+                  "type": "array"
+                },
+                "perkStyle": {
+                  "type": "integer"
+                },
+                "perkSubStyle": {
+                  "type": "integer"
+                }
+              },
               "type": "object"
             },
             "profileIconId": {

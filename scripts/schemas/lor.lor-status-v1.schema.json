@@ -41,6 +41,14 @@
             },
             "titles": {
               "items": {
+                "fields": {
+                  "content": {
+                    "type": "string"
+                  },
+                  "locale": {
+                    "type": "string"
+                  }
+                },
                 "type": "object"
               },
               "type": "array"
@@ -50,6 +58,43 @@
             },
             "updates": {
               "items": {
+                "fields": {
+                  "author": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "string"
+                  },
+                  "id": {
+                    "type": "integer"
+                  },
+                  "publish": {
+                    "type": "boolean"
+                  },
+                  "publish_locations": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "translations": {
+                    "items": {
+                      "fields": {
+                        "content": {
+                          "type": "string"
+                        },
+                        "locale": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "updated_at": {
+                    "type": "string"
+                  }
+                },
                 "type": "object"
               },
               "type": "array"
@@ -91,6 +136,14 @@
             },
             "titles": {
               "items": {
+                "fields": {
+                  "content": {
+                    "type": "string"
+                  },
+                  "locale": {
+                    "type": "string"
+                  }
+                },
                 "type": "object"
               },
               "type": "array"
@@ -100,6 +153,43 @@
             },
             "updates": {
               "items": {
+                "fields": {
+                  "author": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "string"
+                  },
+                  "id": {
+                    "type": "integer"
+                  },
+                  "publish": {
+                    "type": "boolean"
+                  },
+                  "publish_locations": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "translations": {
+                    "items": {
+                      "fields": {
+                        "content": {
+                          "type": "string"
+                        },
+                        "locale": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "updated_at": {
+                    "type": "string"
+                  }
+                },
                 "type": "object"
               },
               "type": "array"
@@ -175,6 +265,14 @@
             },
             "translations": {
               "items": {
+                "fields": {
+                  "content": {
+                    "type": "string"
+                  },
+                  "locale": {
+                    "type": "string"
+                  }
+                },
                 "type": "object"
               },
               "type": "array"
