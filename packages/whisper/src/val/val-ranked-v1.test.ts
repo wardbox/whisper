@@ -87,7 +87,9 @@ describe('valRankedV1', () => {
         request: vi.fn().mockRejectedValue(error),
       };
 
-      await expect(valRankedV1.getLeaderboard(client, 'na', 'act-123')).rejects.toThrow('upstream failure');
+      await expect(valRankedV1.getLeaderboard(client, 'na', 'act-123')).rejects.toThrow(
+        'upstream failure',
+      );
     });
   });
 

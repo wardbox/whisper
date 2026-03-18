@@ -43,8 +43,9 @@ export const valContentV1 = {
     route: ValPlatformRoute,
     options?: { locale?: string },
   ): Promise<Content> {
-    const params: Record<string, string> | undefined =
-      options?.locale ? { locale: options.locale } : undefined;
+    const params: Record<string, string> | undefined = options?.locale
+      ? { locale: options.locale }
+      : undefined;
     const response = await client.request<Content>(
       route,
       '/val/content/v1/contents',

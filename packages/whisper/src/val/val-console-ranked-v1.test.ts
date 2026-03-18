@@ -22,7 +22,12 @@ describe('valConsoleRankedV1', () => {
       };
       const client = mockClient(expected);
 
-      const result = await valConsoleRankedV1.getLeaderboard(client, 'na', 'act-123', 'playstation');
+      const result = await valConsoleRankedV1.getLeaderboard(
+        client,
+        'na',
+        'act-123',
+        'playstation',
+      );
 
       expect(result).toEqual(expected);
     });
@@ -90,9 +95,9 @@ describe('valConsoleRankedV1', () => {
         request: vi.fn().mockRejectedValue(error),
       };
 
-      await expect(valConsoleRankedV1.getLeaderboard(client, 'na', 'act-123', 'playstation')).rejects.toThrow(
-        'upstream failure',
-      );
+      await expect(
+        valConsoleRankedV1.getLeaderboard(client, 'na', 'act-123', 'playstation'),
+      ).rejects.toThrow('upstream failure');
     });
   });
 

@@ -35,10 +35,7 @@ export const valStatusV1 = {
    * }
    * ```
    */
-  async getPlatformData(
-    client: WhisperClient,
-    route: ValPlatformRoute,
-  ): Promise<ValPlatformData> {
+  async getPlatformData(client: WhisperClient, route: ValPlatformRoute): Promise<ValPlatformData> {
     const response = await client.request<ValPlatformData>(
       route,
       '/val/status/v1/platform-data',
