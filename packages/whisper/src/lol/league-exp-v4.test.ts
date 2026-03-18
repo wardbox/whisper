@@ -13,13 +13,7 @@ describe('leagueExpV4', () => {
     it('returns unwrapped entries', async () => {
       const client = mockClient([]);
 
-      const result = await leagueExpV4.getEntries(
-        client,
-        'na1',
-        'RANKED_SOLO_5x5',
-        'DIAMOND',
-        'I',
-      );
+      const result = await leagueExpV4.getEntries(client, 'na1', 'RANKED_SOLO_5x5', 'DIAMOND', 'I');
 
       expect(result).toEqual([]);
     });

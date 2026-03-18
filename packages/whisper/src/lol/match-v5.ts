@@ -1,6 +1,6 @@
 import type { WhisperClient } from '../core/client.js';
-import type { RegionalRoute } from '../types/regional.js';
 import type { LolMatch, LolMatchTimeline } from '../types/generated/lol.js';
+import type { RegionalRoute } from '../types/regional.js';
 
 /** Options for filtering match ID queries */
 export interface GetMatchIdsOptions {
@@ -89,11 +89,7 @@ export const matchV5 = {
    * console.log(match.info.gameDuration);
    * ```
    */
-  async getMatch(
-    client: WhisperClient,
-    route: RegionalRoute,
-    matchId: string,
-  ): Promise<LolMatch> {
+  async getMatch(client: WhisperClient, route: RegionalRoute, matchId: string): Promise<LolMatch> {
     const response = await client.request<LolMatch>(
       route,
       `/lol/match/v5/matches/${matchId}`,

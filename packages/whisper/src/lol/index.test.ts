@@ -3,16 +3,16 @@ import {
   championMasteryV4,
   championV3,
   clashV1,
-  leagueV4,
   leagueExpV4,
+  leagueV4,
   lolChallengesV1,
+  lolRsoMatchV1,
   lolStatusV4,
   matchV5,
-  lolRsoMatchV1,
   spectatorV5,
   summonerV4,
-  tournamentV5,
   tournamentStubV5,
+  tournamentV5,
 } from './index.js';
 
 describe('lol/index re-exports', () => {

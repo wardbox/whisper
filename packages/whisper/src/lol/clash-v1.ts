@@ -1,7 +1,7 @@
 import type { WhisperClient } from '../core/client.js';
-import type { PlatformRoute } from '../types/platform.js';
 import type { Tournament } from '../types/generated/lol.js';
 import type { ClashPlayer, ClashTeam } from '../types/overrides/lol-clash.js';
+import type { PlatformRoute } from '../types/platform.js';
 
 /**
  * Clash API (v1).
@@ -65,10 +65,7 @@ export const clashV1 = {
    * }
    * ```
    */
-  async getTournaments(
-    client: WhisperClient,
-    route: PlatformRoute,
-  ): Promise<Tournament[]> {
+  async getTournaments(client: WhisperClient, route: PlatformRoute): Promise<Tournament[]> {
     const response = await client.request<Tournament[]>(
       route,
       '/lol/clash/v1/tournaments',

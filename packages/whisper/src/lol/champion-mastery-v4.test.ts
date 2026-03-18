@@ -22,7 +22,12 @@ describe('championMasteryV4', () => {
           championSeasonMilestone: 1,
           lastPlayTime: 1700000000000,
           markRequiredForNextLevel: 0,
-          nextSeasonMilestone: { bonus: false, requireGradeCounts: {}, rewardMarks: 0, totalGamesRequires: 0 },
+          nextSeasonMilestone: {
+            bonus: false,
+            requireGradeCounts: {},
+            rewardMarks: 0,
+            totalGamesRequires: 0,
+          },
           puuid: 'abc-123',
           tokensEarned: 0,
         },

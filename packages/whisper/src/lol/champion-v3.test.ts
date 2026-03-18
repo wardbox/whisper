@@ -25,7 +25,11 @@ describe('championV3', () => {
     });
 
     it('calls client.request with correct path and methodId', async () => {
-      const client = mockClient({ freeChampionIds: [], freeChampionIdsForNewPlayers: [], maxNewPlayerLevel: 0 });
+      const client = mockClient({
+        freeChampionIds: [],
+        freeChampionIdsForNewPlayers: [],
+        maxNewPlayerLevel: 0,
+      });
 
       await championV3.getChampionRotations(client, 'euw1');
 

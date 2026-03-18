@@ -1,6 +1,6 @@
 import type { WhisperClient } from '../core/client.js';
-import type { RegionalRoute } from '../types/regional.js';
 import type { LolMatch, LolMatchTimeline } from '../types/generated/lol.js';
+import type { RegionalRoute } from '../types/regional.js';
 import type { GetMatchIdsOptions } from './match-v5.js';
 
 /**
@@ -73,11 +73,7 @@ export const lolRsoMatchV1 = {
    * console.log(match.info.gameDuration);
    * ```
    */
-  async getMatch(
-    client: WhisperClient,
-    route: RegionalRoute,
-    matchId: string,
-  ): Promise<LolMatch> {
+  async getMatch(client: WhisperClient, route: RegionalRoute, matchId: string): Promise<LolMatch> {
     const response = await client.request<LolMatch>(
       route,
       `/lol/rso-match/v1/matches/${matchId}`,

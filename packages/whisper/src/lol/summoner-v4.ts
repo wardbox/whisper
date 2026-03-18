@@ -1,6 +1,6 @@
 import type { WhisperClient } from '../core/client.js';
-import type { PlatformRoute } from '../types/platform.js';
 import type { LolSummoner } from '../types/generated/lol.js';
+import type { PlatformRoute } from '../types/platform.js';
 
 /**
  * League of Legends Summoner API (v4).

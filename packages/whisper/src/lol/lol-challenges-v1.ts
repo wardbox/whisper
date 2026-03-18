@@ -1,7 +1,11 @@
 import type { WhisperClient } from '../core/client.js';
-import type { PlatformRoute } from '../types/platform.js';
-import type { ChallengeConfigInfo, ChallengePercentiles, PlayerInfo } from '../types/generated/lol.js';
+import type {
+  ChallengeConfigInfo,
+  ChallengePercentiles,
+  PlayerInfo,
+} from '../types/generated/lol.js';
 import type { ApexPlayerInfo } from '../types/overrides/lol-challenges.js';
+import type { PlatformRoute } from '../types/platform.js';
 
 /**
  * LoL Challenges API (v1).
@@ -35,10 +39,7 @@ export const lolChallengesV1 = {
    * }
    * ```
    */
-  async getConfig(
-    client: WhisperClient,
-    route: PlatformRoute,
-  ): Promise<ChallengeConfigInfo[]> {
+  async getConfig(client: WhisperClient, route: PlatformRoute): Promise<ChallengeConfigInfo[]> {
     const response = await client.request<ChallengeConfigInfo[]>(
       route,
       '/lol/challenges/v1/challenges/config',
@@ -61,10 +62,7 @@ export const lolChallengesV1 = {
    * const percentiles = await lolChallengesV1.getPercentiles(client, 'na1');
    * ```
    */
-  async getPercentiles(
-    client: WhisperClient,
-    route: PlatformRoute,
-  ): Promise<ChallengePercentiles> {
+  async getPercentiles(client: WhisperClient, route: PlatformRoute): Promise<ChallengePercentiles> {
     const response = await client.request<ChallengePercentiles>(
       route,
       '/lol/challenges/v1/challenges/percentiles',

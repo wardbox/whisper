@@ -11,7 +11,9 @@ function mockClient(data: unknown): WhisperClient {
 describe('lolChallengesV1', () => {
   describe('getConfig', () => {
     it('returns unwrapped config array', async () => {
-      const expected = [{ id: 1, leaderboard: true, localizedNames: {}, state: 'ENABLED', thresholds: {} }];
+      const expected = [
+        { id: 1, leaderboard: true, localizedNames: {}, state: 'ENABLED', thresholds: {} },
+      ];
       const client = mockClient(expected);
 
       const result = await lolChallengesV1.getConfig(client, 'na1');
@@ -57,7 +59,13 @@ describe('lolChallengesV1', () => {
 
   describe('getChallengeConfig', () => {
     it('returns unwrapped config', async () => {
-      const expected = { id: 42, leaderboard: true, localizedNames: {}, state: 'ENABLED', thresholds: {} };
+      const expected = {
+        id: 42,
+        leaderboard: true,
+        localizedNames: {},
+        state: 'ENABLED',
+        thresholds: {},
+      };
       const client = mockClient(expected);
 
       const result = await lolChallengesV1.getChallengeConfig(client, 'na1', 42);
@@ -132,7 +140,13 @@ describe('lolChallengesV1', () => {
       const expected = {
         categoryPoints: {},
         challenges: [],
-        preferences: { bannerAccent: '', challengeIds: [], crestBorder: '', prestigeCrestBorderLevel: 0, title: '' },
+        preferences: {
+          bannerAccent: '',
+          challengeIds: [],
+          crestBorder: '',
+          prestigeCrestBorderLevel: 0,
+          title: '',
+        },
         totalPoints: { current: 100, level: 'GOLD', max: 500, percentile: 0.3 },
       };
       const client = mockClient(expected);
