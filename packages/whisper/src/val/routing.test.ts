@@ -25,19 +25,31 @@ describe('Valorant route type enforcement', () => {
 
   it('Valorant modules do not accept PlatformRoute', () => {
     expectTypeOf(valMatchV1.getMatch).parameter(1).not.toEqualTypeOf<PlatformRoute>();
+    expectTypeOf(valMatchV1.getMatchlist).parameter(1).not.toEqualTypeOf<PlatformRoute>();
+    expectTypeOf(valMatchV1.getRecentMatches).parameter(1).not.toEqualTypeOf<PlatformRoute>();
     expectTypeOf(valContentV1.getContent).parameter(1).not.toEqualTypeOf<PlatformRoute>();
     expectTypeOf(valStatusV1.getPlatformData).parameter(1).not.toEqualTypeOf<PlatformRoute>();
     expectTypeOf(valRankedV1.getLeaderboard).parameter(1).not.toEqualTypeOf<PlatformRoute>();
     expectTypeOf(valConsoleMatchV1.getMatch).parameter(1).not.toEqualTypeOf<PlatformRoute>();
+    expectTypeOf(valConsoleMatchV1.getMatchlist).parameter(1).not.toEqualTypeOf<PlatformRoute>();
+    expectTypeOf(valConsoleMatchV1.getRecentMatches)
+      .parameter(1)
+      .not.toEqualTypeOf<PlatformRoute>();
     expectTypeOf(valConsoleRankedV1.getLeaderboard).parameter(1).not.toEqualTypeOf<PlatformRoute>();
   });
 
   it('Valorant modules do not accept RegionalRoute', () => {
     expectTypeOf(valMatchV1.getMatch).parameter(1).not.toEqualTypeOf<RegionalRoute>();
+    expectTypeOf(valMatchV1.getMatchlist).parameter(1).not.toEqualTypeOf<RegionalRoute>();
+    expectTypeOf(valMatchV1.getRecentMatches).parameter(1).not.toEqualTypeOf<RegionalRoute>();
     expectTypeOf(valContentV1.getContent).parameter(1).not.toEqualTypeOf<RegionalRoute>();
     expectTypeOf(valStatusV1.getPlatformData).parameter(1).not.toEqualTypeOf<RegionalRoute>();
     expectTypeOf(valRankedV1.getLeaderboard).parameter(1).not.toEqualTypeOf<RegionalRoute>();
     expectTypeOf(valConsoleMatchV1.getMatch).parameter(1).not.toEqualTypeOf<RegionalRoute>();
+    expectTypeOf(valConsoleMatchV1.getMatchlist).parameter(1).not.toEqualTypeOf<RegionalRoute>();
+    expectTypeOf(valConsoleMatchV1.getRecentMatches)
+      .parameter(1)
+      .not.toEqualTypeOf<RegionalRoute>();
     expectTypeOf(valConsoleRankedV1.getLeaderboard).parameter(1).not.toEqualTypeOf<RegionalRoute>();
   });
 
