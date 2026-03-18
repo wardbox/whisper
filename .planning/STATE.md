@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Completed 05-01-PLAN.md
-last_updated: "2026-03-18T17:01:00Z"
+stopped_at: Completed 05-02-PLAN.md
+last_updated: "2026-03-18T17:16:37.183Z"
 last_activity: 2026-03-18 — Completed TFT endpoints (05-01)
 progress:
   total_phases: 7
-  completed_phases: 4
+  completed_phases: 5
   total_plans: 16
   completed_plans: 16
   percent: 100
@@ -65,6 +65,7 @@ Progress: [██████████] 100%
 | Phase 04 P05 | 5min | 2 tasks | 6 files |
 | Phase 05 P01 | 5min | 2 tasks | 15 files |
 | Phase 05 P03 | 12min | 2 tasks | 14 files |
+| Phase 05 P02 | 7min | 2 tasks | 20 files |
 
 ## Accumulated Context
 
@@ -102,6 +103,9 @@ Recent decisions affecting current work:
 - [Phase 05]: TFT league getChallengerLeague/getGrandmasterLeague/getMasterLeague accept optional queue filter (RANKED_TFT or RANKED_TFT_DOUBLE_UP)
 - [Phase 05]: Only 2 LoR API groups confirmed active (lor-ranked-v1, lor-status-v1) -- lor-match-v1, lor-deck-v1, lor-inventory-v1 not captured by schema runner, excluded per locked decision
 - [Phase 05]: Riftbound content endpoint uses optional locale query param with conditional params object pattern
+- [Phase 05]: ValPlatformRoute is a third distinct route type for Valorant's unique routing (ap, br, eu, kr, latam, na, esports)
+- [Phase 05]: Console endpoints require mandatory platformType ('playstation' | 'xbox') as positional parameter
+- [Phase 05]: Hyphenated locale property keys in generated val.ts must be quoted for rolldown bundler compatibility
 
 ### Pending Todos
 
@@ -116,6 +120,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-18T17:01:00Z
-Stopped at: Completed 05-01-PLAN.md
-Resume file: .planning/phases/05-tft-valorant-lor-and-riftbound-endpoints/05-01-SUMMARY.md
+Last session: 2026-03-18T17:16:37.181Z
+Stopped at: Completed 05-02-PLAN.md
+Resume file: None
