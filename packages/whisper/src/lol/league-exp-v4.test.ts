@@ -61,6 +61,19 @@ describe('leagueExpV4', () => {
   });
 
   describe('edge cases', () => {
+    it('encodes path segments with special characters', async () => {
+      const client = mockClient([]);
+
+      await leagueExpV4.getEntries(client, 'na1', 'RANKED SOLO', 'GOLD+', 'I/II');
+
+      expect(client.request).toHaveBeenCalledWith(
+        'na1',
+        '/lol/league-exp/v4/entries/RANKED%20SOLO/GOLD%2B/I%2FII',
+        'league-exp-v4.getEntries',
+        undefined,
+      );
+    });
+
     it('omits params when page is undefined', async () => {
       const client = mockClient([]);
 
