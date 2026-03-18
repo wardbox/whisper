@@ -41,7 +41,7 @@ export const leagueV4 = {
   ): Promise<LeagueList> {
     const response = await client.request<LeagueList>(
       route,
-      `/lol/league/v4/challengerleagues/by-queue/${queue}`,
+      `/lol/league/v4/challengerleagues/by-queue/${encodeURIComponent(queue)}`,
       'league-v4.getChallengerLeague',
     );
     return response.data;
@@ -68,7 +68,7 @@ export const leagueV4 = {
   ): Promise<LeagueList> {
     const response = await client.request<LeagueList>(
       route,
-      `/lol/league/v4/grandmasterleagues/by-queue/${queue}`,
+      `/lol/league/v4/grandmasterleagues/by-queue/${encodeURIComponent(queue)}`,
       'league-v4.getGrandmasterLeague',
     );
     return response.data;
@@ -95,7 +95,7 @@ export const leagueV4 = {
   ): Promise<LeagueList> {
     const response = await client.request<LeagueList>(
       route,
-      `/lol/league/v4/masterleagues/by-queue/${queue}`,
+      `/lol/league/v4/masterleagues/by-queue/${encodeURIComponent(queue)}`,
       'league-v4.getMasterLeague',
     );
     return response.data;
@@ -126,7 +126,7 @@ export const leagueV4 = {
   ): Promise<LolLeagueEntry[]> {
     const response = await client.request<LolLeagueEntry[]>(
       route,
-      `/lol/league/v4/entries/by-puuid/${puuid}`,
+      `/lol/league/v4/entries/by-puuid/${encodeURIComponent(puuid)}`,
       'league-v4.getEntriesByPuuid',
     );
     return response.data;
@@ -167,7 +167,7 @@ export const leagueV4 = {
       options?.page !== undefined ? { page: String(options.page) } : undefined;
     const response = await client.request<LolLeagueEntry[]>(
       route,
-      `/lol/league/v4/entries/${queue}/${tier}/${division}`,
+      `/lol/league/v4/entries/${encodeURIComponent(queue)}/${encodeURIComponent(tier)}/${encodeURIComponent(division)}`,
       'league-v4.getEntries',
       params ? { params } : undefined,
     );
@@ -195,7 +195,7 @@ export const leagueV4 = {
   ): Promise<LeagueList> {
     const response = await client.request<LeagueList>(
       route,
-      `/lol/league/v4/leagues/${leagueId}`,
+      `/lol/league/v4/leagues/${encodeURIComponent(leagueId)}`,
       'league-v4.getById',
     );
     return response.data;

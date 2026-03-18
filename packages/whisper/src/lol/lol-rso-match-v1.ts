@@ -52,7 +52,7 @@ export const lolRsoMatchV1 = {
     }
     const response = await client.request<string[]>(
       route,
-      `/lol/rso-match/v1/matches/by-puuid/${puuid}/ids`,
+      `/lol/rso-match/v1/matches/by-puuid/${encodeURIComponent(puuid)}/ids`,
       'lol-rso-match-v1.getMatchIds',
       Object.keys(params).length > 0 ? { params } : undefined,
     );
@@ -76,7 +76,7 @@ export const lolRsoMatchV1 = {
   async getMatch(client: WhisperClient, route: RegionalRoute, matchId: string): Promise<LolMatch> {
     const response = await client.request<LolMatch>(
       route,
-      `/lol/rso-match/v1/matches/${matchId}`,
+      `/lol/rso-match/v1/matches/${encodeURIComponent(matchId)}`,
       'lol-rso-match-v1.getMatch',
     );
     return response.data;
@@ -103,7 +103,7 @@ export const lolRsoMatchV1 = {
   ): Promise<LolMatchTimeline> {
     const response = await client.request<LolMatchTimeline>(
       route,
-      `/lol/rso-match/v1/matches/${matchId}/timeline`,
+      `/lol/rso-match/v1/matches/${encodeURIComponent(matchId)}/timeline`,
       'lol-rso-match-v1.getTimeline',
     );
     return response.data;

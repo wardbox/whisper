@@ -47,6 +47,36 @@ describe('leagueExpV4', () => {
     });
   });
 
+  describe('error propagation', () => {
+    it('propagates client.request errors', async () => {
+      const error = new Error('boom');
+      const client: WhisperClient = {
+        request: vi.fn().mockRejectedValue(error),
+      };
+
+      await expect(
+        leagueExpV4.getEntries(client, 'na1', 'RANKED_SOLO_5x5', 'GOLD', 'I'),
+      ).rejects.toThrow('boom');
+    });
+  });
+
+  describe('edge cases', () => {
+    it('omits params when page is undefined', async () => {
+      const client = mockClient([]);
+
+      await leagueExpV4.getEntries(client, 'kr', 'RANKED_SOLO_5x5', 'PLATINUM', 'II', {
+        page: undefined,
+      });
+
+      expect(client.request).toHaveBeenCalledWith(
+        'kr',
+        '/lol/league-exp/v4/entries/RANKED_SOLO_5x5/PLATINUM/II',
+        'league-exp-v4.getEntries',
+        undefined,
+      );
+    });
+  });
+
   describe('type safety', () => {
     it('rejects regional routes at compile time', () => {
       const client = mockClient({});

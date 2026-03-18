@@ -48,7 +48,7 @@ export const spectatorV5 = {
   ): Promise<LolCurrentGameInfo> {
     const response = await client.request<LolCurrentGameInfo>(
       route,
-      `/lol/spectator/v5/active-games/by-summoner/${puuid}`,
+      `/lol/spectator/v5/active-games/by-summoner/${encodeURIComponent(puuid)}`,
       'spectator-v5.getCurrentGame',
     );
     return response.data;

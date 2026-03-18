@@ -68,7 +68,7 @@ export const matchV5 = {
     }
     const response = await client.request<string[]>(
       route,
-      `/lol/match/v5/matches/by-puuid/${puuid}/ids`,
+      `/lol/match/v5/matches/by-puuid/${encodeURIComponent(puuid)}/ids`,
       'match-v5.getMatchIdsByPuuid',
       Object.keys(params).length > 0 ? { params } : undefined,
     );
@@ -92,7 +92,7 @@ export const matchV5 = {
   async getMatch(client: WhisperClient, route: RegionalRoute, matchId: string): Promise<LolMatch> {
     const response = await client.request<LolMatch>(
       route,
-      `/lol/match/v5/matches/${matchId}`,
+      `/lol/match/v5/matches/${encodeURIComponent(matchId)}`,
       'match-v5.getMatch',
     );
     return response.data;
@@ -119,7 +119,7 @@ export const matchV5 = {
   ): Promise<LolMatchTimeline> {
     const response = await client.request<LolMatchTimeline>(
       route,
-      `/lol/match/v5/matches/${matchId}/timeline`,
+      `/lol/match/v5/matches/${encodeURIComponent(matchId)}/timeline`,
       'match-v5.getMatchTimeline',
     );
     return response.data;
