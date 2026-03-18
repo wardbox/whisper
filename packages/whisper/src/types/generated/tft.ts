@@ -44,7 +44,7 @@ export interface TftCurrentGameInfo {
   gameType: 'CUSTOM_GAME' | 'MATCHED_GAME' | 'TUTORIAL_GAME';
   mapId: number;
   observers: { encryptionKey: string };
-  participants: ({ bot: boolean; championId: number; gameCustomizationObjects: Record<string, unknown>[]; perks: Record<string, unknown>; profileIconId: number; puuid: string; spell1Id: number; spell2Id: number; teamId: number })[];
+  participants: ({ bot: boolean; championId: number; gameCustomizationObjects: ({ category: string; content: string })[]; perks: { perkIds: number[]; perkStyle: number; perkSubStyle: number }; profileIconId: number; puuid: string; spell1Id: number; spell2Id: number; teamId: number })[];
   platformId: string;
 }
 
@@ -57,7 +57,7 @@ export interface TftLeagueList {
 }
 
 export interface TftMatch {
-  info: { endOfGameResult: string; gameCreation: number; gameId: number; game_datetime: number; game_length: number; game_version: string; mapId: number; participants: ({ companion: { content_ID: string; item_ID: number; skin_ID: number; species: string }; gold_left: number; last_round: number; level: number; missions: { PlayerScore2: number }; placement: number; players_eliminated: number; puuid: string; riotIdGameName: string; riotIdTagline: string; time_eliminated: number; total_damage_to_players: number; traits: ({ name: string; num_units: number; style: number; tier_current: number; tier_total: number })[]; units: ({ character_id: string; itemNames: unknown[]; name: string; rarity: number; tier: number })[]; win: boolean })[]; queueId: number; queue_id: number; tft_game_type: string; tft_set_core_name: string; tft_set_number: number };
+  info: { endOfGameResult: string; gameCreation: number; gameId: number; game_datetime: number; game_length: number; game_version: string; mapId: number; participants: ({ companion: { content_ID: string; item_ID: number; skin_ID: number; species: string }; gold_left: number; last_round: number; level: number; missions: { PlayerScore2: number }; placement: number; players_eliminated: number; puuid: string; riotIdGameName: string; riotIdTagline: string; time_eliminated: number; total_damage_to_players: number; traits: ({ name: string; num_units: number; style: number; tier_current: number; tier_total: number })[]; units: ({ character_id: string; itemNames: string[]; name: string; rarity: number; tier: number })[]; win: boolean })[]; queueId: number; queue_id: number; tft_game_type: string; tft_set_core_name: string; tft_set_number: number };
   metadata: { data_version: string; match_id: string; participants: string[] };
 }
 

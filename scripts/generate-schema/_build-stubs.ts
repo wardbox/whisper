@@ -16,10 +16,14 @@ const SCHEMAS_DIR = path.resolve(__dirname, '../schemas');
 type RiotFieldMap = Record<string, string>;
 type DtoMap = Record<string, RiotFieldMap>;
 
-function mapRiotType(riotType: string, allDtos: DtoMap): FieldDef {
+function mapRiotType(
+  riotType: string,
+  allDtos: DtoMap,
+  visited: Set<string> = new Set(),
+): FieldDef {
   if (riotType.startsWith('List[')) {
     const inner = riotType.slice(5, -1);
-    return { type: 'array', items: mapRiotType(inner, allDtos) };
+    return { type: 'array', items: mapRiotType(inner, allDtos, visited) };
   }
   switch (riotType) {
     case 'string':
@@ -33,12 +37,14 @@ function mapRiotType(riotType: string, allDtos: DtoMap): FieldDef {
     case 'boolean':
       return { type: 'boolean' };
     default: {
-      // DTO reference — inline if available
-      if (allDtos[riotType]) {
+      // DTO reference — inline if available, track visited to prevent cycles
+      if (allDtos[riotType] && !visited.has(riotType)) {
+        visited.add(riotType);
         const fields: Record<string, FieldDef> = {};
         for (const [k, v] of Object.entries(allDtos[riotType])) {
-          fields[k] = mapRiotType(v, {}); // Don't recurse infinitely
+          fields[k] = mapRiotType(v, allDtos, visited);
         }
+        visited.delete(riotType);
         return { type: 'object', fields };
       }
       return { type: 'object' };

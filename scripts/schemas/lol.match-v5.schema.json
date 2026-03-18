@@ -166,6 +166,10 @@
                     "completeSupportQuestInTime": {
                       "type": "integer"
                     },
+                    "controlWardTimeCoverageInRiverOrEnemyHalf": {
+                      "optional": true,
+                      "type": "number"
+                    },
                     "controlWardsPlaced": {
                       "type": "integer"
                     },
@@ -239,12 +243,17 @@
                       "type": "number"
                     },
                     "getTakedownsInAllLanesEarlyJungleAsLaner": {
+                      "optional": true,
                       "type": "integer"
                     },
                     "goldPerMinute": {
                       "type": "number"
                     },
                     "hadOpenNexus": {
+                      "type": "integer"
+                    },
+                    "highestCrowdControlScore": {
+                      "optional": true,
                       "type": "integer"
                     },
                     "immobilizeAndKillWithAlly": {
@@ -257,6 +266,10 @@
                       "type": "integer"
                     },
                     "jungleCsBefore10Minutes": {
+                      "type": "integer"
+                    },
+                    "junglerKillsEarlyJungle": {
+                      "optional": true,
                       "type": "integer"
                     },
                     "junglerTakedownsNearDamagedEpicMonster": {
@@ -283,7 +296,12 @@
                     "killsNearEnemyTurret": {
                       "type": "integer"
                     },
+                    "killsOnLanersEarlyJungleAsJungler": {
+                      "optional": true,
+                      "type": "integer"
+                    },
                     "killsOnOtherLanesEarlyJungleAsLaner": {
+                      "optional": true,
                       "type": "integer"
                     },
                     "killsOnRecentlyHealedByAramPack": {
@@ -443,6 +461,10 @@
                       "type": "integer"
                     },
                     "teamRiftHeraldKills": {
+                      "type": "integer"
+                    },
+                    "teleportTakedowns": {
+                      "optional": true,
                       "type": "integer"
                     },
                     "tookLargeDamageSurvived": {
@@ -1159,13 +1181,42 @@
                 "events": {
                   "items": {
                     "fields": {
+                      "creatorId": {
+                        "optional": true,
+                        "type": "integer"
+                      },
+                      "itemId": {
+                        "optional": true,
+                        "type": "integer"
+                      },
+                      "level": {
+                        "optional": true,
+                        "type": "integer"
+                      },
+                      "levelUpType": {
+                        "optional": true,
+                        "type": "string"
+                      },
+                      "participantId": {
+                        "optional": true,
+                        "type": "integer"
+                      },
                       "realTimestamp": {
+                        "optional": true,
+                        "type": "integer"
+                      },
+                      "skillSlot": {
+                        "optional": true,
                         "type": "integer"
                       },
                       "timestamp": {
                         "type": "integer"
                       },
                       "type": {
+                        "type": "string"
+                      },
+                      "wardType": {
+                        "optional": true,
                         "type": "string"
                       }
                     },

@@ -112,6 +112,14 @@
         "items": {
           "fields": {
             "location": {
+              "fields": {
+                "x": {
+                  "type": "integer"
+                },
+                "y": {
+                  "type": "integer"
+                }
+              },
               "type": "object"
             },
             "puuid": {
@@ -250,6 +258,43 @@
               "type": "string"
             },
             "stats": {
+              "fields": {
+                "abilityCasts": {
+                  "fields": {
+                    "ability1Casts": {
+                      "type": "integer"
+                    },
+                    "ability2Casts": {
+                      "type": "integer"
+                    },
+                    "grenadeCasts": {
+                      "type": "integer"
+                    },
+                    "ultimateCasts": {
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "assists": {
+                  "type": "integer"
+                },
+                "deaths": {
+                  "type": "integer"
+                },
+                "kills": {
+                  "type": "integer"
+                },
+                "playtimeMillis": {
+                  "type": "integer"
+                },
+                "roundsPlayed": {
+                  "type": "integer"
+                },
+                "score": {
+                  "type": "integer"
+                }
+              },
               "type": "object"
             },
             "tagLine": {
@@ -273,10 +318,37 @@
               "type": "string"
             },
             "defuseLocation": {
+              "fields": {
+                "x": {
+                  "type": "integer"
+                },
+                "y": {
+                  "type": "integer"
+                }
+              },
               "type": "object"
             },
             "defusePlayerLocations": {
               "items": {
+                "fields": {
+                  "location": {
+                    "fields": {
+                      "x": {
+                        "type": "integer"
+                      },
+                      "y": {
+                        "type": "integer"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "puuid": {
+                    "type": "string"
+                  },
+                  "viewRadians": {
+                    "type": "number"
+                  }
+                },
                 "type": "object"
               },
               "type": "array"
@@ -285,10 +357,37 @@
               "type": "integer"
             },
             "plantLocation": {
+              "fields": {
+                "x": {
+                  "type": "integer"
+                },
+                "y": {
+                  "type": "integer"
+                }
+              },
               "type": "object"
             },
             "plantPlayerLocations": {
               "items": {
+                "fields": {
+                  "location": {
+                    "fields": {
+                      "x": {
+                        "type": "integer"
+                      },
+                      "y": {
+                        "type": "integer"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "puuid": {
+                    "type": "string"
+                  },
+                  "viewRadians": {
+                    "type": "number"
+                  }
+                },
                 "type": "object"
               },
               "type": "array"
@@ -301,6 +400,150 @@
             },
             "playerStats": {
               "items": {
+                "fields": {
+                  "ability": {
+                    "fields": {
+                      "ability1Effects": {
+                        "type": "string"
+                      },
+                      "ability2Effects": {
+                        "type": "string"
+                      },
+                      "grenadeEffects": {
+                        "type": "string"
+                      },
+                      "ultimateEffects": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "damage": {
+                    "items": {
+                      "fields": {
+                        "bodyshots": {
+                          "type": "integer"
+                        },
+                        "damage": {
+                          "type": "integer"
+                        },
+                        "headshots": {
+                          "type": "integer"
+                        },
+                        "legshots": {
+                          "type": "integer"
+                        },
+                        "receiver": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "economy": {
+                    "fields": {
+                      "armor": {
+                        "type": "string"
+                      },
+                      "loadoutValue": {
+                        "type": "integer"
+                      },
+                      "remaining": {
+                        "type": "integer"
+                      },
+                      "spent": {
+                        "type": "integer"
+                      },
+                      "weapon": {
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "kills": {
+                    "items": {
+                      "fields": {
+                        "assistants": {
+                          "items": {
+                            "type": "string"
+                          },
+                          "type": "array"
+                        },
+                        "finishingDamage": {
+                          "fields": {
+                            "damageItem": {
+                              "type": "string"
+                            },
+                            "damageType": {
+                              "type": "string"
+                            },
+                            "isSecondaryFireMode": {
+                              "type": "boolean"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "killer": {
+                          "type": "string"
+                        },
+                        "playerLocations": {
+                          "items": {
+                            "fields": {
+                              "location": {
+                                "fields": {
+                                  "x": {
+                                    "type": "integer"
+                                  },
+                                  "y": {
+                                    "type": "integer"
+                                  }
+                                },
+                                "type": "object"
+                              },
+                              "puuid": {
+                                "type": "string"
+                              },
+                              "viewRadians": {
+                                "type": "number"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "timeSinceGameStartMillis": {
+                          "type": "integer"
+                        },
+                        "timeSinceRoundStartMillis": {
+                          "type": "integer"
+                        },
+                        "victim": {
+                          "type": "string"
+                        },
+                        "victimLocation": {
+                          "fields": {
+                            "x": {
+                              "type": "integer"
+                            },
+                            "y": {
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "puuid": {
+                    "type": "string"
+                  },
+                  "score": {
+                    "type": "integer"
+                  }
+                },
                 "type": "object"
               },
               "type": "array"
@@ -463,6 +706,20 @@
       "stats": {
         "fields": {
           "abilityCasts": {
+            "fields": {
+              "ability1Casts": {
+                "type": "integer"
+              },
+              "ability2Casts": {
+                "type": "integer"
+              },
+              "grenadeCasts": {
+                "type": "integer"
+              },
+              "ultimateCasts": {
+                "type": "integer"
+              }
+            },
             "type": "object"
           },
           "assists": {
@@ -583,6 +840,17 @@
               "type": "array"
             },
             "finishingDamage": {
+              "fields": {
+                "damageItem": {
+                  "type": "string"
+                },
+                "damageType": {
+                  "type": "string"
+                },
+                "isSecondaryFireMode": {
+                  "type": "boolean"
+                }
+              },
               "type": "object"
             },
             "killer": {
@@ -590,6 +858,25 @@
             },
             "playerLocations": {
               "items": {
+                "fields": {
+                  "location": {
+                    "fields": {
+                      "x": {
+                        "type": "integer"
+                      },
+                      "y": {
+                        "type": "integer"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "puuid": {
+                    "type": "string"
+                  },
+                  "viewRadians": {
+                    "type": "number"
+                  }
+                },
                 "type": "object"
               },
               "type": "array"
@@ -604,6 +891,14 @@
               "type": "string"
             },
             "victimLocation": {
+              "fields": {
+                "x": {
+                  "type": "integer"
+                },
+                "y": {
+                  "type": "integer"
+                }
+              },
               "type": "object"
             }
           },
@@ -688,6 +983,14 @@
         "items": {
           "fields": {
             "location": {
+              "fields": {
+                "x": {
+                  "type": "integer"
+                },
+                "y": {
+                  "type": "integer"
+                }
+              },
               "type": "object"
             },
             "puuid": {
@@ -719,6 +1022,14 @@
         "items": {
           "fields": {
             "location": {
+              "fields": {
+                "x": {
+                  "type": "integer"
+                },
+                "y": {
+                  "type": "integer"
+                }
+              },
               "type": "object"
             },
             "puuid": {
@@ -742,19 +1053,137 @@
         "items": {
           "fields": {
             "ability": {
+              "fields": {
+                "ability1Effects": {
+                  "type": "string"
+                },
+                "ability2Effects": {
+                  "type": "string"
+                },
+                "grenadeEffects": {
+                  "type": "string"
+                },
+                "ultimateEffects": {
+                  "type": "string"
+                }
+              },
               "type": "object"
             },
             "damage": {
               "items": {
+                "fields": {
+                  "bodyshots": {
+                    "type": "integer"
+                  },
+                  "damage": {
+                    "type": "integer"
+                  },
+                  "headshots": {
+                    "type": "integer"
+                  },
+                  "legshots": {
+                    "type": "integer"
+                  },
+                  "receiver": {
+                    "type": "string"
+                  }
+                },
                 "type": "object"
               },
               "type": "array"
             },
             "economy": {
+              "fields": {
+                "armor": {
+                  "type": "string"
+                },
+                "loadoutValue": {
+                  "type": "integer"
+                },
+                "remaining": {
+                  "type": "integer"
+                },
+                "spent": {
+                  "type": "integer"
+                },
+                "weapon": {
+                  "type": "string"
+                }
+              },
               "type": "object"
             },
             "kills": {
               "items": {
+                "fields": {
+                  "assistants": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "finishingDamage": {
+                    "fields": {
+                      "damageItem": {
+                        "type": "string"
+                      },
+                      "damageType": {
+                        "type": "string"
+                      },
+                      "isSecondaryFireMode": {
+                        "type": "boolean"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "killer": {
+                    "type": "string"
+                  },
+                  "playerLocations": {
+                    "items": {
+                      "fields": {
+                        "location": {
+                          "fields": {
+                            "x": {
+                              "type": "integer"
+                            },
+                            "y": {
+                              "type": "integer"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "puuid": {
+                          "type": "string"
+                        },
+                        "viewRadians": {
+                          "type": "number"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "timeSinceGameStartMillis": {
+                    "type": "integer"
+                  },
+                  "timeSinceRoundStartMillis": {
+                    "type": "integer"
+                  },
+                  "victim": {
+                    "type": "string"
+                  },
+                  "victimLocation": {
+                    "fields": {
+                      "x": {
+                        "type": "integer"
+                      },
+                      "y": {
+                        "type": "integer"
+                      }
+                    },
+                    "type": "object"
+                  }
+                },
                 "type": "object"
               },
               "type": "array"

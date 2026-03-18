@@ -116,7 +116,7 @@
                       },
                       "itemNames": {
                         "items": {
-                          "type": "unknown"
+                          "type": "string"
                         },
                         "type": "array"
                       },

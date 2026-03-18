@@ -21,7 +21,19 @@ export function extractFieldDef(value: unknown): FieldDef {
     if (value.length === 0) {
       return { type: 'array', items: { type: 'unknown' } };
     }
-    return { type: 'array', items: extractFieldDef(value[0]) };
+    // Sample multiple elements and merge to capture optional fields
+    let itemDef = extractFieldDef(value[0]);
+    for (let i = 1; i < Math.min(value.length, 5); i++) {
+      const other = extractFieldDef(value[i]);
+      if (itemDef.type === 'object' && other.type === 'object' && itemDef.fields && other.fields) {
+        const merged = mergeSchemas(
+          { name: '_arr', fields: itemDef.fields },
+          { name: '_arr', fields: other.fields },
+        );
+        itemDef = { type: 'object', fields: merged.fields };
+      }
+    }
+    return { type: 'array', items: itemDef };
   }
 
   if (typeof value === 'object') {

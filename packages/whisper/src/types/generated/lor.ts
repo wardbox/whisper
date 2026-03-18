@@ -12,9 +12,9 @@ export interface LorLeaderboard {
 
 export interface LorPlatformData {
   id: string;
-  incidents: ({ archive_at: string; created_at: string; id: number; incident_severity: string; maintenance_status: string; platforms: string[]; titles: Record<string, unknown>[]; updated_at: string; updates: Record<string, unknown>[] })[];
+  incidents: ({ archive_at: string; created_at: string; id: number; incident_severity: string; maintenance_status: string; platforms: string[]; titles: ({ content: string; locale: string })[]; updated_at: string; updates: ({ author: string; created_at: string; id: number; publish: boolean; publish_locations: string[]; translations: ({ content: string; locale: string })[]; updated_at: string })[] })[];
   locales: string[];
-  maintenances: ({ archive_at: string; created_at: string; id: number; incident_severity: string; maintenance_status: string; platforms: string[]; titles: Record<string, unknown>[]; updated_at: string; updates: Record<string, unknown>[] })[];
+  maintenances: ({ archive_at: string; created_at: string; id: number; incident_severity: string; maintenance_status: string; platforms: string[]; titles: ({ content: string; locale: string })[]; updated_at: string; updates: ({ author: string; created_at: string; id: number; publish: boolean; publish_locations: string[]; translations: ({ content: string; locale: string })[]; updated_at: string })[] })[];
   name: string;
 }
 
@@ -27,7 +27,7 @@ export interface Status {
   platforms: string[];
   titles: ({ content: string; locale: string })[];
   updated_at: string;
-  updates: ({ author: string; created_at: string; id: number; publish: boolean; publish_locations: string[]; translations: Record<string, unknown>[]; updated_at: string })[];
+  updates: ({ author: string; created_at: string; id: number; publish: boolean; publish_locations: string[]; translations: ({ content: string; locale: string })[]; updated_at: string })[];
 }
 
 export interface Update {

@@ -87,6 +87,65 @@
               "type": "boolean"
             },
             "localizedNames": {
+              "fields": {
+                "ar-AE": {
+                  "type": "string"
+                },
+                "de-DE": {
+                  "type": "string"
+                },
+                "en-GB": {
+                  "type": "string"
+                },
+                "en-US": {
+                  "type": "string"
+                },
+                "es-ES": {
+                  "type": "string"
+                },
+                "es-MX": {
+                  "type": "string"
+                },
+                "fr-FR": {
+                  "type": "string"
+                },
+                "id-ID": {
+                  "type": "string"
+                },
+                "it-IT": {
+                  "type": "string"
+                },
+                "ja-JP": {
+                  "type": "string"
+                },
+                "ko-KR": {
+                  "type": "string"
+                },
+                "pl-PL": {
+                  "type": "string"
+                },
+                "pt-BR": {
+                  "type": "string"
+                },
+                "ru-RU": {
+                  "type": "string"
+                },
+                "th-TH": {
+                  "type": "string"
+                },
+                "tr-TR": {
+                  "type": "string"
+                },
+                "vi-VN": {
+                  "type": "string"
+                },
+                "zh-CN": {
+                  "type": "string"
+                },
+                "zh-TW": {
+                  "type": "string"
+                }
+              },
               "type": "object"
             },
             "name": {
@@ -110,6 +169,65 @@
               "type": "string"
             },
             "localizedNames": {
+              "fields": {
+                "ar-AE": {
+                  "type": "string"
+                },
+                "de-DE": {
+                  "type": "string"
+                },
+                "en-GB": {
+                  "type": "string"
+                },
+                "en-US": {
+                  "type": "string"
+                },
+                "es-ES": {
+                  "type": "string"
+                },
+                "es-MX": {
+                  "type": "string"
+                },
+                "fr-FR": {
+                  "type": "string"
+                },
+                "id-ID": {
+                  "type": "string"
+                },
+                "it-IT": {
+                  "type": "string"
+                },
+                "ja-JP": {
+                  "type": "string"
+                },
+                "ko-KR": {
+                  "type": "string"
+                },
+                "pl-PL": {
+                  "type": "string"
+                },
+                "pt-BR": {
+                  "type": "string"
+                },
+                "ru-RU": {
+                  "type": "string"
+                },
+                "th-TH": {
+                  "type": "string"
+                },
+                "tr-TR": {
+                  "type": "string"
+                },
+                "vi-VN": {
+                  "type": "string"
+                },
+                "zh-CN": {
+                  "type": "string"
+                },
+                "zh-TW": {
+                  "type": "string"
+                }
+              },
               "type": "object"
             },
             "name": {
@@ -133,6 +251,65 @@
               "type": "string"
             },
             "localizedNames": {
+              "fields": {
+                "ar-AE": {
+                  "type": "string"
+                },
+                "de-DE": {
+                  "type": "string"
+                },
+                "en-GB": {
+                  "type": "string"
+                },
+                "en-US": {
+                  "type": "string"
+                },
+                "es-ES": {
+                  "type": "string"
+                },
+                "es-MX": {
+                  "type": "string"
+                },
+                "fr-FR": {
+                  "type": "string"
+                },
+                "id-ID": {
+                  "type": "string"
+                },
+                "it-IT": {
+                  "type": "string"
+                },
+                "ja-JP": {
+                  "type": "string"
+                },
+                "ko-KR": {
+                  "type": "string"
+                },
+                "pl-PL": {
+                  "type": "string"
+                },
+                "pt-BR": {
+                  "type": "string"
+                },
+                "ru-RU": {
+                  "type": "string"
+                },
+                "th-TH": {
+                  "type": "string"
+                },
+                "tr-TR": {
+                  "type": "string"
+                },
+                "vi-VN": {
+                  "type": "string"
+                },
+                "zh-CN": {
+                  "type": "string"
+                },
+                "zh-TW": {
+                  "type": "string"
+                }
+              },
               "type": "object"
             },
             "name": {
@@ -156,6 +333,65 @@
               "type": "string"
             },
             "localizedNames": {
+              "fields": {
+                "ar-AE": {
+                  "type": "string"
+                },
+                "de-DE": {
+                  "type": "string"
+                },
+                "en-GB": {
+                  "type": "string"
+                },
+                "en-US": {
+                  "type": "string"
+                },
+                "es-ES": {
+                  "type": "string"
+                },
+                "es-MX": {
+                  "type": "string"
+                },
+                "fr-FR": {
+                  "type": "string"
+                },
+                "id-ID": {
+                  "type": "string"
+                },
+                "it-IT": {
+                  "type": "string"
+                },
+                "ja-JP": {
+                  "type": "string"
+                },
+                "ko-KR": {
+                  "type": "string"
+                },
+                "pl-PL": {
+                  "type": "string"
+                },
+                "pt-BR": {
+                  "type": "string"
+                },
+                "ru-RU": {
+                  "type": "string"
+                },
+                "th-TH": {
+                  "type": "string"
+                },
+                "tr-TR": {
+                  "type": "string"
+                },
+                "vi-VN": {
+                  "type": "string"
+                },
+                "zh-CN": {
+                  "type": "string"
+                },
+                "zh-TW": {
+                  "type": "string"
+                }
+              },
               "type": "object"
             },
             "name": {
@@ -179,6 +415,65 @@
               "type": "string"
             },
             "localizedNames": {
+              "fields": {
+                "ar-AE": {
+                  "type": "string"
+                },
+                "de-DE": {
+                  "type": "string"
+                },
+                "en-GB": {
+                  "type": "string"
+                },
+                "en-US": {
+                  "type": "string"
+                },
+                "es-ES": {
+                  "type": "string"
+                },
+                "es-MX": {
+                  "type": "string"
+                },
+                "fr-FR": {
+                  "type": "string"
+                },
+                "id-ID": {
+                  "type": "string"
+                },
+                "it-IT": {
+                  "type": "string"
+                },
+                "ja-JP": {
+                  "type": "string"
+                },
+                "ko-KR": {
+                  "type": "string"
+                },
+                "pl-PL": {
+                  "type": "string"
+                },
+                "pt-BR": {
+                  "type": "string"
+                },
+                "ru-RU": {
+                  "type": "string"
+                },
+                "th-TH": {
+                  "type": "string"
+                },
+                "tr-TR": {
+                  "type": "string"
+                },
+                "vi-VN": {
+                  "type": "string"
+                },
+                "zh-CN": {
+                  "type": "string"
+                },
+                "zh-TW": {
+                  "type": "string"
+                }
+              },
               "type": "object"
             },
             "name": {
@@ -202,6 +497,65 @@
               "type": "string"
             },
             "localizedNames": {
+              "fields": {
+                "ar-AE": {
+                  "type": "string"
+                },
+                "de-DE": {
+                  "type": "string"
+                },
+                "en-GB": {
+                  "type": "string"
+                },
+                "en-US": {
+                  "type": "string"
+                },
+                "es-ES": {
+                  "type": "string"
+                },
+                "es-MX": {
+                  "type": "string"
+                },
+                "fr-FR": {
+                  "type": "string"
+                },
+                "id-ID": {
+                  "type": "string"
+                },
+                "it-IT": {
+                  "type": "string"
+                },
+                "ja-JP": {
+                  "type": "string"
+                },
+                "ko-KR": {
+                  "type": "string"
+                },
+                "pl-PL": {
+                  "type": "string"
+                },
+                "pt-BR": {
+                  "type": "string"
+                },
+                "ru-RU": {
+                  "type": "string"
+                },
+                "th-TH": {
+                  "type": "string"
+                },
+                "tr-TR": {
+                  "type": "string"
+                },
+                "vi-VN": {
+                  "type": "string"
+                },
+                "zh-CN": {
+                  "type": "string"
+                },
+                "zh-TW": {
+                  "type": "string"
+                }
+              },
               "type": "object"
             },
             "name": {
@@ -225,6 +579,65 @@
               "type": "string"
             },
             "localizedNames": {
+              "fields": {
+                "ar-AE": {
+                  "type": "string"
+                },
+                "de-DE": {
+                  "type": "string"
+                },
+                "en-GB": {
+                  "type": "string"
+                },
+                "en-US": {
+                  "type": "string"
+                },
+                "es-ES": {
+                  "type": "string"
+                },
+                "es-MX": {
+                  "type": "string"
+                },
+                "fr-FR": {
+                  "type": "string"
+                },
+                "id-ID": {
+                  "type": "string"
+                },
+                "it-IT": {
+                  "type": "string"
+                },
+                "ja-JP": {
+                  "type": "string"
+                },
+                "ko-KR": {
+                  "type": "string"
+                },
+                "pl-PL": {
+                  "type": "string"
+                },
+                "pt-BR": {
+                  "type": "string"
+                },
+                "ru-RU": {
+                  "type": "string"
+                },
+                "th-TH": {
+                  "type": "string"
+                },
+                "tr-TR": {
+                  "type": "string"
+                },
+                "vi-VN": {
+                  "type": "string"
+                },
+                "zh-CN": {
+                  "type": "string"
+                },
+                "zh-TW": {
+                  "type": "string"
+                }
+              },
               "type": "object"
             },
             "name": {
@@ -248,6 +661,65 @@
               "type": "string"
             },
             "localizedNames": {
+              "fields": {
+                "ar-AE": {
+                  "type": "string"
+                },
+                "de-DE": {
+                  "type": "string"
+                },
+                "en-GB": {
+                  "type": "string"
+                },
+                "en-US": {
+                  "type": "string"
+                },
+                "es-ES": {
+                  "type": "string"
+                },
+                "es-MX": {
+                  "type": "string"
+                },
+                "fr-FR": {
+                  "type": "string"
+                },
+                "id-ID": {
+                  "type": "string"
+                },
+                "it-IT": {
+                  "type": "string"
+                },
+                "ja-JP": {
+                  "type": "string"
+                },
+                "ko-KR": {
+                  "type": "string"
+                },
+                "pl-PL": {
+                  "type": "string"
+                },
+                "pt-BR": {
+                  "type": "string"
+                },
+                "ru-RU": {
+                  "type": "string"
+                },
+                "th-TH": {
+                  "type": "string"
+                },
+                "tr-TR": {
+                  "type": "string"
+                },
+                "vi-VN": {
+                  "type": "string"
+                },
+                "zh-CN": {
+                  "type": "string"
+                },
+                "zh-TW": {
+                  "type": "string"
+                }
+              },
               "type": "object"
             },
             "name": {
@@ -271,6 +743,65 @@
               "type": "string"
             },
             "localizedNames": {
+              "fields": {
+                "ar-AE": {
+                  "type": "string"
+                },
+                "de-DE": {
+                  "type": "string"
+                },
+                "en-GB": {
+                  "type": "string"
+                },
+                "en-US": {
+                  "type": "string"
+                },
+                "es-ES": {
+                  "type": "string"
+                },
+                "es-MX": {
+                  "type": "string"
+                },
+                "fr-FR": {
+                  "type": "string"
+                },
+                "id-ID": {
+                  "type": "string"
+                },
+                "it-IT": {
+                  "type": "string"
+                },
+                "ja-JP": {
+                  "type": "string"
+                },
+                "ko-KR": {
+                  "type": "string"
+                },
+                "pl-PL": {
+                  "type": "string"
+                },
+                "pt-BR": {
+                  "type": "string"
+                },
+                "ru-RU": {
+                  "type": "string"
+                },
+                "th-TH": {
+                  "type": "string"
+                },
+                "tr-TR": {
+                  "type": "string"
+                },
+                "vi-VN": {
+                  "type": "string"
+                },
+                "zh-CN": {
+                  "type": "string"
+                },
+                "zh-TW": {
+                  "type": "string"
+                }
+              },
               "type": "object"
             },
             "name": {
@@ -294,6 +825,65 @@
               "type": "string"
             },
             "localizedNames": {
+              "fields": {
+                "ar-AE": {
+                  "type": "string"
+                },
+                "de-DE": {
+                  "type": "string"
+                },
+                "en-GB": {
+                  "type": "string"
+                },
+                "en-US": {
+                  "type": "string"
+                },
+                "es-ES": {
+                  "type": "string"
+                },
+                "es-MX": {
+                  "type": "string"
+                },
+                "fr-FR": {
+                  "type": "string"
+                },
+                "id-ID": {
+                  "type": "string"
+                },
+                "it-IT": {
+                  "type": "string"
+                },
+                "ja-JP": {
+                  "type": "string"
+                },
+                "ko-KR": {
+                  "type": "string"
+                },
+                "pl-PL": {
+                  "type": "string"
+                },
+                "pt-BR": {
+                  "type": "string"
+                },
+                "ru-RU": {
+                  "type": "string"
+                },
+                "th-TH": {
+                  "type": "string"
+                },
+                "tr-TR": {
+                  "type": "string"
+                },
+                "vi-VN": {
+                  "type": "string"
+                },
+                "zh-CN": {
+                  "type": "string"
+                },
+                "zh-TW": {
+                  "type": "string"
+                }
+              },
               "type": "object"
             },
             "name": {
@@ -317,6 +907,65 @@
               "type": "string"
             },
             "localizedNames": {
+              "fields": {
+                "ar-AE": {
+                  "type": "string"
+                },
+                "de-DE": {
+                  "type": "string"
+                },
+                "en-GB": {
+                  "type": "string"
+                },
+                "en-US": {
+                  "type": "string"
+                },
+                "es-ES": {
+                  "type": "string"
+                },
+                "es-MX": {
+                  "type": "string"
+                },
+                "fr-FR": {
+                  "type": "string"
+                },
+                "id-ID": {
+                  "type": "string"
+                },
+                "it-IT": {
+                  "type": "string"
+                },
+                "ja-JP": {
+                  "type": "string"
+                },
+                "ko-KR": {
+                  "type": "string"
+                },
+                "pl-PL": {
+                  "type": "string"
+                },
+                "pt-BR": {
+                  "type": "string"
+                },
+                "ru-RU": {
+                  "type": "string"
+                },
+                "th-TH": {
+                  "type": "string"
+                },
+                "tr-TR": {
+                  "type": "string"
+                },
+                "vi-VN": {
+                  "type": "string"
+                },
+                "zh-CN": {
+                  "type": "string"
+                },
+                "zh-TW": {
+                  "type": "string"
+                }
+              },
               "type": "object"
             },
             "name": {
@@ -340,6 +989,65 @@
               "type": "string"
             },
             "localizedNames": {
+              "fields": {
+                "ar-AE": {
+                  "type": "string"
+                },
+                "de-DE": {
+                  "type": "string"
+                },
+                "en-GB": {
+                  "type": "string"
+                },
+                "en-US": {
+                  "type": "string"
+                },
+                "es-ES": {
+                  "type": "string"
+                },
+                "es-MX": {
+                  "type": "string"
+                },
+                "fr-FR": {
+                  "type": "string"
+                },
+                "id-ID": {
+                  "type": "string"
+                },
+                "it-IT": {
+                  "type": "string"
+                },
+                "ja-JP": {
+                  "type": "string"
+                },
+                "ko-KR": {
+                  "type": "string"
+                },
+                "pl-PL": {
+                  "type": "string"
+                },
+                "pt-BR": {
+                  "type": "string"
+                },
+                "ru-RU": {
+                  "type": "string"
+                },
+                "th-TH": {
+                  "type": "string"
+                },
+                "tr-TR": {
+                  "type": "string"
+                },
+                "vi-VN": {
+                  "type": "string"
+                },
+                "zh-CN": {
+                  "type": "string"
+                },
+                "zh-TW": {
+                  "type": "string"
+                }
+              },
               "type": "object"
             },
             "name": {
@@ -363,6 +1071,65 @@
               "type": "string"
             },
             "localizedNames": {
+              "fields": {
+                "ar-AE": {
+                  "type": "string"
+                },
+                "de-DE": {
+                  "type": "string"
+                },
+                "en-GB": {
+                  "type": "string"
+                },
+                "en-US": {
+                  "type": "string"
+                },
+                "es-ES": {
+                  "type": "string"
+                },
+                "es-MX": {
+                  "type": "string"
+                },
+                "fr-FR": {
+                  "type": "string"
+                },
+                "id-ID": {
+                  "type": "string"
+                },
+                "it-IT": {
+                  "type": "string"
+                },
+                "ja-JP": {
+                  "type": "string"
+                },
+                "ko-KR": {
+                  "type": "string"
+                },
+                "pl-PL": {
+                  "type": "string"
+                },
+                "pt-BR": {
+                  "type": "string"
+                },
+                "ru-RU": {
+                  "type": "string"
+                },
+                "th-TH": {
+                  "type": "string"
+                },
+                "tr-TR": {
+                  "type": "string"
+                },
+                "vi-VN": {
+                  "type": "string"
+                },
+                "zh-CN": {
+                  "type": "string"
+                },
+                "zh-TW": {
+                  "type": "string"
+                }
+              },
               "type": "object"
             },
             "name": {
@@ -386,6 +1153,65 @@
               "type": "string"
             },
             "localizedNames": {
+              "fields": {
+                "ar-AE": {
+                  "type": "string"
+                },
+                "de-DE": {
+                  "type": "string"
+                },
+                "en-GB": {
+                  "type": "string"
+                },
+                "en-US": {
+                  "type": "string"
+                },
+                "es-ES": {
+                  "type": "string"
+                },
+                "es-MX": {
+                  "type": "string"
+                },
+                "fr-FR": {
+                  "type": "string"
+                },
+                "id-ID": {
+                  "type": "string"
+                },
+                "it-IT": {
+                  "type": "string"
+                },
+                "ja-JP": {
+                  "type": "string"
+                },
+                "ko-KR": {
+                  "type": "string"
+                },
+                "pl-PL": {
+                  "type": "string"
+                },
+                "pt-BR": {
+                  "type": "string"
+                },
+                "ru-RU": {
+                  "type": "string"
+                },
+                "th-TH": {
+                  "type": "string"
+                },
+                "tr-TR": {
+                  "type": "string"
+                },
+                "vi-VN": {
+                  "type": "string"
+                },
+                "zh-CN": {
+                  "type": "string"
+                },
+                "zh-TW": {
+                  "type": "string"
+                }
+              },
               "type": "object"
             },
             "name": {
