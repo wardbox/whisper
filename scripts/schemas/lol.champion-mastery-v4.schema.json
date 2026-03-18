@@ -1,0 +1,73 @@
+{
+  "$schema": "whisper-schema-v1",
+  "group": "lol.champion-mastery-v4",
+  "source": "live",
+  "types": {
+    "ChampionMasteryDTO": {
+      "championId": {
+        "type": "integer"
+      },
+      "championLevel": {
+        "type": "integer"
+      },
+      "championPoints": {
+        "type": "integer"
+      },
+      "championPointsSinceLastLevel": {
+        "type": "integer"
+      },
+      "championPointsUntilNextLevel": {
+        "type": "integer"
+      },
+      "championSeasonMilestone": {
+        "type": "integer"
+      },
+      "lastPlayTime": {
+        "type": "integer"
+      },
+      "markRequiredForNextLevel": {
+        "type": "integer"
+      },
+      "milestoneGrades": {
+        "items": {
+          "type": "unknown"
+        },
+        "optional": true,
+        "type": "array"
+      },
+      "nextSeasonMilestone": {
+        "fields": {
+          "bonus": {
+            "type": "boolean"
+          },
+          "requireGradeCounts": {
+            "fields": {
+              "A-": {
+                "optional": true,
+                "type": "integer"
+              },
+              "S-": {
+                "optional": true,
+                "type": "integer"
+              }
+            },
+            "type": "object"
+          },
+          "rewardMarks": {
+            "type": "integer"
+          },
+          "totalGamesRequires": {
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "puuid": {
+        "type": "string"
+      },
+      "tokensEarned": {
+        "type": "integer"
+      }
+    }
+  }
+}

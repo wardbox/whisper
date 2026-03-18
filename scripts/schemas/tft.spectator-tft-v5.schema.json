@@ -1,0 +1,210 @@
+{
+  "$schema": "whisper-schema-v1",
+  "group": "tft.spectator-tft-v5",
+  "source": "stub",
+  "types": {
+    "BannedChampion": {
+      "championId": {
+        "type": "integer"
+      },
+      "pickTurn": {
+        "type": "integer"
+      },
+      "teamId": {
+        "type": "integer"
+      }
+    },
+    "CurrentGameInfo": {
+      "bannedChampions": {
+        "items": {
+          "fields": {
+            "championId": {
+              "type": "integer"
+            },
+            "pickTurn": {
+              "type": "integer"
+            },
+            "teamId": {
+              "type": "integer"
+            }
+          },
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "gameId": {
+        "type": "integer"
+      },
+      "gameLength": {
+        "type": "integer"
+      },
+      "gameMode": {
+        "type": "string"
+      },
+      "gameQueueConfigId": {
+        "type": "integer"
+      },
+      "gameStartTime": {
+        "type": "integer"
+      },
+      "gameType": {
+        "type": "string"
+      },
+      "mapId": {
+        "type": "integer"
+      },
+      "observers": {
+        "fields": {
+          "encryptionKey": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "participants": {
+        "items": {
+          "fields": {
+            "bot": {
+              "type": "boolean"
+            },
+            "championId": {
+              "type": "integer"
+            },
+            "gameCustomizationObjects": {
+              "items": {
+                "fields": {
+                  "category": {
+                    "type": "string"
+                  },
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "perks": {
+              "fields": {
+                "perkIds": {
+                  "items": {
+                    "type": "integer"
+                  },
+                  "type": "array"
+                },
+                "perkStyle": {
+                  "type": "integer"
+                },
+                "perkSubStyle": {
+                  "type": "integer"
+                }
+              },
+              "type": "object"
+            },
+            "profileIconId": {
+              "type": "integer"
+            },
+            "puuid": {
+              "type": "string"
+            },
+            "spell1Id": {
+              "type": "integer"
+            },
+            "spell2Id": {
+              "type": "integer"
+            },
+            "teamId": {
+              "type": "integer"
+            }
+          },
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "platformId": {
+        "type": "string"
+      }
+    },
+    "CurrentGameParticipant": {
+      "bot": {
+        "type": "boolean"
+      },
+      "championId": {
+        "type": "integer"
+      },
+      "gameCustomizationObjects": {
+        "items": {
+          "fields": {
+            "category": {
+              "type": "string"
+            },
+            "content": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "perks": {
+        "fields": {
+          "perkIds": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array"
+          },
+          "perkStyle": {
+            "type": "integer"
+          },
+          "perkSubStyle": {
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "profileIconId": {
+        "type": "integer"
+      },
+      "puuid": {
+        "type": "string"
+      },
+      "spell1Id": {
+        "type": "integer"
+      },
+      "spell2Id": {
+        "type": "integer"
+      },
+      "teamId": {
+        "type": "integer"
+      }
+    },
+    "GameCustomizationObject": {
+      "category": {
+        "type": "string"
+      },
+      "content": {
+        "type": "string"
+      }
+    },
+    "Observer": {
+      "encryptionKey": {
+        "type": "string"
+      }
+    },
+    "Perks": {
+      "perkIds": {
+        "items": {
+          "type": "integer"
+        },
+        "type": "array"
+      },
+      "perkStyle": {
+        "type": "integer"
+      },
+      "perkSubStyle": {
+        "type": "integer"
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "whisper-schema-v1",
+  "group": "lol.summoner-v4",
+  "source": "live",
+  "types": {
+    "SummonerDTO": {
+      "profileIconId": {
+        "type": "integer"
+      },
+      "puuid": {
+        "type": "string"
+      },
+      "revisionDate": {
+        "type": "integer"
+      },
+      "summonerLevel": {
+        "type": "integer"
+      }
+    }
+  }
+}

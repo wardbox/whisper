@@ -1,0 +1,26 @@
+{
+  "$schema": "whisper-schema-v1",
+  "group": "lor.lor-ranked-v1",
+  "source": "live",
+  "types": {
+    "LorLeaderboardDTO": {
+      "players": {
+        "items": {
+          "fields": {
+            "lp": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            },
+            "rank": {
+              "type": "integer"
+            }
+          },
+          "type": "object"
+        },
+        "type": "array"
+      }
+    }
+  }
+}

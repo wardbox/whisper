@@ -1,0 +1,47 @@
+name: Schema Drift Check
+on:
+  schedule:
+    - cron: '0 6 * * 1' # Weekly Monday 6am UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  check-drift:
+    runs-on: ubuntu-latest
+    if: github.repository == 'wardbox/whisper'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'pnpm'
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - name: Generate schemas
+        run: cd packages/whisper && pnpm generate-schema
+        env:
+          RIOT_API_KEY: ${{ secrets.RIOT_API_KEY }}
+      - name: Check for changes
+        id: diff
+        run: |
+          if ! git diff --quiet scripts/schemas/ packages/whisper/src/types/generated/; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          elif [ -n "$(git ls-files --others --exclude-standard -- scripts/schemas/ packages/whisper/src/types/generated/)" ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Create PR
+        if: steps.diff.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          title: 'chore: update schemas for Riot API changes'
+          branch: schema-drift-update
+          commit-message: 'chore: regenerate schemas from live API'
+          body: |
+            Automated schema drift detection found changes in Riot API response shapes.
+
+            Review the diff to understand what changed.
+          labels: schema-drift,automated
