@@ -1,5 +1,6 @@
 import type { PlatformRoute } from '../types/platform.js';
 import type { RegionalRoute } from '../types/regional.js';
+import type { ValPlatformRoute } from '../types/val-platform.js';
 import { buildCacheKey, MemoryCache, resolveTtl } from './cache.js';
 import { RateLimitError } from './errors.js';
 import type { KeyProvider } from './http.js';
@@ -46,7 +47,7 @@ interface RequestOptions {
 export interface WhisperClient {
   /** Make an API request with full pipeline: middleware -> cache check -> rate limit -> fetch -> cache store -> middleware response */
   request<T>(
-    route: PlatformRoute | RegionalRoute,
+    route: PlatformRoute | RegionalRoute | ValPlatformRoute,
     path: string,
     methodId: string,
     options?: RequestOptions,
@@ -113,7 +114,7 @@ export function createClient(config: ClientConfig): WhisperClient {
 
   return {
     async request<T>(
-      route: PlatformRoute | RegionalRoute,
+      route: PlatformRoute | RegionalRoute | ValPlatformRoute,
       path: string,
       methodId: string,
       options?: RequestOptions,
@@ -179,7 +180,7 @@ export function createClient(config: ClientConfig): WhisperClient {
         }
 
         // Exhausted retries
-        throw lastError!;
+        throw lastError as Error;
       });
 
       // 4. Store in cache (GET only)

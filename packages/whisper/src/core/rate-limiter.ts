@@ -354,8 +354,8 @@ export class RateLimiter {
    * @param attempt - The retry attempt number (0-based)
    */
   async handle429(
-    route: string,
-    methodId: string,
+    _route: string,
+    _methodId: string,
     headers: Record<string, string>,
     attempt: number,
   ): Promise<void> {

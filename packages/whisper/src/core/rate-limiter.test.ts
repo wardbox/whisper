@@ -28,20 +28,20 @@ describe('syncBuckets', () => {
   it('computes remaining tokens from limit and count headers', () => {
     const buckets = syncBuckets('100:1,1000:10', '5:1,50:10');
     expect(buckets).toHaveLength(2);
-    expect(buckets[0]!.remaining).toBe(95);
-    expect(buckets[1]!.remaining).toBe(950);
+    expect(buckets[0]?.remaining).toBe(95);
+    expect(buckets[1]?.remaining).toBe(950);
   });
 
   it('sets limit and windowMs correctly', () => {
     const buckets = syncBuckets('100:1', '5:1');
-    expect(buckets[0]!.limit).toBe(100);
-    expect(buckets[0]!.windowMs).toBe(1000);
+    expect(buckets[0]?.limit).toBe(100);
+    expect(buckets[0]?.windowMs).toBe(1000);
   });
 
   it('sets resetAt in the future', () => {
     const now = Date.now();
     const buckets = syncBuckets('100:10', '5:10');
-    expect(buckets[0]!.resetAt).toBeGreaterThanOrEqual(now + 10000);
+    expect(buckets[0]?.resetAt).toBeGreaterThanOrEqual(now + 10000);
   });
 });
 

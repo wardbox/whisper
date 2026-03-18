@@ -32,7 +32,7 @@ export async function executePipeline(
 
   // Run onResponse in reverse order
   for (let i = middleware.length - 1; i >= 0; i--) {
-    const mw = middleware[i]!;
+    const mw = middleware[i] as (typeof middleware)[number];
     if (mw.onResponse) {
       response = await mw.onResponse(response, ctx);
     }
