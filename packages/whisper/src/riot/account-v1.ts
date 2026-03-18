@@ -1,7 +1,7 @@
 import type { WhisperClient } from '../core/client.js';
-import type { RegionalRoute } from '../types/regional.js';
 import type { Account } from '../types/generated/riot.js';
 import type { ActiveShard } from '../types/overrides/riot-account.js';
+import type { RegionalRoute } from '../types/regional.js';
 
 /**
  * Riot Account API (v1).
@@ -34,11 +34,7 @@ export const accountV1 = {
    * console.log(account.gameName, account.tagLine);
    * ```
    */
-  async getByPuuid(
-    client: WhisperClient,
-    route: RegionalRoute,
-    puuid: string,
-  ): Promise<Account> {
+  async getByPuuid(client: WhisperClient, route: RegionalRoute, puuid: string): Promise<Account> {
     const response = await client.request<Account>(
       route,
       `/riot/account/v1/accounts/by-puuid/${puuid}`,

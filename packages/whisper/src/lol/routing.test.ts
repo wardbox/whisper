@@ -1,22 +1,22 @@
 import { describe, expectTypeOf, it } from 'vitest';
 import type { WhisperClient } from '../core/client.js';
+import { accountV1 } from '../riot/account-v1.js';
 import type { PlatformRoute } from '../types/platform.js';
 import type { RegionalRoute } from '../types/regional.js';
 // Import all namespace objects
 import { championMasteryV4 } from './champion-mastery-v4.js';
 import { championV3 } from './champion-v3.js';
 import { clashV1 } from './clash-v1.js';
-import { leagueV4 } from './league-v4.js';
 import { leagueExpV4 } from './league-exp-v4.js';
+import { leagueV4 } from './league-v4.js';
 import { lolChallengesV1 } from './lol-challenges-v1.js';
+import { lolRsoMatchV1 } from './lol-rso-match-v1.js';
 import { lolStatusV4 } from './lol-status-v4.js';
 import { matchV5 } from './match-v5.js';
-import { lolRsoMatchV1 } from './lol-rso-match-v1.js';
 import { spectatorV5 } from './spectator-v5.js';
 import { summonerV4 } from './summoner-v4.js';
-import { tournamentV5 } from './tournament-v5.js';
 import { tournamentStubV5 } from './tournament-stub-v5.js';
-import { accountV1 } from '../riot/account-v1.js';
+import { tournamentV5 } from './tournament-v5.js';
 
 describe('route type enforcement', () => {
   it('platform-routed modules accept PlatformRoute', () => {

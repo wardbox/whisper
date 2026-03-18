@@ -1,6 +1,6 @@
 import type { WhisperClient } from '../core/client.js';
-import type { PlatformRoute } from '../types/platform.js';
 import type { LolPlatformData } from '../types/generated/lol.js';
+import type { PlatformRoute } from '../types/platform.js';
 
 /**
  * League of Legends Status API (v4).
@@ -35,10 +35,7 @@ export const lolStatusV4 = {
    * }
    * ```
    */
-  async getStatus(
-    client: WhisperClient,
-    route: PlatformRoute,
-  ): Promise<LolPlatformData> {
+  async getStatus(client: WhisperClient, route: PlatformRoute): Promise<LolPlatformData> {
     const response = await client.request<LolPlatformData>(
       route,
       '/lol/status/v4/platform-data',

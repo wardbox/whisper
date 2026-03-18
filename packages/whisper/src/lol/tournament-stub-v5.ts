@@ -1,11 +1,11 @@
 import type { WhisperClient } from '../core/client.js';
-import type { RegionalRoute } from '../types/regional.js';
 import type {
   LobbyEventV5Wrapper,
   ProviderRegistrationParameters,
   TournamentCodeParameters,
   TournamentRegistrationParameters,
 } from '../types/overrides/lol-tournament.js';
+import type { RegionalRoute } from '../types/regional.js';
 
 /**
  * LoL Tournament Stub API (v5).

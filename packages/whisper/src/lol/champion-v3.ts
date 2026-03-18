@@ -1,6 +1,6 @@
 import type { WhisperClient } from '../core/client.js';
-import type { PlatformRoute } from '../types/platform.js';
 import type { ChampionInfo } from '../types/generated/lol.js';
+import type { PlatformRoute } from '../types/platform.js';
 
 /**
  * League of Legends Champion Rotation API (v3).
@@ -31,10 +31,7 @@ export const championV3 = {
    * console.log(`${rotation.freeChampionIds.length} free champions this week`);
    * ```
    */
-  async getChampionRotations(
-    client: WhisperClient,
-    route: PlatformRoute,
-  ): Promise<ChampionInfo> {
+  async getChampionRotations(client: WhisperClient, route: PlatformRoute): Promise<ChampionInfo> {
     const response = await client.request<ChampionInfo>(
       route,
       '/lol/platform/v3/champion-rotations',

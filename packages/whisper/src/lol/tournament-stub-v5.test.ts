@@ -74,13 +74,9 @@ describe('tournamentStubV5', () => {
         teamSize: 5,
       };
 
-      const result = await tournamentStubV5.createTournamentCode(
-        client,
-        'americas',
-        12345,
-        body,
-        { count: 2 },
-      );
+      const result = await tournamentStubV5.createTournamentCode(client, 'americas', 12345, body, {
+        count: 2,
+      });
 
       expect(result).toEqual(expected);
     });
@@ -141,11 +137,7 @@ describe('tournamentStubV5', () => {
       };
       const client = mockClient(expected);
 
-      const result = await tournamentStubV5.getLobbyEventsByCode(
-        client,
-        'americas',
-        'STUB-CODE1',
-      );
+      const result = await tournamentStubV5.getLobbyEventsByCode(client, 'americas', 'STUB-CODE1');
 
       expect(result).toEqual(expected);
     });

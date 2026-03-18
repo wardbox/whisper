@@ -1,7 +1,7 @@
 import type { WhisperClient } from '../core/client.js';
-import type { PlatformRoute } from '../types/platform.js';
 import type { LolCurrentGameInfo } from '../types/generated/lol.js';
 import type { FeaturedGames } from '../types/overrides/lol-spectator.js';
+import type { PlatformRoute } from '../types/platform.js';
 
 /**
  * League of Legends Spectator API (v5).
@@ -70,10 +70,7 @@ export const spectatorV5 = {
    * console.log(`${featured.gameList.length} featured games`);
    * ```
    */
-  async getFeaturedGames(
-    client: WhisperClient,
-    route: PlatformRoute,
-  ): Promise<FeaturedGames> {
+  async getFeaturedGames(client: WhisperClient, route: PlatformRoute): Promise<FeaturedGames> {
     const response = await client.request<FeaturedGames>(
       route,
       '/lol/spectator/v5/featured-games',

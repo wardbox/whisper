@@ -1,7 +1,7 @@
 import type { WhisperClient } from '../core/client.js';
-import type { PlatformRoute } from '../types/platform.js';
 import type { LolLeagueEntry } from '../types/generated/lol.js';
 import type { LeagueList } from '../types/overrides/lol-league.js';
+import type { PlatformRoute } from '../types/platform.js';
 
 /**
  * League API (v4).
