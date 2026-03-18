@@ -44,10 +44,10 @@ created: 2026-03-18
 | 05-02-01 | 02 | 1 | ENDP-03 | unit | `pnpm vitest run src/val/index.test.ts` | ❌ W0 | ⬜ pending |
 | 05-02-02 | 02 | 1 | ENDP-03 | unit | `pnpm vitest run src/val/routing.test.ts` | ❌ W0 | ⬜ pending |
 | 05-02-03 | 02 | 1 | ENDP-03 | unit | `pnpm vitest run src/val/` | ❌ W0 | ⬜ pending |
-| 05-03-01 | 03 | 2 | ENDP-04 | unit | `pnpm vitest run src/lor/index.test.ts` | ❌ W0 | ⬜ pending |
-| 05-03-02 | 03 | 2 | ENDP-04 | unit | `pnpm vitest run src/lor/routing.test.ts` | ❌ W0 | ⬜ pending |
-| 05-03-03 | 03 | 2 | ENDP-05 | unit | `pnpm vitest run src/riftbound/index.test.ts` | ❌ W0 | ⬜ pending |
-| 05-03-04 | 03 | 2 | ENDP-05 | unit | `pnpm vitest run src/riftbound/routing.test.ts` | ❌ W0 | ⬜ pending |
+| 05-03-01 | 03 | 1 | ENDP-04 | unit | `pnpm vitest run src/lor/index.test.ts` | ❌ W0 | ⬜ pending |
+| 05-03-02 | 03 | 1 | ENDP-04 | unit | `pnpm vitest run src/lor/routing.test.ts` | ❌ W0 | ⬜ pending |
+| 05-03-03 | 03 | 1 | ENDP-05 | unit | `pnpm vitest run src/riftbound/index.test.ts` | ❌ W0 | ⬜ pending |
+| 05-03-04 | 03 | 1 | ENDP-05 | unit | `pnpm vitest run src/riftbound/routing.test.ts` | ❌ W0 | ⬜ pending |
 
 *Status: ⬜ pending · ✅ green · ❌ red · ⚠️ flaky*
 
