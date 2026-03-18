@@ -21,6 +21,31 @@ export interface ClashTeamPlayer {
 }
 
 /**
+ * A Clash player entry (PlayerDTO).
+ *
+ * Returned by clash-v1.getPlayersByPuuid as an array of team registrations
+ * for a given player. Each entry represents one team the player is on.
+ */
+export interface ClashPlayer {
+  /** Encrypted PUUID of the player */
+  puuid: string;
+  /** Team ID the player belongs to */
+  teamId: string;
+  /**
+   * Player's selected position.
+   *
+   * Possible values: "TOP", "JUNGLE", "MIDDLE", "BOTTOM", "UTILITY", "FILL", "UNSELECTED"
+   */
+  position: string;
+  /**
+   * Player's role on the team.
+   *
+   * Possible values: "CAPTAIN", "MEMBER"
+   */
+  role: string;
+}
+
+/**
  * A Clash team (TeamDTO).
  *
  * Returned by the clash-v1.getTeamById endpoint.
