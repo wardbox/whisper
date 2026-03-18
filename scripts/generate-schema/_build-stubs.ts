@@ -98,7 +98,7 @@ writeSchema('val', 'val-match-v1', {
     gameMode: 'string',
     isRanked: 'boolean',
     seasonId: 'string',
-    premierMatchInfo: 'List[PremierMatchDto]',
+    premierMatchInfo: 'List[PremierMatchDto]', // PremierMatchDto not documented by Riot
   },
   PlayerDto: {
     puuid: 'string',
@@ -283,7 +283,7 @@ writeSchema('val', 'val-ranked-v1', {
     numberOfWins: 'long',
     competitiveTier: 'int',
   },
-  TierDto: {},
+  TierDto: {}, // Riot does not document tier structure
 });
 
 // ============================================================
@@ -345,7 +345,7 @@ writeSchema('val', 'val-console-match-v1', {
     gameMode: 'string',
     isRanked: 'boolean',
     seasonId: 'string',
-    premierMatchInfo: 'List[PremierMatchDto]',
+    premierMatchInfo: 'List[PremierMatchDto]', // PremierMatchDto not documented by Riot
   },
   PlayerDto: {
     puuid: 'string',
@@ -473,7 +473,7 @@ writeSchema('val', 'val-console-ranked-v1', {
     numberOfWins: 'long',
     competitiveTier: 'int',
   },
-  TierDto: {},
+  TierDto: {}, // Riot does not document tier structure
 });
 
 // ============================================================
