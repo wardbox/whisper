@@ -91,11 +91,15 @@ Plans:
 **Requirements**: ENDP-02, ENDP-03, ENDP-04, ENDP-05
 **Success Criteria** (what must be TRUE):
   1. All 5 TFT API groups are importable from `@wardbox/whisper/tft` with correct routing types
-  2. All 6 Valorant API groups are importable from `@wardbox/whisper/val`; val/match-v1 requires regional routing and attempting platform routing is a compile error
+  2. All 6 Valorant API groups are importable from `@wardbox/whisper/val`; all Val endpoints use `ValPlatformRoute` (Valorant's own routing: ap, br, eu, kr, latam, na, esports) and attempting standard PlatformRoute or RegionalRoute is a compile error
   3. All active LoR API groups are importable from `@wardbox/whisper/lor` (inactive endpoints excluded after game-status audit)
   4. Riftbound's 1 API group is importable from `@wardbox/whisper/riftbound`
   5. Importing only `@wardbox/whisper/tft` in a bundler produces no LoL or Valorant code in the output
-**Plans**: TBD
+**Plans:** 3 plans
+Plans:
+- [ ] 05-01-PLAN.md — TFT: all 5 API groups, override types, index re-exports, route enforcement tests
+- [ ] 05-02-PLAN.md — Valorant: ValPlatformRoute type, WhisperClient update, all 6 API groups, index, route tests
+- [ ] 05-03-PLAN.md — LoR + Riftbound: active LoR groups (audit), riftbound-content-v1, indexes, route tests
 
 ### Phase 6: Documentation Site
 **Goal**: A developer new to Whisper can read the documentation site, understand the platform/regional routing distinction, and make a working API call within a few minutes of landing on the site.
@@ -130,6 +134,6 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 | 2. Core Infrastructure | 1/4 | In Progress|  |
 | 3. Schema Generation | 0/2 | Not started | - |
 | 4. LoL and Shared Endpoints | 5/5 | Complete   | 2026-03-18 |
-| 5. TFT, Valorant, LoR, and Riftbound Endpoints | 0/TBD | Not started | - |
+| 5. TFT, Valorant, LoR, and Riftbound Endpoints | 0/3 | Not started | - |
 | 6. Documentation Site | 0/TBD | Not started | - |
 | 7. Hardening and Publish | 0/TBD | Not started | - |
