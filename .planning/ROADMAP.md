@@ -77,7 +77,7 @@ Plans:
   3. Passing a platform route to a regional-only method (e.g., `match-v5`) is a TypeScript compile error
   4. Every public method has TSDoc with a usage example visible in IDE hover; every DTO field has a JSDoc tooltip
   5. Removed and deactivated endpoints (summonerName/ID lookups, spectator-v5 for LoL) are absent from the public API
-**Plans:** 5 plans
+**Plans:** 3/5 plans executed
 Plans:
 - [ ] 04-01-PLAN.md — Override types for missing DTOs + Account-V1 module
 - [ ] 04-02-PLAN.md — Platform LoL batch 1: champion-mastery-v4, champion-v3, summoner-v4, lol-status-v4, spectator-v5
@@ -129,7 +129,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 | 1. Foundation | 2/2 | Complete | 2026-03-17 |
 | 2. Core Infrastructure | 1/4 | In Progress|  |
 | 3. Schema Generation | 0/2 | Not started | - |
-| 4. LoL and Shared Endpoints | 0/5 | Not started | - |
+| 4. LoL and Shared Endpoints | 3/5 | In Progress|  |
 | 5. TFT, Valorant, LoR, and Riftbound Endpoints | 0/TBD | Not started | - |
 | 6. Documentation Site | 0/TBD | Not started | - |
 | 7. Hardening and Publish | 0/TBD | Not started | - |
