@@ -157,9 +157,9 @@ describe('createHttpClient', () => {
     await http.request('na1', '/lol/summoner/v4/summoners/by-puuid/abc', 'summoner-v4.getByPuuid');
 
     expect(fetchMock).toHaveBeenCalledOnce();
-    const [url, init] = fetchMock.mock.calls[0]!;
+    const [url, init] = fetchMock.mock.calls[0] ?? [];
     expect(url).toBe('https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/abc');
-    expect(init.headers.get('X-Riot-Token')).toBe('RGAPI-test-key');
+    expect(init?.headers.get('X-Riot-Token')).toBe('RGAPI-test-key');
   });
 
   it('returns ApiResponse with parsed JSON data, status, and headers', async () => {
@@ -268,7 +268,7 @@ describe('createHttpClient', () => {
     let callCount = 0;
     globalThis.fetch = vi
       .fn()
-      .mockImplementation((_url: string, init: { headers: Record<string, string> }) => {
+      .mockImplementation((_url: string, _init: { headers: Record<string, string> }) => {
         callCount++;
         if (callCount === 1) {
           // First call with old key returns 401
@@ -336,8 +336,8 @@ describe('createHttpClient', () => {
       headers: { 'Content-Type': 'application/json' },
     });
 
-    const [, init] = fetchMock.mock.calls[0]!;
-    expect(init.method).toBe('POST');
+    const [, init] = fetchMock.mock.calls[0] ?? [];
+    expect(init?.method).toBe('POST');
     expect(init.body).toBe('{"test":true}');
     expect(init.headers.get('Content-Type')).toBe('application/json');
   });
@@ -351,8 +351,8 @@ describe('createHttpClient', () => {
       headers: { 'X-Riot-Token': 'RGAPI-fake-key' },
     });
 
-    const [, init] = fetchMock.mock.calls[0]!;
-    expect(init.headers.get('X-Riot-Token')).toBe('RGAPI-real-key');
+    const [, init] = fetchMock.mock.calls[0] ?? [];
+    expect(init?.headers.get('X-Riot-Token')).toBe('RGAPI-real-key');
   });
 
   it('lowercase x-riot-token in caller headers is overwritten by provider', async () => {
@@ -364,8 +364,8 @@ describe('createHttpClient', () => {
       headers: { 'x-riot-token': 'RGAPI-fake-key' },
     });
 
-    const [, init] = fetchMock.mock.calls[0]!;
-    expect(init.headers.get('X-Riot-Token')).toBe('RGAPI-real-key');
+    const [, init] = fetchMock.mock.calls[0] ?? [];
+    expect(init?.headers.get('X-Riot-Token')).toBe('RGAPI-real-key');
   });
 
   it('returns undefined data for 204 No Content', async () => {

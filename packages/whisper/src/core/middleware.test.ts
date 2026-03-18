@@ -317,7 +317,7 @@ describe('executePipeline', () => {
       },
     ];
 
-    const executor = async (ctx: RequestContext) => {
+    const executor = async (_ctx: RequestContext) => {
       order.push('execute');
       return makeResponse();
     };

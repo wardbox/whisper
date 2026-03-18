@@ -180,7 +180,7 @@ export function createClient(config: ClientConfig): WhisperClient {
         }
 
         // Exhausted retries
-        throw lastError!;
+        throw lastError as Error;
       });
 
       // 4. Store in cache (GET only)
