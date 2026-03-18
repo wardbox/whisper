@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Completed 04-05-PLAN.md
-last_updated: "2026-03-18T04:17:38.414Z"
-last_activity: 2026-03-17 — Completed index re-exports, JSDoc, and route enforcement (04-05)
+stopped_at: Completed 05-02-PLAN.md
+last_updated: "2026-03-18T17:22:29.633Z"
+last_activity: 2026-03-18 — Completed TFT endpoints (05-01)
 progress:
   total_phases: 7
-  completed_phases: 4
-  total_plans: 13
-  completed_plans: 13
-  percent: 92
+  completed_phases: 5
+  total_plans: 16
+  completed_plans: 16
+  percent: 100
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-17)
 
 **Core value:** Every Riot API endpoint accessible through a typed, tree-shakeable interface with proactive rate limiting that prevents 429s without requiring users to understand Riot's internals.
-**Current focus:** Phase 4 — LoL and Shared Endpoints
+**Current focus:** Phase 5 — TFT, Valorant, LoR, and Riftbound Endpoints
 
 ## Current Position
 
-Phase: 4 of 7 (LoL and Shared Endpoints) -- COMPLETE
-Plan: 5 of 5 complete in current phase
+Phase: 5 of 7 (TFT, Valorant, LoR, and Riftbound Endpoints)
+Plan: 3 of 3 complete in current phase
 Status: Phase complete
-Last activity: 2026-03-17 — Completed index re-exports, JSDoc, and route enforcement (04-05)
+Last activity: 2026-03-18 — Completed TFT endpoints (05-01)
 
-Progress: [██████████] 92%
+Progress: [██████████] 100%
 
 ## Performance Metrics
 
@@ -63,6 +63,9 @@ Progress: [██████████] 92%
 | Phase 04 P04 | 4min | 2 tasks | 8 files |
 | Phase 04 P03 | 4min | 2 tasks | 9 files |
 | Phase 04 P05 | 5min | 2 tasks | 6 files |
+| Phase 05 P01 | 5min | 2 tasks | 15 files |
+| Phase 05 P03 | 12min | 2 tasks | 14 files |
+| Phase 05 P02 | 7min | 2 tasks | 20 files |
 
 ## Accumulated Context
 
@@ -96,6 +99,13 @@ Recent decisions affecting current work:
 - [Phase 04]: Created ClashPlayer override type for clash-v1 getPlayersByPuuid -- generated PlayerInfo is for challenges, not clash
 - [Phase 04]: Used expectTypeOf for route enforcement tests -- runtime-safe alternative to @ts-expect-error with declare const
 - [Phase 04]: lol/index.ts re-exports namespace objects + generated types + override types + options types for complete public API surface
+- [Phase 05]: TFT spectator path starts with /lol/ not /tft/ per Riot API convention
+- [Phase 05]: TFT league getChallengerLeague/getGrandmasterLeague/getMasterLeague accept optional queue filter (RANKED_TFT or RANKED_TFT_DOUBLE_UP)
+- [Phase 05]: Only 2 LoR API groups confirmed active (lor-ranked-v1, lor-status-v1) -- lor-match-v1, lor-deck-v1, lor-inventory-v1 not captured by schema runner, excluded per locked decision
+- [Phase 05]: Riftbound content endpoint uses optional locale query param with conditional params object pattern
+- [Phase 05]: ValPlatformRoute is a third distinct route type for Valorant's unique routing (ap, br, eu, kr, latam, na, esports)
+- [Phase 05]: Console endpoints require mandatory platformType ('playstation' | 'xbox') as positional parameter
+- [Phase 05]: Hyphenated locale property keys in generated val.ts must be quoted for rolldown bundler compatibility
 
 ### Pending Todos
 
@@ -110,6 +120,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-18T04:09:02Z
-Stopped at: Completed 04-05-PLAN.md
+Last session: 2026-03-18T17:16:37.181Z
+Stopped at: Completed 05-02-PLAN.md
 Resume file: None
