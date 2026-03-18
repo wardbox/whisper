@@ -1,0 +1,81 @@
+{
+  "$schema": "whisper-schema-v1",
+  "group": "val.val-console-ranked-v1",
+  "source": "stub",
+  "types": {
+    "LeaderboardDto": {
+      "actId": {
+        "type": "string"
+      },
+      "players": {
+        "items": {
+          "fields": {
+            "competitiveTier": {
+              "type": "integer"
+            },
+            "gameName": {
+              "type": "string"
+            },
+            "leaderboardRank": {
+              "type": "integer"
+            },
+            "numberOfWins": {
+              "type": "integer"
+            },
+            "puuid": {
+              "type": "string"
+            },
+            "rankedRating": {
+              "type": "integer"
+            },
+            "tagLine": {
+              "type": "string"
+            }
+          },
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "query": {
+        "type": "string"
+      },
+      "shard": {
+        "type": "string"
+      },
+      "tierDetails": {
+        "items": {
+          "fields": {},
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "totalPlayers": {
+        "type": "integer"
+      }
+    },
+    "PlayerDto": {
+      "competitiveTier": {
+        "type": "integer"
+      },
+      "gameName": {
+        "type": "string"
+      },
+      "leaderboardRank": {
+        "type": "integer"
+      },
+      "numberOfWins": {
+        "type": "integer"
+      },
+      "puuid": {
+        "type": "string"
+      },
+      "rankedRating": {
+        "type": "integer"
+      },
+      "tagLine": {
+        "type": "string"
+      }
+    },
+    "TierDto": {}
+  }
+}

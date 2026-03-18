@@ -1,0 +1,24 @@
+{
+  "$schema": "whisper-schema-v1",
+  "group": "lol.champion-v3",
+  "source": "live",
+  "types": {
+    "ChampionInfo": {
+      "freeChampionIds": {
+        "items": {
+          "type": "integer"
+        },
+        "type": "array"
+      },
+      "freeChampionIdsForNewPlayers": {
+        "items": {
+          "type": "integer"
+        },
+        "type": "array"
+      },
+      "maxNewPlayerLevel": {
+        "type": "integer"
+      }
+    }
+  }
+}

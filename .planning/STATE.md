@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Completed 02-04-PLAN.md
-last_updated: "2026-03-17T17:11:19.277Z"
-last_activity: 2026-03-17 — Completed HTTP client + createClient (02-04)
+stopped_at: Completed 03-02-PLAN.md
+last_updated: "2026-03-17T18:53:09.578Z"
+last_activity: 2026-03-17 — Completed codegen pipeline and CI workflow (03-02)
 progress:
   total_phases: 7
-  completed_phases: 2
-  total_plans: 6
-  completed_plans: 6
+  completed_phases: 3
+  total_plans: 8
+  completed_plans: 8
   percent: 100
 ---
 
@@ -21,14 +21,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-17)
 
 **Core value:** Every Riot API endpoint accessible through a typed, tree-shakeable interface with proactive rate limiting that prevents 429s without requiring users to understand Riot's internals.
-**Current focus:** Phase 2 — Core Infrastructure
+**Current focus:** Phase 3 — Schema Generation
 
 ## Current Position
 
-Phase: 2 of 7 (Core Infrastructure) -- COMPLETE
-Plan: 4 of 4 in current phase
+Phase: 3 of 7 (Schema Generation) -- COMPLETE
+Plan: 2 of 2 in current phase
 Status: Phase complete
-Last activity: 2026-03-17 — Completed HTTP client + createClient (02-04)
+Last activity: 2026-03-17 — Completed codegen pipeline and CI workflow (03-02)
 
 Progress: [██████████] 100%
 
@@ -56,6 +56,8 @@ Progress: [██████████] 100%
 | Phase 02-core-infrastructure P02 | 3min | 1 task | 2 files |
 | Phase 02 P03 | 4min | 1 task | 2 files |
 | Phase 02 P04 | 4min | 2 tasks | 13 files |
+| Phase 03 P01 | 5min | 2 tasks | 7 files |
+| Phase 03 P02 | 5min | 2 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -79,6 +81,9 @@ Recent decisions affecting current work:
 - [Phase 02]: Settled flag on queued entries prevents double-resolve/reject race conditions in rate limiter
 - [Phase 02]: KeyProvider as object with getKey()/invalidate() -- race-safe key rotation via shared pending promise
 - [Phase 02]: Cache check before middleware pipeline -- cached responses skip middleware for performance
+- [Phase 03]: Loose ApiClient interface in discovery.ts avoids cross-package import issues
+- [Phase 03]: Vitest config uses relative path ../../scripts/**/*.test.ts for script test discovery
+- [Phase 03]: KNOWN_ENUMS uses conservative field-name matching; fileURLToPath for tsx compat
 
 ### Pending Todos
 
@@ -93,6 +98,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-17T17:04:20.861Z
-Stopped at: Completed 02-04-PLAN.md
+Last session: 2026-03-17T18:49:25.161Z
+Stopped at: Completed 03-02-PLAN.md
 Resume file: None

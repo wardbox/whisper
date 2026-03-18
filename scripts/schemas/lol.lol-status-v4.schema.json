@@ -1,0 +1,118 @@
+{
+  "$schema": "whisper-schema-v1",
+  "group": "lol.lol-status-v4",
+  "source": "live",
+  "types": {
+    "PlatformDataDTO": {
+      "id": {
+        "type": "string"
+      },
+      "incidents": {
+        "items": {
+          "type": "unknown"
+        },
+        "type": "array"
+      },
+      "locales": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "maintenances": {
+        "items": {
+          "fields": {
+            "archive_at": {
+              "type": "string"
+            },
+            "created_at": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            },
+            "incident_severity": {
+              "nullable": true,
+              "type": "unknown"
+            },
+            "maintenance_status": {
+              "type": "string"
+            },
+            "platforms": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "titles": {
+              "items": {
+                "fields": {
+                  "content": {
+                    "type": "string"
+                  },
+                  "locale": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            },
+            "updated_at": {
+              "nullable": true,
+              "type": "unknown"
+            },
+            "updates": {
+              "items": {
+                "fields": {
+                  "author": {
+                    "type": "string"
+                  },
+                  "created_at": {
+                    "type": "string"
+                  },
+                  "id": {
+                    "type": "integer"
+                  },
+                  "publish": {
+                    "type": "boolean"
+                  },
+                  "publish_locations": {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  "translations": {
+                    "items": {
+                      "fields": {
+                        "content": {
+                          "type": "string"
+                        },
+                        "locale": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "updated_at": {
+                    "type": "string"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "name": {
+        "type": "string"
+      }
+    }
+  }
+}

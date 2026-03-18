@@ -1,0 +1,182 @@
+{
+  "$schema": "whisper-schema-v1",
+  "group": "tft.tft-match-v1",
+  "source": "live",
+  "types": {
+    "TftMatchDTO": {
+      "info": {
+        "fields": {
+          "endOfGameResult": {
+            "type": "string"
+          },
+          "gameCreation": {
+            "type": "integer"
+          },
+          "gameId": {
+            "type": "integer"
+          },
+          "game_datetime": {
+            "type": "integer"
+          },
+          "game_length": {
+            "type": "number"
+          },
+          "game_version": {
+            "type": "string"
+          },
+          "mapId": {
+            "type": "integer"
+          },
+          "participants": {
+            "items": {
+              "fields": {
+                "companion": {
+                  "fields": {
+                    "content_ID": {
+                      "type": "string"
+                    },
+                    "item_ID": {
+                      "type": "integer"
+                    },
+                    "skin_ID": {
+                      "type": "integer"
+                    },
+                    "species": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "gold_left": {
+                  "type": "integer"
+                },
+                "last_round": {
+                  "type": "integer"
+                },
+                "level": {
+                  "type": "integer"
+                },
+                "missions": {
+                  "fields": {
+                    "PlayerScore2": {
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "placement": {
+                  "type": "integer"
+                },
+                "players_eliminated": {
+                  "type": "integer"
+                },
+                "puuid": {
+                  "type": "string"
+                },
+                "riotIdGameName": {
+                  "type": "string"
+                },
+                "riotIdTagline": {
+                  "type": "string"
+                },
+                "time_eliminated": {
+                  "type": "number"
+                },
+                "total_damage_to_players": {
+                  "type": "integer"
+                },
+                "traits": {
+                  "items": {
+                    "fields": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "num_units": {
+                        "type": "integer"
+                      },
+                      "style": {
+                        "type": "integer"
+                      },
+                      "tier_current": {
+                        "type": "integer"
+                      },
+                      "tier_total": {
+                        "type": "integer"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "units": {
+                  "items": {
+                    "fields": {
+                      "character_id": {
+                        "type": "string"
+                      },
+                      "itemNames": {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "rarity": {
+                        "type": "integer"
+                      },
+                      "tier": {
+                        "type": "integer"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "win": {
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "queueId": {
+            "type": "integer"
+          },
+          "queue_id": {
+            "type": "integer"
+          },
+          "tft_game_type": {
+            "type": "string"
+          },
+          "tft_set_core_name": {
+            "type": "string"
+          },
+          "tft_set_number": {
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "metadata": {
+        "fields": {
+          "data_version": {
+            "type": "string"
+          },
+          "match_id": {
+            "type": "string"
+          },
+          "participants": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      }
+    }
+  }
+}

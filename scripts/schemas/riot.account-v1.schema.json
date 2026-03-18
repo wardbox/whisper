@@ -1,0 +1,18 @@
+{
+  "$schema": "whisper-schema-v1",
+  "group": "riot.account-v1",
+  "source": "live",
+  "types": {
+    "AccountDTO": {
+      "gameName": {
+        "type": "string"
+      },
+      "puuid": {
+        "type": "string"
+      },
+      "tagLine": {
+        "type": "string"
+      }
+    }
+  }
+}
