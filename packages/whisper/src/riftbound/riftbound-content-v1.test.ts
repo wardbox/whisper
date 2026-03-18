@@ -19,7 +19,11 @@ describe('riftboundContentV1', () => {
           {
             cards: [
               {
-                art: { artist: 'TestArtist', fullURL: 'https://example.com/full.png', thumbnailURL: 'https://example.com/thumb.png' },
+                art: {
+                  artist: 'TestArtist',
+                  fullURL: 'https://example.com/full.png',
+                  thumbnailURL: 'https://example.com/thumb.png',
+                },
                 collectorNumber: 1,
                 description: 'A test card',
                 faction: 'Demacia',

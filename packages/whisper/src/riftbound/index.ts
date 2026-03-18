@@ -1,2 +1,5 @@
-/** Riftbound API endpoints — implemented in Phase 5 */
-export const RIFTBOUND_MODULE = 'riftbound' as const;
+// Re-export generated types users need for return values
+export type { RiftboundContent } from '../types/generated/riftbound.js';
+
+// Namespace objects
+export { riftboundContentV1 } from './riftbound-content-v1.js';
