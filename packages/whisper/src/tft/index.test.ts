@@ -1,11 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import {
-  spectatorTftV5,
-  tftLeagueV1,
-  tftMatchV1,
-  tftStatusV1,
-  tftSummonerV1,
-} from './index.js';
+import { spectatorTftV5, tftLeagueV1, tftMatchV1, tftStatusV1, tftSummonerV1 } from './index.js';
 
 describe('tft/index re-exports', () => {
   it('exports all 5 TFT namespace objects', () => {

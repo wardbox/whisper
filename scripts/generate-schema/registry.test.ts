@@ -51,31 +51,31 @@ describe('ENDPOINT_REGISTRY', () => {
   it('uses regional routing for match-v5', () => {
     const matchV5 = ENDPOINT_REGISTRY.find((g) => g.name === 'match-v5');
     expect(matchV5).toBeDefined();
-    expect(matchV5!.routing).toBe('regional');
+    expect(matchV5?.routing).toBe('regional');
   });
 
   it('uses regional routing for account-v1', () => {
     const accountV1 = ENDPOINT_REGISTRY.find((g) => g.name === 'account-v1');
     expect(accountV1).toBeDefined();
-    expect(accountV1!.routing).toBe('regional');
+    expect(accountV1?.routing).toBe('regional');
   });
 
   it('uses regional routing for tft-match-v1', () => {
     const tftMatch = ENDPOINT_REGISTRY.find((g) => g.name === 'tft-match-v1');
     expect(tftMatch).toBeDefined();
-    expect(tftMatch!.routing).toBe('regional');
+    expect(tftMatch?.routing).toBe('regional');
   });
 
   it('uses regional routing for lor-match-v1', () => {
     const lorMatch = ENDPOINT_REGISTRY.find((g) => g.name === 'lor-match-v1');
     expect(lorMatch).toBeDefined();
-    expect(lorMatch!.routing).toBe('regional');
+    expect(lorMatch?.routing).toBe('regional');
   });
 
   it('uses regional routing for lor-ranked-v1', () => {
     const lorRanked = ENDPOINT_REGISTRY.find((g) => g.name === 'lor-ranked-v1');
     expect(lorRanked).toBeDefined();
-    expect(lorRanked!.routing).toBe('regional');
+    expect(lorRanked?.routing).toBe('regional');
   });
 
   it('has a reasonable total endpoint count (60-90)', () => {
@@ -118,7 +118,7 @@ describe('ENDPOINT_REGISTRY', () => {
   it('account-v1 does not include RSO endpoints', () => {
     const accountV1 = ENDPOINT_REGISTRY.find((g) => g.name === 'account-v1');
     expect(accountV1).toBeDefined();
-    const paths = accountV1!.endpoints.map((e) => e.path);
+    const paths = accountV1?.endpoints.map((e) => e.path);
     expect(paths.some((p) => p.includes('/accounts/me'))).toBe(false);
     expect(paths.some((p) => p.includes('/by-access-token'))).toBe(false);
   });
