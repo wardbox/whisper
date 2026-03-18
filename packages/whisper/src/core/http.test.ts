@@ -338,8 +338,8 @@ describe('createHttpClient', () => {
 
     const [, init] = fetchMock.mock.calls[0] ?? [];
     expect(init?.method).toBe('POST');
-    expect(init.body).toBe('{"test":true}');
-    expect(init.headers.get('Content-Type')).toBe('application/json');
+    expect(init?.body).toBe('{"test":true}');
+    expect(init?.headers.get('Content-Type')).toBe('application/json');
   });
 
   it('provider X-Riot-Token cannot be overridden by caller headers', async () => {
