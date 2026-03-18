@@ -129,7 +129,7 @@ export function buildCacheKey(
     ? `?${new URLSearchParams(
         Object.keys(params)
           .sort()
-          .map((k) => [k, params[k]!]),
+          .map((k) => [k, params[k] as string]),
       ).toString()}`
     : '';
   return `${keyPrefix}:${route}:${path}${paramStr}`;

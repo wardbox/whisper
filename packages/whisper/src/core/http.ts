@@ -208,7 +208,7 @@ export function createHttpClient(keyProvider: KeyProvider): HttpClient {
   async function doFetch<T>(
     route: string,
     path: string,
-    methodId: string,
+    _methodId: string,
     options?: HttpRequestOptions,
   ): Promise<ApiResponse<T>> {
     const apiKey = await keyProvider.getKey();

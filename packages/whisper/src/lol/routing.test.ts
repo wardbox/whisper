@@ -1,5 +1,4 @@
 import { describe, expectTypeOf, it } from 'vitest';
-import type { WhisperClient } from '../core/client.js';
 import { accountV1 } from '../riot/account-v1.js';
 import type { PlatformRoute } from '../types/platform.js';
 import type { RegionalRoute } from '../types/regional.js';
