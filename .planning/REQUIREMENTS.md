@@ -51,7 +51,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [ ] **ENDP-04**: LoR — all 5 API groups wrapped and typed
 - [ ] **ENDP-05**: Riftbound — 1 API group wrapped and typed
 - [x] **ENDP-06**: Account-V1 (shared) wrapped and typed
-- [ ] **ENDP-07**: Tree-shakeable per-game imports (`whisper/lol`, `whisper/tft`, etc.)
+- [x] **ENDP-07**: Tree-shakeable per-game imports (`whisper/lol`, `whisper/tft`, etc.)
 - [x] **ENDP-08**: Endpoint availability audit per game (exclude removed/deactivated endpoints)
 
 ### Schema Generation
@@ -62,8 +62,8 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Documentation
 
-- [ ] **DOC-01**: TSDoc on every public export with usage examples
-- [ ] **DOC-02**: JSDoc on type fields for IDE tooltip support
+- [x] **DOC-01**: TSDoc on every public export with usage examples
+- [x] **DOC-02**: JSDoc on type fields for IDE tooltip support
 - [ ] **DOC-03**: Documentation site (Fumadocs or Starlight) in separate workspace package
 - [ ] **DOC-04**: Auto-generated type tables from source TypeScript
 
@@ -125,10 +125,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | SCHEMA-03 | Phase 3 | Complete |
 | ENDP-01 | Phase 4 | Complete |
 | ENDP-06 | Phase 4 | Complete |
-| ENDP-07 | Phase 4 | Pending |
+| ENDP-07 | Phase 4 | Complete |
 | ENDP-08 | Phase 4 | Complete |
-| DOC-01 | Phase 4 | Pending |
-| DOC-02 | Phase 4 | Pending |
+| DOC-01 | Phase 4 | Complete |
+| DOC-02 | Phase 4 | Complete |
 | ENDP-02 | Phase 5 | Pending |
 | ENDP-03 | Phase 5 | Pending |
 | ENDP-04 | Phase 5 | Pending |
