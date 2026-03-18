@@ -118,7 +118,7 @@ describe('ENDPOINT_REGISTRY', () => {
   it('account-v1 does not include RSO endpoints', () => {
     const accountV1 = ENDPOINT_REGISTRY.find((g) => g.name === 'account-v1');
     expect(accountV1).toBeDefined();
-    const paths = accountV1?.endpoints.map((e) => e.path);
+    const paths = accountV1?.endpoints.map((e) => e.path) ?? [];
     expect(paths.some((p) => p.includes('/accounts/me'))).toBe(false);
     expect(paths.some((p) => p.includes('/by-access-token'))).toBe(false);
   });
