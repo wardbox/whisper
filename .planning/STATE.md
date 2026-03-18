@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Completed 03-02-PLAN.md
-last_updated: "2026-03-17T18:53:09.578Z"
-last_activity: 2026-03-17 — Completed codegen pipeline and CI workflow (03-02)
+stopped_at: Completed 04-05-PLAN.md
+last_updated: "2026-03-18T04:17:38.414Z"
+last_activity: 2026-03-17 — Completed index re-exports, JSDoc, and route enforcement (04-05)
 progress:
   total_phases: 7
-  completed_phases: 3
-  total_plans: 8
-  completed_plans: 8
-  percent: 100
+  completed_phases: 4
+  total_plans: 13
+  completed_plans: 13
+  percent: 92
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-17)
 
 **Core value:** Every Riot API endpoint accessible through a typed, tree-shakeable interface with proactive rate limiting that prevents 429s without requiring users to understand Riot's internals.
-**Current focus:** Phase 3 — Schema Generation
+**Current focus:** Phase 4 — LoL and Shared Endpoints
 
 ## Current Position
 
-Phase: 3 of 7 (Schema Generation) -- COMPLETE
-Plan: 2 of 2 in current phase
+Phase: 4 of 7 (LoL and Shared Endpoints) -- COMPLETE
+Plan: 5 of 5 complete in current phase
 Status: Phase complete
-Last activity: 2026-03-17 — Completed codegen pipeline and CI workflow (03-02)
+Last activity: 2026-03-17 — Completed index re-exports, JSDoc, and route enforcement (04-05)
 
-Progress: [██████████] 100%
+Progress: [██████████] 92%
 
 ## Performance Metrics
 
@@ -58,6 +58,11 @@ Progress: [██████████] 100%
 | Phase 02 P04 | 4min | 2 tasks | 13 files |
 | Phase 03 P01 | 5min | 2 tasks | 7 files |
 | Phase 03 P02 | 5min | 2 tasks | 8 files |
+| Phase 04 P01 | 3min | 2 tasks | 8 files |
+| Phase 04 P02 | 3min | 2 tasks | 10 files |
+| Phase 04 P04 | 4min | 2 tasks | 8 files |
+| Phase 04 P03 | 4min | 2 tasks | 9 files |
+| Phase 04 P05 | 5min | 2 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -84,6 +89,13 @@ Recent decisions affecting current work:
 - [Phase 03]: Loose ApiClient interface in discovery.ts avoids cross-package import issues
 - [Phase 03]: Vitest config uses relative path ../../scripts/**/*.test.ts for script test discovery
 - [Phase 03]: KNOWN_ENUMS uses conservative field-name matching; fileURLToPath for tsx compat
+- [Phase 04]: FeaturedGameInfo separate from LolCurrentGameInfo -- simpler participant shape for featured games
+- [Phase 04]: lol-rso-match-v1 imports GetMatchIdsOptions from match-v5 to avoid type duplication
+- [Phase 04]: updateTournamentCode returns { status: number } wrapping 204 response for consistent API
+- [Phase 04]: createTournamentCode passes tournamentId as query param per Riot API convention
+- [Phase 04]: Created ClashPlayer override type for clash-v1 getPlayersByPuuid -- generated PlayerInfo is for challenges, not clash
+- [Phase 04]: Used expectTypeOf for route enforcement tests -- runtime-safe alternative to @ts-expect-error with declare const
+- [Phase 04]: lol/index.ts re-exports namespace objects + generated types + override types + options types for complete public API surface
 
 ### Pending Todos
 
@@ -98,6 +110,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-17T18:49:25.161Z
-Stopped at: Completed 03-02-PLAN.md
+Last session: 2026-03-18T04:09:02Z
+Stopped at: Completed 04-05-PLAN.md
 Resume file: None
