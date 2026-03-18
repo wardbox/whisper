@@ -43,9 +43,9 @@ describe('route type enforcement', () => {
   });
 
   it('platform and regional route types are mutually exclusive', () => {
-    // PlatformRoute and RegionalRoute must not overlap
-    expectTypeOf<PlatformRoute>().not.toEqualTypeOf<RegionalRoute>();
-    expectTypeOf<RegionalRoute>().not.toEqualTypeOf<PlatformRoute>();
+    // Extract proves no shared members exist between the two unions
+    expectTypeOf<Extract<PlatformRoute, RegionalRoute>>().toEqualTypeOf<never>();
+    expectTypeOf<Extract<RegionalRoute, PlatformRoute>>().toEqualTypeOf<never>();
   });
 
   it('platform-routed modules reject RegionalRoute at type level', () => {

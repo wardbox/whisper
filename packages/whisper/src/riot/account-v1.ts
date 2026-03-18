@@ -37,7 +37,7 @@ export const accountV1 = {
   async getByPuuid(client: WhisperClient, route: RegionalRoute, puuid: string): Promise<Account> {
     const response = await client.request<Account>(
       route,
-      `/riot/account/v1/accounts/by-puuid/${puuid}`,
+      `/riot/account/v1/accounts/by-puuid/${encodeURIComponent(puuid)}`,
       'account-v1.getByPuuid',
     );
     return response.data;
@@ -66,7 +66,7 @@ export const accountV1 = {
   ): Promise<Account> {
     const response = await client.request<Account>(
       route,
-      `/riot/account/v1/accounts/by-riot-id/${gameName}/${tagLine}`,
+      `/riot/account/v1/accounts/by-riot-id/${encodeURIComponent(gameName)}/${encodeURIComponent(tagLine)}`,
       'account-v1.getByRiotId',
     );
     return response.data;
@@ -98,7 +98,7 @@ export const accountV1 = {
   ): Promise<ActiveShard> {
     const response = await client.request<ActiveShard>(
       route,
-      `/riot/account/v1/active-shards/by-game/${game}/by-puuid/${puuid}`,
+      `/riot/account/v1/active-shards/by-game/${encodeURIComponent(game)}/by-puuid/${encodeURIComponent(puuid)}`,
       'account-v1.getByGame',
     );
     return response.data;

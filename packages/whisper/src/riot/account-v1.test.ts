@@ -92,6 +92,33 @@ describe('accountV1', () => {
     });
   });
 
+  describe('URL encoding', () => {
+    it('encodes Riot ID path segments', async () => {
+      const client = mockClient({ gameName: 'Player Name', puuid: 'abc', tagLine: 'NA1' });
+
+      await accountV1.getByRiotId(client, 'americas', 'Player Name', 'tag#1');
+
+      expect(client.request).toHaveBeenCalledWith(
+        'americas',
+        '/riot/account/v1/accounts/by-riot-id/Player%20Name/tag%231',
+        'account-v1.getByRiotId',
+      );
+    });
+  });
+
+  describe('error propagation', () => {
+    it('propagates client.request errors', async () => {
+      const error = new Error('upstream failure');
+      const client: WhisperClient = {
+        request: vi.fn().mockRejectedValue(error),
+      };
+
+      await expect(accountV1.getByPuuid(client, 'americas', 'puuid')).rejects.toThrow(
+        'upstream failure',
+      );
+    });
+  });
+
   describe('type safety', () => {
     it('rejects platform routes at compile time', () => {
       const client = mockClient({});

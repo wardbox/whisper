@@ -39,6 +39,17 @@ describe('lolStatusV4', () => {
     });
   });
 
+  describe('error propagation', () => {
+    it('propagates client.request errors', async () => {
+      const error = new Error('upstream failure');
+      const client: WhisperClient = {
+        request: vi.fn().mockRejectedValue(error),
+      };
+
+      await expect(lolStatusV4.getStatus(client, 'na1')).rejects.toThrow('upstream failure');
+    });
+  });
+
   describe('type safety', () => {
     it('rejects regional routes at compile time', () => {
       const client = mockClient({});
