@@ -77,7 +77,13 @@ Plans:
   3. Passing a platform route to a regional-only method (e.g., `match-v5`) is a TypeScript compile error
   4. Every public method has TSDoc with a usage example visible in IDE hover; every DTO field has a JSDoc tooltip
   5. Removed and deactivated endpoints (summonerName/ID lookups, spectator-v5 for LoL) are absent from the public API
-**Plans**: TBD
+**Plans:** 5 plans
+Plans:
+- [ ] 04-01-PLAN.md — Override types for missing DTOs + Account-V1 module
+- [ ] 04-02-PLAN.md — Platform LoL batch 1: champion-mastery-v4, champion-v3, summoner-v4, lol-status-v4, spectator-v5
+- [ ] 04-03-PLAN.md — Platform LoL batch 2: clash-v1, league-v4, league-exp-v4, lol-challenges-v1
+- [ ] 04-04-PLAN.md — Regional LoL: match-v5, lol-rso-match-v1, tournament-v5, tournament-stub-v5
+- [ ] 04-05-PLAN.md — Index re-exports, JSDoc on generated types, route enforcement type tests
 
 ### Phase 5: TFT, Valorant, LoR, and Riftbound Endpoints
 **Goal**: A developer can import any of the remaining game modules and call any active endpoint, completing 31/31 API group coverage across all Riot games — with tree-shaking still isolating each game's code.
@@ -123,7 +129,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 | 1. Foundation | 2/2 | Complete | 2026-03-17 |
 | 2. Core Infrastructure | 1/4 | In Progress|  |
 | 3. Schema Generation | 0/2 | Not started | - |
-| 4. LoL and Shared Endpoints | 0/TBD | Not started | - |
+| 4. LoL and Shared Endpoints | 0/5 | Not started | - |
 | 5. TFT, Valorant, LoR, and Riftbound Endpoints | 0/TBD | Not started | - |
 | 6. Documentation Site | 0/TBD | Not started | - |
 | 7. Hardening and Publish | 0/TBD | Not started | - |
