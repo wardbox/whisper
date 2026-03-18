@@ -46,7 +46,7 @@ Requirements for initial release. Each maps to roadmap phases.
 ### Game Endpoints
 
 - [x] **ENDP-01**: LoL — all 13 API groups wrapped and typed
-- [ ] **ENDP-02**: TFT — all 5 API groups wrapped and typed
+- [x] **ENDP-02**: TFT — all 5 API groups wrapped and typed
 - [ ] **ENDP-03**: Valorant — all 6 API groups wrapped and typed
 - [x] **ENDP-04**: LoR — all 5 API groups wrapped and typed
 - [x] **ENDP-05**: Riftbound — 1 API group wrapped and typed
@@ -129,7 +129,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | ENDP-08 | Phase 4 | Complete |
 | DOC-01 | Phase 4 | Complete |
 | DOC-02 | Phase 4 | Complete |
-| ENDP-02 | Phase 5 | Pending |
+| ENDP-02 | Phase 5 | Complete |
 | ENDP-03 | Phase 5 | Pending |
 | ENDP-04 | Phase 5 | Complete |
 | ENDP-05 | Phase 5 | Complete |

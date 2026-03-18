@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: in-progress
-stopped_at: Completed 05-03-PLAN.md
-last_updated: "2026-03-18T16:34:24Z"
-last_activity: 2026-03-18 — Completed LoR and Riftbound endpoints (05-03)
+status: completed
+stopped_at: Completed 05-01-PLAN.md
+last_updated: "2026-03-18T17:01:00Z"
+last_activity: 2026-03-18 — Completed TFT endpoints (05-01)
 progress:
   total_phases: 7
   completed_phases: 4
   total_plans: 16
-  completed_plans: 15
-  percent: 94
+  completed_plans: 16
+  percent: 100
 ---
 
 # Project State
@@ -27,10 +27,10 @@ See: .planning/PROJECT.md (updated 2026-03-17)
 
 Phase: 5 of 7 (TFT, Valorant, LoR, and Riftbound Endpoints)
 Plan: 3 of 3 complete in current phase
-Status: In progress
-Last activity: 2026-03-18 — Completed LoR and Riftbound endpoints (05-03)
+Status: Phase complete
+Last activity: 2026-03-18 — Completed TFT endpoints (05-01)
 
-Progress: [█████████░] 94%
+Progress: [██████████] 100%
 
 ## Performance Metrics
 
@@ -63,6 +63,7 @@ Progress: [█████████░] 94%
 | Phase 04 P04 | 4min | 2 tasks | 8 files |
 | Phase 04 P03 | 4min | 2 tasks | 9 files |
 | Phase 04 P05 | 5min | 2 tasks | 6 files |
+| Phase 05 P01 | 5min | 2 tasks | 15 files |
 | Phase 05 P03 | 12min | 2 tasks | 14 files |
 
 ## Accumulated Context
@@ -97,6 +98,8 @@ Recent decisions affecting current work:
 - [Phase 04]: Created ClashPlayer override type for clash-v1 getPlayersByPuuid -- generated PlayerInfo is for challenges, not clash
 - [Phase 04]: Used expectTypeOf for route enforcement tests -- runtime-safe alternative to @ts-expect-error with declare const
 - [Phase 04]: lol/index.ts re-exports namespace objects + generated types + override types + options types for complete public API surface
+- [Phase 05]: TFT spectator path starts with /lol/ not /tft/ per Riot API convention
+- [Phase 05]: TFT league getChallengerLeague/getGrandmasterLeague/getMasterLeague accept optional queue filter (RANKED_TFT or RANKED_TFT_DOUBLE_UP)
 - [Phase 05]: Only 2 LoR API groups confirmed active (lor-ranked-v1, lor-status-v1) -- lor-match-v1, lor-deck-v1, lor-inventory-v1 not captured by schema runner, excluded per locked decision
 - [Phase 05]: Riftbound content endpoint uses optional locale query param with conditional params object pattern
 
@@ -113,6 +116,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-18T16:34:24Z
-Stopped at: Completed 05-03-PLAN.md
-Resume file: .planning/phases/05-tft-valorant-lor-and-riftbound-endpoints/05-03-SUMMARY.md
+Last session: 2026-03-18T17:01:00Z
+Stopped at: Completed 05-01-PLAN.md
+Resume file: .planning/phases/05-tft-valorant-lor-and-riftbound-endpoints/05-01-SUMMARY.md
