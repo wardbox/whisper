@@ -5,3 +5,5 @@ dist/
 .DS_Store
 coverage/
 .env
+.mcp.json
+.playwright-mcp/
