@@ -39,7 +39,7 @@ export const summonerV4 = {
   ): Promise<LolSummoner> {
     const response = await client.request<LolSummoner>(
       route,
-      `/lol/summoner/v4/summoners/by-puuid/${puuid}`,
+      `/lol/summoner/v4/summoners/by-puuid/${encodeURIComponent(puuid)}`,
       'summoner-v4.getByPuuid',
     );
     return response.data;
@@ -66,7 +66,7 @@ export const summonerV4 = {
   ): Promise<LolSummoner> {
     const response = await client.request<LolSummoner>(
       route,
-      `/lol/summoner/v4/summoners/by-account/${encryptedAccountId}`,
+      `/lol/summoner/v4/summoners/by-account/${encodeURIComponent(encryptedAccountId)}`,
       'summoner-v4.getByAccountId',
     );
     return response.data;

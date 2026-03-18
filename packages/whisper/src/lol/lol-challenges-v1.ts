@@ -92,7 +92,7 @@ export const lolChallengesV1 = {
   ): Promise<ChallengeConfigInfo> {
     const response = await client.request<ChallengeConfigInfo>(
       route,
-      `/lol/challenges/v1/challenges/${challengeId}/config`,
+      `/lol/challenges/v1/challenges/${encodeURIComponent(String(challengeId))}/config`,
       'lol-challenges-v1.getChallengeConfig',
     );
     return response.data;
@@ -121,7 +121,7 @@ export const lolChallengesV1 = {
   ): Promise<Record<string, number>> {
     const response = await client.request<Record<string, number>>(
       route,
-      `/lol/challenges/v1/challenges/${challengeId}/percentiles`,
+      `/lol/challenges/v1/challenges/${encodeURIComponent(String(challengeId))}/percentiles`,
       'lol-challenges-v1.getChallengePercentiles',
     );
     return response.data;
@@ -152,7 +152,7 @@ export const lolChallengesV1 = {
   ): Promise<ApexPlayerInfo[]> {
     const response = await client.request<ApexPlayerInfo[]>(
       route,
-      `/lol/challenges/v1/challenges/${challengeId}/leaderboards/by-level/${level}`,
+      `/lol/challenges/v1/challenges/${encodeURIComponent(String(challengeId))}/leaderboards/by-level/${encodeURIComponent(level)}`,
       'lol-challenges-v1.getChallengeLeaderboard',
     );
     return response.data;
@@ -181,7 +181,7 @@ export const lolChallengesV1 = {
   ): Promise<PlayerInfo> {
     const response = await client.request<PlayerInfo>(
       route,
-      `/lol/challenges/v1/player-data/${puuid}`,
+      `/lol/challenges/v1/player-data/${encodeURIComponent(puuid)}`,
       'lol-challenges-v1.getPlayerData',
     );
     return response.data;

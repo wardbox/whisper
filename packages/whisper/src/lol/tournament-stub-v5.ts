@@ -152,7 +152,7 @@ export const tournamentStubV5 = {
   ): Promise<LobbyEventV5Wrapper> {
     const response = await client.request<LobbyEventV5Wrapper>(
       route,
-      `/lol/tournament-stub/v5/lobby-events/by-code/${tournamentCode}`,
+      `/lol/tournament-stub/v5/lobby-events/by-code/${encodeURIComponent(tournamentCode)}`,
       'tournament-stub-v5.getLobbyEventsByCode',
     );
     return response.data;

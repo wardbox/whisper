@@ -152,7 +152,7 @@ export const tournamentV5 = {
   ): Promise<TournamentCodeV5> {
     const response = await client.request<TournamentCodeV5>(
       route,
-      `/lol/tournament/v5/codes/${tournamentCode}`,
+      `/lol/tournament/v5/codes/${encodeURIComponent(tournamentCode)}`,
       'tournament-v5.getTournamentCode',
     );
     return response.data;
@@ -185,7 +185,7 @@ export const tournamentV5 = {
   ): Promise<{ status: number }> {
     const response = await client.request<void>(
       route,
-      `/lol/tournament/v5/codes/${tournamentCode}`,
+      `/lol/tournament/v5/codes/${encodeURIComponent(tournamentCode)}`,
       'tournament-v5.updateTournamentCode',
       { method: 'PUT', body: JSON.stringify(body) },
     );
@@ -215,7 +215,7 @@ export const tournamentV5 = {
   ): Promise<LobbyEventV5Wrapper> {
     const response = await client.request<LobbyEventV5Wrapper>(
       route,
-      `/lol/tournament/v5/lobby-events/by-code/${tournamentCode}`,
+      `/lol/tournament/v5/lobby-events/by-code/${encodeURIComponent(tournamentCode)}`,
       'tournament-v5.getLobbyEventsByCode',
     );
     return response.data;

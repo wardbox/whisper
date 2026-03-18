@@ -45,7 +45,7 @@ export const championMasteryV4 = {
   ): Promise<ChampionMastery[]> {
     const response = await client.request<ChampionMastery[]>(
       route,
-      `/lol/champion-mastery/v4/champion-masteries/by-puuid/${puuid}`,
+      `/lol/champion-mastery/v4/champion-masteries/by-puuid/${encodeURIComponent(puuid)}`,
       'champion-mastery-v4.getByPuuid',
     );
     return response.data;
@@ -78,7 +78,7 @@ export const championMasteryV4 = {
       options?.count !== undefined ? { count: String(options.count) } : undefined;
     const response = await client.request<ChampionMastery[]>(
       route,
-      `/lol/champion-mastery/v4/champion-masteries/by-puuid/${puuid}/top`,
+      `/lol/champion-mastery/v4/champion-masteries/by-puuid/${encodeURIComponent(puuid)}/top`,
       'champion-mastery-v4.getTopByPuuid',
       params ? { params } : undefined,
     );
@@ -108,7 +108,7 @@ export const championMasteryV4 = {
   ): Promise<ChampionMastery> {
     const response = await client.request<ChampionMastery>(
       route,
-      `/lol/champion-mastery/v4/champion-masteries/by-puuid/${puuid}/by-champion/${championId}`,
+      `/lol/champion-mastery/v4/champion-masteries/by-puuid/${encodeURIComponent(puuid)}/by-champion/${encodeURIComponent(String(championId))}`,
       'champion-mastery-v4.getByPuuidByChampion',
     );
     return response.data;
@@ -137,7 +137,7 @@ export const championMasteryV4 = {
   ): Promise<number> {
     const response = await client.request<number>(
       route,
-      `/lol/champion-mastery/v4/scores/by-puuid/${puuid}`,
+      `/lol/champion-mastery/v4/scores/by-puuid/${encodeURIComponent(puuid)}`,
       'champion-mastery-v4.getScoresByPuuid',
     );
     return response.data;

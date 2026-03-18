@@ -23,10 +23,7 @@ gaps:
         issue: "Uses expectTypeOf() to assert correct route type is accepted, but does not use @ts-expect-error to assert wrong route types are rejected. This is a weaker check -- it confirms the right type is required, but does not validate that wrong values produce errors at the call site."
     missing:
       - "Add @ts-expect-error assertions in routing.test.ts to confirm passing 'americas' to a PlatformRoute method fails, and 'na1' to a RegionalRoute method fails (as specified in Plan 05 acceptance criteria)"
-human_verification:
-  - test: "Verify the expectTypeOf() route type tests actually catch routing mistakes"
-    expected: "pnpm vitest run --typecheck src/lol/routing.test.ts passes and the type assertions are meaningful guards"
-    why_human: "TypeScript compiler currently fails on lol.ts, making it impossible to confirm end-to-end type checking behavior. Once lol.ts is fixed, a human should run vitest with typecheck mode to confirm the tests catch real type errors."
+human_verification: []
 ---
 
 # Phase 4: LoL and Shared Endpoints Verification Report

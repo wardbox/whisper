@@ -44,7 +44,7 @@ export const clashV1 = {
   ): Promise<ClashPlayer[]> {
     const response = await client.request<ClashPlayer[]>(
       route,
-      `/lol/clash/v1/players/by-puuid/${puuid}`,
+      `/lol/clash/v1/players/by-puuid/${encodeURIComponent(puuid)}`,
       'clash-v1.getPlayersByPuuid',
     );
     return response.data;
@@ -95,7 +95,7 @@ export const clashV1 = {
   ): Promise<Tournament> {
     const response = await client.request<Tournament>(
       route,
-      `/lol/clash/v1/tournaments/${tournamentId}`,
+      `/lol/clash/v1/tournaments/${encodeURIComponent(tournamentId)}`,
       'clash-v1.getTournamentById',
     );
     return response.data;
@@ -122,7 +122,7 @@ export const clashV1 = {
   ): Promise<ClashTeam> {
     const response = await client.request<ClashTeam>(
       route,
-      `/lol/clash/v1/teams/${teamId}`,
+      `/lol/clash/v1/teams/${encodeURIComponent(teamId)}`,
       'clash-v1.getTeamById',
     );
     return response.data;

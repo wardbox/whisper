@@ -54,7 +54,7 @@ export const leagueExpV4 = {
       options?.page !== undefined ? { page: String(options.page) } : undefined;
     const response = await client.request<LolLeagueEntry[]>(
       route,
-      `/lol/league-exp/v4/entries/${queue}/${tier}/${division}`,
+      `/lol/league-exp/v4/entries/${encodeURIComponent(queue)}/${encodeURIComponent(tier)}/${encodeURIComponent(division)}`,
       'league-exp-v4.getEntries',
       params ? { params } : undefined,
     );
