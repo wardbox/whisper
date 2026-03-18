@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 04-02-PLAN.md
-last_updated: "2026-03-18T04:00:07.771Z"
-last_activity: 2026-03-17 — Completed 5 Platform-routed LoL endpoint modules (04-02)
+stopped_at: Completed 04-04-PLAN.md
+last_updated: "2026-03-18T04:01:18.686Z"
+last_activity: 2026-03-17 — Completed regional match and tournament modules (04-04)
 progress:
   total_phases: 7
   completed_phases: 3
   total_plans: 13
-  completed_plans: 10
-  percent: 77
+  completed_plans: 11
+  percent: 85
 ---
 
 # Project State
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-03-17)
 ## Current Position
 
 Phase: 4 of 7 (LoL and Shared Endpoints) -- IN PROGRESS
-Plan: 2 of 5 complete in current phase
+Plan: 4 of 5 complete in current phase
 Status: In progress
-Last activity: 2026-03-17 — Completed 5 Platform-routed LoL endpoint modules (04-02)
+Last activity: 2026-03-17 — Completed regional match and tournament modules (04-04)
 
-Progress: [████████░░] 77%
+Progress: [█████████░] 85%
 
 ## Performance Metrics
 
@@ -60,6 +60,7 @@ Progress: [████████░░] 77%
 | Phase 03 P02 | 5min | 2 tasks | 8 files |
 | Phase 04 P01 | 3min | 2 tasks | 8 files |
 | Phase 04 P02 | 3min | 2 tasks | 10 files |
+| Phase 04 P04 | 4min | 2 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -87,6 +88,9 @@ Recent decisions affecting current work:
 - [Phase 03]: Vitest config uses relative path ../../scripts/**/*.test.ts for script test discovery
 - [Phase 03]: KNOWN_ENUMS uses conservative field-name matching; fileURLToPath for tsx compat
 - [Phase 04]: FeaturedGameInfo separate from LolCurrentGameInfo -- simpler participant shape for featured games
+- [Phase 04]: lol-rso-match-v1 imports GetMatchIdsOptions from match-v5 to avoid type duplication
+- [Phase 04]: updateTournamentCode returns { status: number } wrapping 204 response for consistent API
+- [Phase 04]: createTournamentCode passes tournamentId as query param per Riot API convention
 
 ### Pending Todos
 
@@ -101,6 +105,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-18T04:00:07.769Z
-Stopped at: Completed 04-02-PLAN.md
+Last session: 2026-03-18T04:01:18.684Z
+Stopped at: Completed 04-04-PLAN.md
 Resume file: None
