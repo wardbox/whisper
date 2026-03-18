@@ -47,4 +47,18 @@ describe('route type enforcement', () => {
     expectTypeOf<PlatformRoute>().not.toEqualTypeOf<RegionalRoute>();
     expectTypeOf<RegionalRoute>().not.toEqualTypeOf<PlatformRoute>();
   });
+
+  it('platform-routed modules reject RegionalRoute at type level', () => {
+    // Verify RegionalRoute is not assignable to platform-routed module parameters
+    expectTypeOf(summonerV4.getByPuuid).parameter(1).not.toEqualTypeOf<RegionalRoute>();
+    expectTypeOf(championV3.getChampionRotations).parameter(1).not.toEqualTypeOf<RegionalRoute>();
+    expectTypeOf(clashV1.getPlayersByPuuid).parameter(1).not.toEqualTypeOf<RegionalRoute>();
+  });
+
+  it('regional-routed modules reject PlatformRoute at type level', () => {
+    // Verify PlatformRoute is not assignable to regional-routed module parameters
+    expectTypeOf(matchV5.getMatch).parameter(1).not.toEqualTypeOf<PlatformRoute>();
+    expectTypeOf(tournamentV5.createProvider).parameter(1).not.toEqualTypeOf<PlatformRoute>();
+    expectTypeOf(accountV1.getByPuuid).parameter(1).not.toEqualTypeOf<PlatformRoute>();
+  });
 });
