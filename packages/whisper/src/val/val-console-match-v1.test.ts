@@ -12,7 +12,13 @@ function mockClient(data: unknown): WhisperClient {
 describe('valConsoleMatchV1', () => {
   describe('getMatch', () => {
     it('returns unwrapped match data', async () => {
-      const expected = { matchInfo: {}, players: [], roundResults: [], teams: [], coaches: [] } as unknown as ValMatch;
+      const expected = {
+        matchInfo: {},
+        players: [],
+        roundResults: [],
+        teams: [],
+        coaches: [],
+      } as unknown as ValMatch;
       const client = mockClient(expected);
 
       const result = await valConsoleMatchV1.getMatch(client, 'na', 'match-123');
@@ -100,7 +106,9 @@ describe('valConsoleMatchV1', () => {
         request: vi.fn().mockRejectedValue(error),
       };
 
-      await expect(valConsoleMatchV1.getMatch(client, 'na', 'match-123')).rejects.toThrow('upstream failure');
+      await expect(valConsoleMatchV1.getMatch(client, 'na', 'match-123')).rejects.toThrow(
+        'upstream failure',
+      );
     });
   });
 
