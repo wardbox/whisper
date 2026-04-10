@@ -17,7 +17,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [ ] **Phase 3: Schema Generation** - Live-API schema runner, type codegen, and integration test harness
 - [x] **Phase 4: LoL and Shared Endpoints** - All 13 LoL API groups plus Account-V1 (completed 2026-03-18)
 - [x] **Phase 5: TFT, Valorant, LoR, and Riftbound Endpoints** - Remaining 17 API groups, 31/31 total (completed 2026-03-18)
-- [ ] **Phase 6: Documentation Site** - Fumadocs or Starlight docs site with auto-generated type tables
+- [ ] **Phase 6: Documentation Site** - Fumadocs docs site with auto-generated type tables
 - [ ] **Phase 7: Hardening and Publish** - CI validation across all runtimes and npm publish
 
 ## Phase Details
@@ -110,7 +110,11 @@ Plans:
   2. Every public type's fields are rendered in auto-generated tables derived from compiled TypeScript, not maintained by hand
   3. The quickstart guide shows a complete working example from installation to first API call
   4. The routing page explains platform vs regional routing with concrete examples of when each applies
-**Plans**: TBD
+**Plans:** 3 plans
+Plans:
+- [ ] 06-01-PLAN.md — Fumadocs scaffolding, framework config, AutoTypeTable integration, LoL API reference proof-of-concept
+- [ ] 06-02-PLAN.md — Hero landing page, 5 guide MDX pages (quickstart, routing, rate-limiting, caching, middleware), search route
+- [ ] 06-03-PLAN.md — Remaining 5 API reference pages (TFT, Val, LoR, Riftbound, Riot), llms.txt routes, root package scripts
 
 ### Phase 7: Hardening and Publish
 **Goal**: The package passes all pre-publish validation checks, is verified to work across all target runtimes, and is published to npm as `@wardbox/whisper`.
@@ -135,5 +139,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 | 3. Schema Generation | 0/2 | Not started | - |
 | 4. LoL and Shared Endpoints | 5/5 | Complete   | 2026-03-18 |
 | 5. TFT, Valorant, LoR, and Riftbound Endpoints | 3/3 | Complete | 2026-03-18 |
-| 6. Documentation Site | 0/TBD | Not started | - |
+| 6. Documentation Site | 0/3 | Not started | - |
 | 7. Hardening and Publish | 0/TBD | Not started | - |
