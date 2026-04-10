@@ -1,0 +1,159 @@
+---
+title: Routing
+description: Understanding platform, regional, and Valorant routing in the Riot API
+---
+
+## Overview
+
+The Riot API uses different server clusters for different endpoints. Some endpoints route to **platform** servers (like `na1.api.riotgames.com`), others to **regional** servers (like `americas.api.riotgames.com`), and Valorant has its own routing scheme entirely.
+
+Whisper enforces correct routing at the type level. Pass the wrong route type and TypeScript rejects it at compile time.
+
+## Platform Routes
+
+Most endpoints use platform routing. Each platform corresponds to a game server region:
+
+```typescript
+import type { PlatformRoute } from '@wardbox/whisper/lol';
+
+// PlatformRoute = 'na1' | 'br1' | 'la1' | 'la2' | 'jp1' | 'kr' | 'me1'
+//               | 'eun1' | 'euw1' | 'tr1' | 'ru' | 'oc1' | 'ph2' | 'sg2'
+//               | 'th2' | 'tw2' | 'vn2'
+```
+
+**Used by:** Most LoL endpoints (summoner, league, champion mastery, spectator, status), most TFT endpoints.
+
+```typescript
+import { summonerV4 } from '@wardbox/whisper/lol';
+
+// Platform route: target a specific game server
+const summoner = await summonerV4.getByPuuid(client, 'na1', puuid);
+```
+
+For IDE discoverability, use the `PLATFORM` constant object instead of string literals:
+
+```typescript
+import { PLATFORM } from '@wardbox/whisper/lol';
+
+const summoner = await summonerV4.getByPuuid(client, PLATFORM.NA1, puuid);
+// PLATFORM.NA1 === 'na1'
+```
+
+## Regional Routes
+
+Some endpoints aggregate data across multiple platforms and use regional routing:
+
+```typescript
+import type { RegionalRoute } from '@wardbox/whisper/lol';
+
+// RegionalRoute = 'americas' | 'europe' | 'asia' | 'sea'
+```
+
+**Used by:** Match v5, Account v1, Tournament endpoints, LoR endpoints, Riftbound.
+
+```typescript
+import { matchV5 } from '@wardbox/whisper/lol';
+
+// Regional route: covers multiple platforms
+const match = await matchV5.getMatch(client, 'americas', matchId);
+```
+
+### Which Region for Which Platform
+
+| Regional Route | Platforms |
+|---|---|
+| `americas` | na1, br1, la1, la2 |
+| `europe` | eun1, euw1, tr1, ru, me1 |
+| `asia` | kr, jp1 |
+| `sea` | oc1, ph2, sg2, th2, tw2, vn2 |
+
+Use the `REGIONAL` constant for IDE discoverability:
+
+```typescript
+import { REGIONAL } from '@wardbox/whisper/lol';
+
+const matchIds = await matchV5.getMatchIdsByPuuid(
+  client,
+  REGIONAL.AMERICAS,
+  puuid,
+);
+// REGIONAL.AMERICAS === 'americas'
+```
+
+## Valorant Routes
+
+Valorant has its own routing system, distinct from both `PlatformRoute` and `RegionalRoute`:
+
+```typescript
+import type { ValPlatformRoute } from '@wardbox/whisper/val';
+
+// ValPlatformRoute = 'ap' | 'br' | 'eu' | 'kr' | 'latam' | 'na' | 'esports'
+```
+
+**Used by:** All Valorant API endpoints (content, match, ranked, status, console).
+
+```typescript
+import { valContentV1 } from '@wardbox/whisper/val';
+
+// Valorant uses its own route type
+const content = await valContentV1.getContent(client, 'na');
+```
+
+Use the `VAL_PLATFORM` constant for IDE discoverability:
+
+```typescript
+import { VAL_PLATFORM } from '@wardbox/whisper/val';
+
+const content = await valContentV1.getContent(client, VAL_PLATFORM.NA);
+// VAL_PLATFORM.NA === 'na'
+```
+
+## Type Safety
+
+Whisper's routing types prevent invalid combinations at compile time:
+
+```typescript
+import { summonerV4 } from '@wardbox/whisper/lol';
+
+// This works -- 'na1' is a PlatformRoute
+await summonerV4.getByPuuid(client, 'na1', puuid);
+
+// Type error! 'americas' is a RegionalRoute, not a PlatformRoute
+// await summonerV4.getByPuuid(client, 'americas', puuid);
+
+// Type error! 'na' is a ValPlatformRoute, not a PlatformRoute
+// await summonerV4.getByPuuid(client, 'na', puuid);
+```
+
+Each API method's type signature accepts only the correct routing type. Your editor will autocomplete valid route values.
+
+## Game-Specific Notes
+
+### Legends of Runeterra
+
+LoR is in maintenance mode. Only two API groups remain active:
+
+- `lorRankedV1` -- Leaderboard data (regional routing)
+- `lorStatusV1` -- Service status (regional routing)
+
+All LoR endpoints use `RegionalRoute`.
+
+### Riftbound
+
+Riftbound uses regional routing for its content endpoint:
+
+```typescript
+import { riftboundContentV1 } from '@wardbox/whisper/riftbound';
+
+const content = await riftboundContentV1.getContent(client, 'americas');
+```
+
+### Riot Account (Shared)
+
+The Account v1 API is shared across all games and uses regional routing:
+
+```typescript
+import { accountV1 } from '@wardbox/whisper/riot';
+
+const account = await accountV1.getByRiotId(client, 'americas', 'Name', 'Tag');
+```
