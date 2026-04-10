@@ -114,7 +114,7 @@ Plans:
 Plans:
 - [x] 06-01-PLAN.md — Fumadocs scaffolding, framework config, AutoTypeTable integration, LoL API reference proof-of-concept
 - [x] 06-02-PLAN.md — Hero landing page, 5 guide MDX pages (quickstart, routing, rate-limiting, caching, middleware), search route
-- [ ] 06-03-PLAN.md — Remaining 5 API reference pages (TFT, Val, LoR, Riftbound, Riot), llms.txt routes, root package scripts
+- [x] 06-03-PLAN.md — Remaining 5 API reference pages (TFT, Val, LoR, Riftbound, Riot), llms.txt routes, root package scripts
 
 ### Phase 7: Hardening and Publish
 **Goal**: The package passes all pre-publish validation checks, is verified to work across all target runtimes, and is published to npm as `@wardbox/whisper`.
