@@ -1,0 +1,72 @@
+---
+title: Valorant API
+description: Auto-generated type reference for all 6 Valorant API groups
+---
+
+All Valorant endpoints use `ValPlatformRoute` (`'ap'`, `'br'`, `'eu'`, `'kr'`, `'latam'`, `'na'`, `'esports'`), **not** the standard `PlatformRoute` or `RegionalRoute`. This is a third distinct routing type unique to Valorant.
+
+Import from `@wardbox/whisper/val`.
+
+### Routing
+
+<AutoTypeTable path="../whisper/src/types/val-platform.ts" name="ValPlatformRoute" />
+
+## Match (v1)
+
+### Methods
+
+<AutoTypeTable path="../whisper/src/val/val-match-v1.ts" name="valMatchV1" />
+
+### Types
+
+<AutoTypeTable path="../whisper/src/types/generated/val.ts" name="ValMatch" />
+
+<AutoTypeTable path="../whisper/src/types/generated/val.ts" name="Matchlist" />
+
+<AutoTypeTable path="../whisper/src/types/generated/val.ts" name="RecentMatches" />
+
+## Content (v1)
+
+### Methods
+
+<AutoTypeTable path="../whisper/src/val/val-content-v1.ts" name="valContentV1" />
+
+### Types
+
+<AutoTypeTable path="../whisper/src/types/generated/val.ts" name="Content" />
+
+## Ranked (v1)
+
+### Methods
+
+<AutoTypeTable path="../whisper/src/val/val-ranked-v1.ts" name="valRankedV1" />
+
+### Types
+
+<AutoTypeTable path="../whisper/src/types/generated/val.ts" name="Leaderboard" />
+
+## Status (v1)
+
+### Methods
+
+<AutoTypeTable path="../whisper/src/val/val-status-v1.ts" name="valStatusV1" />
+
+### Types
+
+<AutoTypeTable path="../whisper/src/types/generated/val.ts" name="ValPlatformData" />
+
+## Console Match (v1)
+
+Console endpoints require a mandatory `platformType` parameter (`'playstation'` or `'xbox'`).
+
+### Methods
+
+<AutoTypeTable path="../whisper/src/val/val-console-match-v1.ts" name="valConsoleMatchV1" />
+
+## Console Ranked (v1)
+
+Console endpoints require a mandatory `platformType` parameter (`'playstation'` or `'xbox'`).
+
+### Methods
+
+<AutoTypeTable path="../whisper/src/val/val-console-ranked-v1.ts" name="valConsoleRankedV1" />
