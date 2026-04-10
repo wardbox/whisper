@@ -27,8 +27,7 @@ export default function HomePage() {
           Speak to every Riot API endpoint
         </h1>
         <p className="max-w-2xl text-lg text-fd-muted-foreground sm:text-xl">
-          A typed, zero-dependency TypeScript wrapper for every Riot Games API
-          endpoint.
+          A typed, zero-dependency TypeScript wrapper for every Riot Games API endpoint.
         </p>
 
         {/* Install command */}
@@ -60,14 +59,9 @@ export default function HomePage() {
       <section className="w-full max-w-5xl px-6 pb-24">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((feature) => (
-            <div
-              key={feature.title}
-              className="rounded-lg border border-fd-border bg-fd-card p-6"
-            >
+            <div key={feature.title} className="rounded-lg border border-fd-border bg-fd-card p-6">
               <h3 className="mb-2 text-lg font-semibold">{feature.title}</h3>
-              <p className="text-sm text-fd-muted-foreground">
-                {feature.description}
-              </p>
+              <p className="text-sm text-fd-muted-foreground">{feature.description}</p>
             </div>
           ))}
         </div>

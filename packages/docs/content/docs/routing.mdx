@@ -13,12 +13,10 @@ Whisper enforces correct routing at the type level. Pass the wrong route type an
 
 Most endpoints use platform routing. Each platform corresponds to a game server region:
 
-```typescript
-import type { PlatformRoute } from '@wardbox/whisper/lol';
+Valid platform route values:
 
-// PlatformRoute = 'na1' | 'br1' | 'la1' | 'la2' | 'jp1' | 'kr' | 'me1'
-//               | 'eun1' | 'euw1' | 'tr1' | 'ru' | 'oc1' | 'ph2' | 'sg2'
-//               | 'th2' | 'tw2' | 'vn2'
+```
+na1, br1, la1, la2, jp1, kr, me1, eun1, euw1, tr1, ru, oc1, ph2, sg2, th2, tw2, vn2
 ```
 
 **Used by:** Most LoL endpoints (summoner, league, champion mastery, spectator, status), most TFT endpoints.
@@ -30,23 +28,16 @@ import { summonerV4 } from '@wardbox/whisper/lol';
 const summoner = await summonerV4.getByPuuid(client, 'na1', puuid);
 ```
 
-For IDE discoverability, use the `PLATFORM` constant object instead of string literals:
-
-```typescript
-import { PLATFORM } from '@wardbox/whisper/lol';
-
-const summoner = await summonerV4.getByPuuid(client, PLATFORM.NA1, puuid);
-// PLATFORM.NA1 === 'na1'
-```
+Each API method is typed to accept only `PlatformRoute` values — your editor autocompletes valid options from the function signature.
 
 ## Regional Routes
 
 Some endpoints aggregate data across multiple platforms and use regional routing:
 
-```typescript
-import type { RegionalRoute } from '@wardbox/whisper/lol';
+Valid regional route values:
 
-// RegionalRoute = 'americas' | 'europe' | 'asia' | 'sea'
+```
+americas, europe, asia, sea
 ```
 
 **Used by:** Match v5, Account v1, Tournament endpoints, LoR endpoints, Riftbound.
@@ -67,18 +58,7 @@ const match = await matchV5.getMatch(client, 'americas', matchId);
 | `asia` | kr, jp1 |
 | `sea` | oc1, ph2, sg2, th2, tw2, vn2 |
 
-Use the `REGIONAL` constant for IDE discoverability:
-
-```typescript
-import { REGIONAL } from '@wardbox/whisper/lol';
-
-const matchIds = await matchV5.getMatchIdsByPuuid(
-  client,
-  REGIONAL.AMERICAS,
-  puuid,
-);
-// REGIONAL.AMERICAS === 'americas'
-```
+Each API method is typed to accept only `RegionalRoute` values — your editor autocompletes valid options from the function signature.
 
 ## Valorant Routes
 
