@@ -17,7 +17,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [ ] **Phase 3: Schema Generation** - Live-API schema runner, type codegen, and integration test harness
 - [x] **Phase 4: LoL and Shared Endpoints** - All 13 LoL API groups plus Account-V1 (completed 2026-03-18)
 - [x] **Phase 5: TFT, Valorant, LoR, and Riftbound Endpoints** - Remaining 17 API groups, 31/31 total (completed 2026-03-18)
-- [ ] **Phase 6: Documentation Site** - Fumadocs docs site with auto-generated type tables
+- [ ] **Phase 6: Documentation Site** - Fumadocs or Starlight docs site with auto-generated type tables
 - [ ] **Phase 7: Hardening and Publish** - CI validation across all runtimes and npm publish
 
 ## Phase Details
@@ -110,11 +110,7 @@ Plans:
   2. Every public type's fields are rendered in auto-generated tables derived from compiled TypeScript, not maintained by hand
   3. The quickstart guide shows a complete working example from installation to first API call
   4. The routing page explains platform vs regional routing with concrete examples of when each applies
-**Plans:** 3 plans
-Plans:
-- [x] 06-01-PLAN.md — Fumadocs scaffolding, framework config, AutoTypeTable integration, LoL API reference proof-of-concept
-- [x] 06-02-PLAN.md — Hero landing page, 5 guide MDX pages (quickstart, routing, rate-limiting, caching, middleware), search route
-- [x] 06-03-PLAN.md — Remaining 5 API reference pages (TFT, Val, LoR, Riftbound, Riot), llms.txt routes, root package scripts
+**Plans**: TBD
 
 ### Phase 7: Hardening and Publish
 **Goal**: The package passes all pre-publish validation checks, is verified to work across all target runtimes, and is published to npm as `@wardbox/whisper`.
@@ -125,13 +121,7 @@ Plans:
   2. `publint` reports no package export misconfiguration
   3. CI runs the test suite successfully on Node 22 LTS (both ESM and CJS), Deno, and Bun
   4. The published `@wardbox/whisper` package is installable in a fresh project and a basic import works
-**Plans:** 5 plans
-Plans:
-- [ ] 07-01-PLAN.md — Content correctness: LICENSE (GPL to MIT), README expansion, package.json metadata + publishConfig, root scripts wiring, devDep additions
-- [ ] 07-02-PLAN.md — Smoke fixture: e2e/smoke/ consumer project, scripts/smoke/run.mjs orchestrator, 4-runtime entry files
-- [ ] 07-03-PLAN.md — Quality gates: size-limit budgets, tarball-content audit, tree-shake verification, prepack source-map strip
-- [ ] 07-04-PLAN.md — CI matrix wiring: extend ci.yml with smoke matrix (4 legs) + size + tarball-audit + tree-shake gates
-- [ ] 07-05-PLAN.md — Release pipeline: Changesets init + release.yml + NPM_TOKEN early-warning + manual setup checkpoint
+**Plans**: TBD
 
 ## Progress
 
@@ -145,5 +135,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 | 3. Schema Generation | 0/2 | Not started | - |
 | 4. LoL and Shared Endpoints | 5/5 | Complete   | 2026-03-18 |
 | 5. TFT, Valorant, LoR, and Riftbound Endpoints | 3/3 | Complete | 2026-03-18 |
-| 6. Documentation Site | 0/3 | Not started | - |
-| 7. Hardening and Publish | 0/5 | Not started | - |
+| 6. Documentation Site | 0/TBD | Not started | - |
+| 7. Hardening and Publish | 0/TBD | Not started | - |
