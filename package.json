@@ -5,20 +5,12 @@
     "build": "pnpm --filter @wardbox/whisper build",
     "test": "pnpm --filter @wardbox/whisper test",
     "check": "biome check .",
-    "check:fix": "biome check --fix .",
-    "docs:dev": "pnpm --filter whisper-docs dev",
-    "docs:build": "pnpm --filter @wardbox/whisper build && pnpm --filter whisper-docs build"
+    "check:fix": "biome check --fix ."
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.7"
   },
   "engines": {
     "node": ">=20.0.0"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "sharp"
-    ]
   }
 }

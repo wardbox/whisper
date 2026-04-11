@@ -6,18 +6,7 @@
     "useIgnoreFile": true
   },
   "files": {
-    "includes": [
-      "**/*.ts",
-      "**/*.tsx",
-      "**/*.mjs",
-      "**/*.json",
-      "!**/dist",
-      "!**/node_modules",
-      "!**/src/types/generated",
-      "!**/.source",
-      "!**/.next",
-      "!**/out"
-    ]
+    "includes": ["**/*.ts", "**/*.json", "!**/dist", "!**/node_modules", "!**/src/types/generated"]
   },
   "formatter": {
     "enabled": true,
