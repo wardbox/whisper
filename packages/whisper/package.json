@@ -1,6 +1,32 @@
 {
   "name": "@wardbox/whisper",
   "version": "0.1.0",
+  "description": "Zero-dependency TypeScript library wrapping every Riot Games API endpoint with proactive rate limiting and tree-shakeable per-game imports.",
+  "keywords": [
+    "riot-games",
+    "riot-api",
+    "league-of-legends",
+    "valorant",
+    "tft",
+    "lor",
+    "riftbound",
+    "typescript",
+    "api-client"
+  ],
+  "author": "Wardbox",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wardbox/whisper.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wardbox/whisper/issues"
+  },
+  "homepage": "https://github.com/wardbox/whisper#readme",
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "type": "module",
   "sideEffects": false,
   "exports": {
@@ -86,7 +112,9 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "LICENSE",
+    "README.md"
   ],
   "scripts": {
     "build": "tsdown",
@@ -95,8 +123,11 @@
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "0.18.2",
+    "@publint/pack": "0.1.4",
+    "@size-limit/preset-small-lib": "12.0.1",
     "@vitest/coverage-v8": "4.1.0",
     "publint": "0.3.18",
+    "size-limit": "12.0.1",
     "tsdown": "0.21.4",
     "tsx": "^4.21.0",
     "typescript": "~5.8.0",
