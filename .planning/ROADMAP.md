@@ -125,7 +125,13 @@ Plans:
   2. `publint` reports no package export misconfiguration
   3. CI runs the test suite successfully on Node 22 LTS (both ESM and CJS), Deno, and Bun
   4. The published `@wardbox/whisper` package is installable in a fresh project and a basic import works
-**Plans**: TBD
+**Plans:** 5 plans
+Plans:
+- [ ] 07-01-PLAN.md — Content correctness: LICENSE (GPL to MIT), README expansion, package.json metadata + publishConfig, root scripts wiring, devDep additions
+- [ ] 07-02-PLAN.md — Smoke fixture: e2e/smoke/ consumer project, scripts/smoke/run.mjs orchestrator, 4-runtime entry files
+- [ ] 07-03-PLAN.md — Quality gates: size-limit budgets, tarball-content audit, tree-shake verification, prepack source-map strip
+- [ ] 07-04-PLAN.md — CI matrix wiring: extend ci.yml with smoke matrix (4 legs) + size + tarball-audit + tree-shake gates
+- [ ] 07-05-PLAN.md — Release pipeline: Changesets init + release.yml + NPM_TOKEN early-warning + manual setup checkpoint
 
 ## Progress
 
@@ -140,4 +146,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 | 4. LoL and Shared Endpoints | 5/5 | Complete   | 2026-03-18 |
 | 5. TFT, Valorant, LoR, and Riftbound Endpoints | 3/3 | Complete | 2026-03-18 |
 | 6. Documentation Site | 0/3 | Not started | - |
-| 7. Hardening and Publish | 0/TBD | Not started | - |
+| 7. Hardening and Publish | 0/5 | Not started | - |
