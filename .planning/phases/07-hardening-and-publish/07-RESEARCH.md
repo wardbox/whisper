@@ -1135,32 +1135,27 @@ MIT. See [LICENSE](./LICENSE).
 | A11 | "tsdown 0.21.4 (current) has the declaration-map / source-map coupling bug from issue #360 and still ships source maps" | Pitfall 3 | Medium — verified via `pnpm pack --dry-run` today, but the issue may be partially fixed in 0.21.7 (latest). Planner should check tsdown's CHANGELOG between 0.21.4 → 0.21.7 and test whether `sourcemap: false` now works before writing a prepack strip script. |
 | A12 | "The smoke fixture should live at repo root as `e2e/smoke/`, outside `pnpm-workspace.yaml`'s `packages:` glob" | Pattern 1 | Low — standard pattern; confirmed `pnpm-workspace.yaml` currently only globs `packages/*`. |
 
-## Open Questions
+## Open Questions (RESOLVED)
 
-1. **Should source maps ship in the tarball at all?**
-   - What we know: Currently they do (60+ map files, ~500KB total). tsdown force-enables them. They provide no consumer benefit (consumers read source on GitHub, not in minified bundles).
-   - What's unclear: Whether the user values debuggability enough to accept the bloat. Pitfall 3 lists three options; planner picks.
-   - Recommendation: Strip via `prepack` script. Keeps local DX, clean tarball.
+1. **Should source maps ship in the tarball at all?** — RESOLVED: Strip via prepack script (Plan 03 Task 1). User decision 2026-04-11.
+   - What we know: Currently they do (60+ map files, ~500KB total). tsdown force-enables them. They provide no consumer benefit.
+   - Resolution: Prepack script removes `dist/**/*.js.map` before `pnpm pack`. Keeps local DX, clean tarball.
 
-2. **First-publish Deno leg: bootstrap pre-release vs node_modules-dir workaround?**
+2. **First-publish Deno leg: bootstrap pre-release vs node_modules-dir workaround?** — RESOLVED: node_modules workaround via `nodeModulesDir: "auto"` (Plan 02 Task 1). User decision 2026-04-11.
    - What we know: Deno 2.x can't install a `.tgz` via `npm:` specifier; the package name must exist in the registry.
-   - What's unclear: User's tolerance for a sacrificial `0.0.0-bootstrap` publish before the real `0.1.0`.
-   - Recommendation: Publish `0.0.0-bootstrap` as a one-time setup. Simplifies the Deno smoke leg for every subsequent release. Alternative: accept complexity in the Deno leg's first-run logic.
+   - Resolution: Smoke fixture uses `pnpm install` to populate node_modules, Deno reads via `"nodeModulesDir": "auto"` in `deno.json`. No sacrificial pre-release.
 
-3. **NPM_TOKEN rotation strategy: calendar reminder, scheduled CI check, or migrate to Trusted Publisher immediately?**
+3. **NPM_TOKEN rotation strategy?** — RESOLVED: Granular token (D-13) + CI early-warning workflow (Plan 05 Tasks 3+4). Trusted Publisher deferred per CONTEXT.md.
    - What we know: 90-day hard limit on granular tokens. Trusted Publisher OIDC eliminates the problem.
-   - What's unclear: Whether the user is willing to do the one-time Trusted Publisher setup in npmjs.com UI NOW vs "defer to post-v0.1" per CONTEXT.md.
-   - Recommendation: Follow D-13 (granular token) as locked. Add Pitfall 8's early-warning workflow. Re-evaluate Trusted Publisher after the first successful publish.
+   - Resolution: `token-check.yml` runs weekly, warns if token is within 14 days of expiry.
 
-4. **Bundle size budgets: what should the actual numbers be?**
+4. **Bundle size budgets: what should the actual numbers be?** — RESOLVED: Measured at execution time x 1.15 headroom (Plan 03 Task 2).
    - What we know: Unminified dist file sizes (measured 2026-04-11). Rough brotli ratios (~25-30% for JS).
-   - What's unclear: Exact brotli'd sizes per entry after size-limit's esbuild pipeline processes them (shared chunks traced in).
-   - Recommendation: Phase 7 Plan 3 (size/tree-shake/tarball gates) first runs `size-limit` with permissive budgets (`100 kB` each), records the actual values from the report, and commits the final budgets as `measured × 1.15`.
+   - Resolution: Plan 03 Task 2 first runs `size-limit` with permissive 100 kB budgets, records actuals, commits final budgets as `measured x 1.15`.
 
-5. **Should `packages/docs/package.json` also gain `"private": true`?**
-   - What we know: Docs package should never publish. CONTEXT.md D-11 / D-14 lock this implicitly. Changesets `ignore` field is one layer.
-   - What's unclear: Whether the docs package.json currently has `private: true`.
-   - Recommendation: Planner should add `"private": true` to docs package as a hard safety net, regardless of the Changesets ignore config. Two layers of defense.
+5. **Should `packages/docs/package.json` also gain `"private": true`?** — RESOLVED: Yes (Plan 05 Task 1).
+   - What we know: Docs package should never publish. Changesets `ignore` field is one layer.
+   - Resolution: `"private": true` added as a hard safety net alongside Changesets ignore config.
 
 ## Environment Availability
 
