@@ -17,6 +17,9 @@ importers:
       '@changesets/cli':
         specifier: 2.30.0
         version: 2.30.0
+      esbuild:
+        specifier: 0.27.4
+        version: 0.27.4
 
   packages/docs: {}
 
