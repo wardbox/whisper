@@ -17,7 +17,8 @@
   "devDependencies": {
     "@biomejs/biome": "2.4.7",
     "@changesets/changelog-github": "0.6.0",
-    "@changesets/cli": "2.30.0"
+    "@changesets/cli": "2.30.0",
+    "esbuild": "0.27.4"
   },
   "engines": {
     "node": ">=20.0.0"
