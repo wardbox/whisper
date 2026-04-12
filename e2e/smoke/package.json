@@ -1,0 +1,22 @@
+{
+  "name": "whisper-smoke",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Phase 7 smoke fixture — installs the packed @wardbox/whisper tarball and exercises every subpath. Excluded from the pnpm workspace.",
+  "dependencies": {
+    "@wardbox/whisper": "file:../../packages/whisper/wardbox-whisper-0.1.0.tgz"
+  },
+  "devDependencies": {
+    "typescript": "~5.8.0",
+    "@types/node": "^22.0.0"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "esm": "node smoke.mjs",
+    "cjs": "node smoke.cjs",
+    "bun": "bun run smoke_bun.ts",
+    "deno": "deno run -A --node-modules-dir=auto smoke_deno.ts",
+    "test": "pnpm typecheck && pnpm esm && pnpm cjs"
+  }
+}
