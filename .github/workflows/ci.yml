@@ -1,24 +1,165 @@
 name: CI
+
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
+
+# Required for provenance on release workflow (not on CI, but documenting locally
+# that this workflow NEVER publishes — only the release.yml workflow does).
+permissions:
+  contents: read
+
 jobs:
-  ci:
+  # Primary build + quality-gates job.
+  # D-03: keep existing attw + publint on the Node leg, do not restructure into a separate workflow.
+  # D-22: size + tarball-audit + tree-shake run on every PR in this job.
+  build:
+    name: Build + gates (node 22)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: pnpm/action-setup@v4
         with:
           version: 10
+
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: 'pnpm'
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm build
-      - run: pnpm test
-      - run: pnpm check
-      - run: cd packages/whisper && npx attw --pack --profile node16
-      - run: cd packages/whisper && npx publint .
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build library
+        run: pnpm build
+
+      - name: Run unit tests
+        run: pnpm test
+
+      - name: Lint + format check
+        run: pnpm check
+
+      - name: attw — type resolution check
+        run: cd packages/whisper && npx attw --pack --profile node16
+
+      - name: publint — package export lint
+        run: cd packages/whisper && npx publint .
+
+      - name: Size budgets (D-19)
+        run: pnpm size
+
+      - name: Tarball content audit (D-21)
+        run: pnpm tarball:audit
+
+      # Pack the library so the smoke matrix can install the exact artifact CI just built.
+      # This guarantees all 4 runtimes test the identical tarball bits.
+      # Note: this `pnpm pack` re-runs the prepack hook (strips source maps) so the uploaded
+      # artifact is what real consumers would receive.
+      - name: Pack library for smoke matrix
+        run: |
+          cd packages/whisper
+          pnpm pack --pack-destination "$GITHUB_WORKSPACE/e2e/smoke"
+
+      # Populate e2e/smoke/node_modules so the tree-shake check can resolve @wardbox/whisper
+      # via esbuild. Mirrors what `scripts/smoke/run.mjs` does locally.
+      - name: Install smoke fixture
+        working-directory: e2e/smoke
+        run: pnpm install --force --ignore-workspace
+
+      - name: Tree-shake verification (D-20)
+        run: node e2e/smoke/tree-shake/check.mjs
+
+      - name: Upload packed tarball for smoke matrix
+        uses: actions/upload-artifact@v4
+        with:
+          name: whisper-tarball
+          path: e2e/smoke/wardbox-whisper-*.tgz
+          retention-days: 1
+          if-no-files-found: error
+
+  # Runtime smoke matrix.
+  # D-01: 4 legs — node-esm, node-cjs, deno, bun.
+  # D-02: all legs on ubuntu-latest only.
+  # D-07: no API key secrets, no live API calls.
+  # D-08: Deno uses nodeModulesDir auto workaround, Bun uses bun install.
+  smoke:
+    name: Smoke (${{ matrix.runtime }})
+    needs: build
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        runtime: [node-esm, node-cjs, deno, bun]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download packed tarball
+        uses: actions/download-artifact@v4
+        with:
+          name: whisper-tarball
+          path: e2e/smoke/
+
+      # Node legs share pnpm + Node setup
+      - name: Setup pnpm
+        if: startsWith(matrix.runtime, 'node')
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node
+        if: startsWith(matrix.runtime, 'node')
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'pnpm'
+
+      - name: Setup Deno
+        if: matrix.runtime == 'deno'
+        uses: denoland/setup-deno@v2.0.4
+        with:
+          deno-version: v2.x
+
+      - name: Setup Bun
+        if: matrix.runtime == 'bun'
+        uses: oven-sh/setup-bun@v2.2.0
+        with:
+          bun-version: latest
+
+      # node-esm leg: pnpm install --force (busts tarball cache) + typecheck + run smoke.mjs
+      - name: Run Node ESM smoke
+        if: matrix.runtime == 'node-esm'
+        working-directory: e2e/smoke
+        run: |
+          pnpm install --force --ignore-workspace
+          pnpm typecheck
+          node smoke.mjs
+
+      # node-cjs leg: same install, run smoke.cjs (exercises the 'require' condition)
+      - name: Run Node CJS smoke
+        if: matrix.runtime == 'node-cjs'
+        working-directory: e2e/smoke
+        run: |
+          pnpm install --force --ignore-workspace
+          node smoke.cjs
+
+      # deno leg: populate node_modules via pnpm, then run with nodeModulesDir=auto
+      # (workaround path locked by user decision — no npm: registry lookup, no bootstrap publish)
+      - name: Run Deno smoke
+        if: matrix.runtime == 'deno'
+        working-directory: e2e/smoke
+        run: |
+          # Deno doesn't come with pnpm — install pnpm separately for this leg to populate node_modules
+          npm install -g pnpm@10
+          pnpm install --force --ignore-workspace
+          deno run -A --node-modules-dir=auto smoke_deno.ts
+
+      # bun leg: bun install --force + bun run smoke_bun.ts
+      - name: Run Bun smoke
+        if: matrix.runtime == 'bun'
+        working-directory: e2e/smoke
+        run: |
+          bun install --force
+          bun run smoke_bun.ts
