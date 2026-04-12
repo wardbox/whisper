@@ -119,7 +119,8 @@
   "scripts": {
     "build": "tsdown",
     "test": "vitest run",
-    "generate-schema": "tsx ../../scripts/generate-schema/index.ts"
+    "generate-schema": "tsx ../../scripts/generate-schema/index.ts",
+    "prepack": "node ../../scripts/prepack-strip-maps.mjs"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "0.18.2",
