@@ -1,0 +1,38 @@
+name: NPM token check
+
+on:
+  schedule:
+    - cron: '0 14 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Validate NPM_TOKEN
+    runs-on: ubuntu-latest
+    if: github.repository == 'wardbox/whisper'
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Validate NPM_TOKEN via npm whoami
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          set -e
+          echo "Validating NPM_TOKEN..."
+          if ! npm whoami 2>&1; then
+            echo "::error::NPM_TOKEN is invalid or expired. Release workflow will fail."
+            echo "::error::Rotate at npmjs.com > Access Tokens > Generate granular token (scoped to @wardbox/whisper)."
+            echo "::error::Then update GitHub repo Settings > Secrets > Actions > NPM_TOKEN."
+            exit 1
+          fi
+          echo "NPM_TOKEN is valid."
+
+      - name: Rotation reminder
+        run: |
+          echo "::notice::Granular npm tokens expire every 90 days max. Rotate NPM_TOKEN every 80 days."
