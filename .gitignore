@@ -13,3 +13,9 @@ e2e/smoke/node_modules/
 e2e/smoke/pnpm-lock.yaml
 packages/whisper/wardbox-whisper-*.tgz
 e2e/smoke/wardbox-whisper-*.tgz
+
+# Docs build artifacts (Next.js / Fumadocs)
+packages/docs/.next/
+packages/docs/.source/
+packages/docs/out/
+packages/docs/next-env.d.ts
