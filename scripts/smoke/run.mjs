@@ -91,7 +91,7 @@ if (which('bun')) {
 if (which('deno')) {
   console.log('\nsmoke: deno detected — running Deno leg');
   // node_modules is already populated by pnpm above; deno reads it via nodeModulesDir: auto
-  run('deno run --allow-read --allow-env --node-modules-dir=auto smoke_deno.ts', { cwd: smokeDir });
+  run('deno run --allow-read --allow-env smoke_deno.ts', { cwd: smokeDir });
 } else {
   console.log('\nsmoke: deno not installed locally — skipping Deno leg (CI runs it)');
 }
