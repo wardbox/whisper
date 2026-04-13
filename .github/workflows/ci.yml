@@ -23,7 +23,7 @@ jobs:
 
       - uses: pnpm/action-setup@v4
         with:
-          version: 10
+          version: 10.11.0
 
       - uses: actions/setup-node@v4
         with:
@@ -115,7 +115,7 @@ jobs:
         if: startsWith(matrix.runtime, 'node')
         uses: pnpm/action-setup@v4
         with:
-          version: 10
+          version: 10.11.0
 
       - name: Setup Node
         if: startsWith(matrix.runtime, 'node')
@@ -167,7 +167,7 @@ jobs:
         working-directory: e2e/smoke
         run: |
           # Deno doesn't come with pnpm — install pnpm separately for this leg to populate node_modules
-          npm install -g pnpm@10
+          npm install -g pnpm@10.11.0
           pnpm install --force --ignore-workspace
           deno run --allow-read --allow-env smoke_deno.ts
 
