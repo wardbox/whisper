@@ -1,6 +1,6 @@
 {
   "name": "@wardbox/whisper",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Zero-dependency TypeScript library wrapping every Riot Games API endpoint with proactive rate limiting and tree-shakeable per-game imports.",
   "keywords": [
     "riot-games",
