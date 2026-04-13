@@ -67,9 +67,7 @@ jobs:
       # The committed file has a placeholder; this dynamically resolves the version.
       - name: Point smoke fixture at packed tarball
         working-directory: e2e/smoke
-        run: |
-          TARBALL=$(ls wardbox-whisper-*.tgz | head -1)
-          node -e 'var fs=require("fs"),p=JSON.parse(fs.readFileSync("package.json","utf8"));p.dependencies["@wardbox/whisper"]="file:./"+process.argv[1];fs.writeFileSync("package.json",JSON.stringify(p,null,2)+"\n")' "$TARBALL"
+        run: node ../../scripts/smoke/patch-manifest.mjs $(ls wardbox-whisper-*.tgz | head -1)
 
       # Populate e2e/smoke/node_modules so the tree-shake check can resolve @wardbox/whisper
       # via esbuild. Mirrors what `scripts/smoke/run.mjs` does locally.
@@ -139,9 +137,7 @@ jobs:
       # Helper: update smoke fixture package.json to reference the downloaded tarball
       - name: Point smoke fixture at tarball
         working-directory: e2e/smoke
-        run: |
-          TARBALL=$(ls wardbox-whisper-*.tgz | head -1)
-          node -e 'var fs=require("fs"),p=JSON.parse(fs.readFileSync("package.json","utf8"));p.dependencies["@wardbox/whisper"]="file:./"+process.argv[1];fs.writeFileSync("package.json",JSON.stringify(p,null,2)+"\n")' "$TARBALL"
+        run: node ../../scripts/smoke/patch-manifest.mjs $(ls wardbox-whisper-*.tgz | head -1)
 
       # node-esm leg: pnpm install --force (busts tarball cache) + typecheck + run smoke.mjs
       - name: Run Node ESM smoke
