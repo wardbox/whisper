@@ -14,11 +14,11 @@
 // declarationMap/sourceMap coupling (rolldown/tsdown#360) -- upstream concern."
 
 import { readdirSync, statSync, unlinkSync } from "node:fs";
-import { join, resolve } from "node:path";
+import { join, dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 
-const distDir = resolve(
-	new URL("../packages/whisper/dist", import.meta.url).pathname,
-);
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const distDir = resolve(__dirname, "../packages/whisper/dist");
 
 function walk(dir) {
 	const out = [];

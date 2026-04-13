@@ -11,7 +11,7 @@
     "tarball:audit": "node scripts/tarball-audit/audit.mjs",
     "tree-shake": "node e2e/smoke/tree-shake/check.mjs",
     "changeset": "changeset",
-    "release": "pnpm build && pnpm smoke && pnpm size && pnpm tarball:audit && pnpm changeset publish"
+    "release": "pnpm build && pnpm smoke && pnpm size && pnpm tarball:audit && pnpm tree-shake && pnpm changeset publish"
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.7",

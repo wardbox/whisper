@@ -63,6 +63,14 @@ jobs:
           cd packages/whisper
           pnpm pack --pack-destination "$GITHUB_WORKSPACE/e2e/smoke"
 
+      # Update smoke fixture package.json to reference the packed tarball.
+      # The committed file has a placeholder; this dynamically resolves the version.
+      - name: Point smoke fixture at packed tarball
+        working-directory: e2e/smoke
+        run: |
+          TARBALL=$(ls wardbox-whisper-*.tgz | head -1)
+          node -e "const fs=require('fs');const p=JSON.parse(fs.readFileSync('package.json','utf8'));p.dependencies['@wardbox/whisper']='file:./${process.argv[1]}';fs.writeFileSync('package.json',JSON.stringify(p,null,2)+'\n')" "$TARBALL"
+
       # Populate e2e/smoke/node_modules so the tree-shake check can resolve @wardbox/whisper
       # via esbuild. Mirrors what `scripts/smoke/run.mjs` does locally.
       - name: Install smoke fixture
@@ -120,13 +128,20 @@ jobs:
         if: matrix.runtime == 'deno'
         uses: denoland/setup-deno@v2.0.4
         with:
-          deno-version: v2.x
+          deno-version: v2.1.4
 
       - name: Setup Bun
         if: matrix.runtime == 'bun'
         uses: oven-sh/setup-bun@v2.2.0
         with:
-          bun-version: latest
+          bun-version: 1.2.8
+
+      # Helper: update smoke fixture package.json to reference the downloaded tarball
+      - name: Point smoke fixture at tarball
+        working-directory: e2e/smoke
+        run: |
+          TARBALL=$(ls wardbox-whisper-*.tgz | head -1)
+          node -e "const fs=require('fs');const p=JSON.parse(fs.readFileSync('package.json','utf8'));p.dependencies['@wardbox/whisper']='file:./${process.argv[1]}';fs.writeFileSync('package.json',JSON.stringify(p,null,2)+'\n')" "$TARBALL"
 
       # node-esm leg: pnpm install --force (busts tarball cache) + typecheck + run smoke.mjs
       - name: Run Node ESM smoke
