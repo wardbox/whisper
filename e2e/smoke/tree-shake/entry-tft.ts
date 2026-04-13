@@ -4,7 +4,7 @@
 //
 // The shared client-*.js chunk WILL appear in the bundle -- that's correct.
 // The assertion is about cross-game leaks, not bundle minimality.
-import * as tft from "@wardbox/whisper/tft";
+import * as tft from '@wardbox/whisper/tft';
 
 // Touch the namespace so esbuild can't tree-shake it away
 console.log(Object.keys(tft));

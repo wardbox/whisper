@@ -3,11 +3,11 @@
 // nodeModulesDir: "auto" in deno.json + the import map make this resolve to the file: tarball pnpm installed.
 import { createClient } from '@wardbox/whisper/core';
 import * as lol from '@wardbox/whisper/lol';
-import * as tft from '@wardbox/whisper/tft';
-import * as val from '@wardbox/whisper/val';
 import * as lor from '@wardbox/whisper/lor';
 import * as riftbound from '@wardbox/whisper/riftbound';
 import * as riot from '@wardbox/whisper/riot';
+import * as tft from '@wardbox/whisper/tft';
+import * as val from '@wardbox/whisper/val';
 import '@wardbox/whisper';
 
 const client = createClient({ apiKey: 'test-key-never-hits-network' });
