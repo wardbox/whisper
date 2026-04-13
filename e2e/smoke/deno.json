@@ -1,14 +1,4 @@
 {
-  "$comment": "Deno 2.x config — workaround path: pnpm install populates node_modules, Deno reads via nodeModulesDir auto. No bootstrap publish.",
-  "nodeModulesDir": "auto",
-  "imports": {
-    "@wardbox/whisper": "npm:@wardbox/whisper",
-    "@wardbox/whisper/core": "npm:@wardbox/whisper/core",
-    "@wardbox/whisper/lol": "npm:@wardbox/whisper/lol",
-    "@wardbox/whisper/tft": "npm:@wardbox/whisper/tft",
-    "@wardbox/whisper/val": "npm:@wardbox/whisper/val",
-    "@wardbox/whisper/lor": "npm:@wardbox/whisper/lor",
-    "@wardbox/whisper/riftbound": "npm:@wardbox/whisper/riftbound",
-    "@wardbox/whisper/riot": "npm:@wardbox/whisper/riot"
-  }
+  "$comment": "Deno 2.x config — pnpm install populates node_modules, Deno resolves bare specifiers from it. No npm: prefix needed (package not yet on registry).",
+  "nodeModulesDir": "manual"
 }
