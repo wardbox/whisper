@@ -5,11 +5,13 @@
 
 import { createRequire } from "node:module";
 import { readFileSync } from "node:fs";
-import { resolve } from "node:path";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 
 // @publint/pack is a devDep of packages/whisper, not the root workspace.
 // Use createRequire to resolve it from the whisper package directory.
-const repoRoot = resolve(new URL("../..", import.meta.url).pathname);
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const repoRoot = resolve(__dirname, "../..");
 const require_ = createRequire(
 	resolve(repoRoot, "packages/whisper/package.json"),
 );
@@ -68,14 +70,14 @@ if (unexpected.length > 0) {
 }
 
 if (unmatchedAllowlistEntries.length > 0) {
-	console.warn(
-		"\ntarball-audit: WARN -- allowlist entries not matched by any tarball file:",
+	console.error(
+		"\ntarball-audit: FAIL -- allowlist entries not matched by any tarball file:",
 	);
-	for (const g of unmatchedAllowlistEntries) console.warn(`  - ${g}`);
-	console.warn(
-		"(These may be stale; consider removing from the allowlist.)",
+	for (const g of unmatchedAllowlistEntries) console.error(`  - ${g}`);
+	console.error(
+		"(These are stale; remove them from e2e/tarball-allowlist.json)",
 	);
-	// Warn only -- does not fail. New dist outputs may shift over time.
+	failed = true;
 }
 
 if (failed) {

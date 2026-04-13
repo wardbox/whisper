@@ -11,9 +11,10 @@
 
 import { existsSync } from "node:fs";
 import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import * as esbuild from "esbuild";
 
-const here = dirname(new URL(import.meta.url).pathname);
+const here = dirname(fileURLToPath(import.meta.url));
 const smokeDir = resolve(here, "..");
 
 // Pre-flight: ensure the smoke fixture is installed
