@@ -1,0 +1,50 @@
+[
+  {
+    "name": "root (no barrel -- minimal)",
+    "path": "dist/index.js",
+    "limit": "3 kB",
+    "brotli": true
+  },
+  {
+    "name": "/core (shared HTTP + rate limiter + cache)",
+    "path": "dist/core/index.js",
+    "limit": "3 kB",
+    "brotli": true
+  },
+  {
+    "name": "/lol",
+    "path": "dist/lol/index.js",
+    "limit": "2 kB",
+    "brotli": true
+  },
+  {
+    "name": "/tft",
+    "path": "dist/tft/index.js",
+    "limit": "1 kB",
+    "brotli": true
+  },
+  {
+    "name": "/val",
+    "path": "dist/val/index.js",
+    "limit": "1 kB",
+    "brotli": true
+  },
+  {
+    "name": "/lor",
+    "path": "dist/lor/index.js",
+    "limit": "1 kB",
+    "brotli": true
+  },
+  {
+    "name": "/riftbound",
+    "path": "dist/riftbound/index.js",
+    "limit": "1 kB",
+    "brotli": true
+  },
+  {
+    "name": "/riot",
+    "path": "dist/riot/index.js",
+    "limit": "1 kB",
+    "brotli": true
+  }
+]
