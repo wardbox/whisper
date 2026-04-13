@@ -154,7 +154,7 @@ jobs:
           # Deno doesn't come with pnpm — install pnpm separately for this leg to populate node_modules
           npm install -g pnpm@10
           pnpm install --force --ignore-workspace
-          deno run -A --node-modules-dir=auto smoke_deno.ts
+          deno run --allow-read --allow-env --node-modules-dir=auto smoke_deno.ts
 
       # bun leg: bun install --force + bun run smoke_bun.ts
       - name: Run Bun smoke

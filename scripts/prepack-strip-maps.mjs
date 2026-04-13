@@ -36,15 +36,9 @@ function walk(dir) {
 let removed = 0;
 let bytesFreed = 0;
 
+let files;
 try {
-	for (const file of walk(distDir)) {
-		if (file.endsWith(".js.map")) {
-			const size = statSync(file).size;
-			unlinkSync(file);
-			removed += 1;
-			bytesFreed += size;
-		}
-	}
+	files = walk(distDir);
 } catch (err) {
 	if (err.code === "ENOENT") {
 		console.log(
@@ -53,6 +47,15 @@ try {
 		process.exit(0);
 	}
 	throw err;
+}
+
+for (const file of files) {
+	if (file.endsWith(".js.map")) {
+		const size = statSync(file).size;
+		unlinkSync(file);
+		removed += 1;
+		bytesFreed += size;
+	}
 }
 
 const kb = (bytesFreed / 1024).toFixed(1);

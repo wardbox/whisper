@@ -10,7 +10,6 @@
     "size": "pnpm --filter @wardbox/whisper exec size-limit",
     "tarball:audit": "node scripts/tarball-audit/audit.mjs",
     "tree-shake": "node e2e/smoke/tree-shake/check.mjs",
-    "prepack": "node scripts/prepack-strip-maps.mjs",
     "changeset": "changeset",
     "release": "pnpm build && pnpm smoke && pnpm size && pnpm tarball:audit && pnpm changeset publish"
   },
