@@ -23,14 +23,17 @@ const smokeDir = join(repoRoot, 'e2e/smoke');
 const whisperPkg = JSON.parse(readFileSync(join(pkgDir, 'package.json'), 'utf8'));
 const TARBALL_NAME = `wardbox-whisper-${whisperPkg.version}.tgz`;
 
+// Save original smoke fixture manifest for restoration on failure
+const smokePkgPath = join(smokeDir, 'package.json');
+const originalManifest = readFileSync(smokePkgPath, 'utf8');
+
 function run(cmd, opts = {}) {
   const label = opts.cwd ? opts.cwd.replace(repoRoot + '/', '') : '.';
   console.log(`\n$ ${cmd}  (in ${label})`);
   try {
     execSync(cmd, { stdio: 'inherit', ...opts });
-  } catch {
-    console.error(`\nsmoke: FAILED at step: ${cmd}`);
-    process.exit(1);
+  } catch (err) {
+    throw new Error(`smoke: FAILED at step: ${cmd}`);
   }
 }
 
@@ -41,59 +44,64 @@ function which(bin) {
   return result.status === 0;
 }
 
-// ---------- 1. Build ----------
-run('pnpm --filter @wardbox/whisper build', { cwd: repoRoot });
+try {
+  // ---------- 1. Build ----------
+  run('pnpm --filter @wardbox/whisper build', { cwd: repoRoot });
 
-// ---------- 2. Pack ----------
-run('pnpm pack --pack-destination .', { cwd: pkgDir });
+  // ---------- 2. Pack ----------
+  run('pnpm pack --pack-destination .', { cwd: pkgDir });
 
-const packedAt = join(pkgDir, TARBALL_NAME);
-if (!existsSync(packedAt)) {
-  console.error(`smoke: expected packed tarball at ${packedAt} but not found`);
+  const packedAt = join(pkgDir, TARBALL_NAME);
+  if (!existsSync(packedAt)) {
+    throw new Error(`smoke: expected packed tarball at ${packedAt} but not found`);
+  }
+  console.log(`\nsmoke: tarball ready at ${packedAt}`);
+
+  // ---------- 3. Patch smoke fixture manifest via shared helper ----------
+  run(`node ${join(repoRoot, 'scripts/smoke/patch-manifest.mjs')} ../../packages/whisper/${TARBALL_NAME}`, { cwd: smokeDir });
+
+  // ---------- 4. Bust pnpm cache: remove node_modules and lockfile ----------
+  const smokeNodeModules = join(smokeDir, 'node_modules');
+  if (existsSync(smokeNodeModules)) {
+    console.log(`smoke: removing stale ${smokeNodeModules}`);
+    rmSync(smokeNodeModules, { recursive: true, force: true });
+  }
+  const smokeLockfile = join(smokeDir, 'pnpm-lock.yaml');
+  if (existsSync(smokeLockfile)) {
+    rmSync(smokeLockfile);
+  }
+
+  // ---------- 5. Install the tarball into the smoke fixture ----------
+  run('pnpm install --force --ignore-workspace', { cwd: smokeDir });
+
+  // ---------- 6. Type check + Node legs (always run) ----------
+  run('npx tsc --noEmit', { cwd: smokeDir });
+  run('node smoke.mjs', { cwd: smokeDir });
+  run('node smoke.cjs', { cwd: smokeDir });
+
+  // ---------- 7. Optional Bun leg ----------
+  if (which('bun')) {
+    console.log('\nsmoke: bun detected — running Bun leg');
+    run('bun run smoke_bun.ts', { cwd: smokeDir });
+  } else {
+    console.log('\nsmoke: bun not installed locally — skipping Bun leg (CI runs it)');
+  }
+
+  // ---------- 8. Optional Deno leg ----------
+  if (which('deno')) {
+    console.log('\nsmoke: deno detected — running Deno leg');
+    run('deno run --allow-read --allow-env smoke_deno.ts', { cwd: smokeDir });
+  } else {
+    console.log('\nsmoke: deno not installed locally — skipping Deno leg (CI runs it)');
+  }
+
+  console.log('\nsmoke: all available runtime legs passed');
+} catch (err) {
+  console.error(`\n${err.message}`);
   process.exit(1);
+} finally {
+  // Restore the original smoke fixture manifest so it stays clean in git
+  if (readFileSync(smokePkgPath, 'utf8') !== originalManifest) {
+    writeFileSync(smokePkgPath, originalManifest);
+  }
 }
-console.log(`\nsmoke: tarball ready at ${packedAt}`);
-
-// Update the smoke fixture's package.json to point at the correct tarball version
-const smokePkgPath = join(smokeDir, 'package.json');
-const smokePkg = JSON.parse(readFileSync(smokePkgPath, 'utf8'));
-smokePkg.dependencies['@wardbox/whisper'] = `file:../../packages/whisper/${TARBALL_NAME}`;
-writeFileSync(smokePkgPath, JSON.stringify(smokePkg, null, 2) + '\n');
-
-// ---------- 3. Bust pnpm cache: remove node_modules and lockfile ----------
-const smokeNodeModules = join(smokeDir, 'node_modules');
-if (existsSync(smokeNodeModules)) {
-  console.log(`smoke: removing stale ${smokeNodeModules}`);
-  rmSync(smokeNodeModules, { recursive: true, force: true });
-}
-const smokeLockfile = join(smokeDir, 'pnpm-lock.yaml');
-if (existsSync(smokeLockfile)) {
-  rmSync(smokeLockfile);
-}
-
-// ---------- 4. Install the tarball into the smoke fixture ----------
-run('pnpm install --force --ignore-workspace', { cwd: smokeDir });
-
-// ---------- 5. Type check + Node legs (always run) ----------
-run('npx tsc --noEmit', { cwd: smokeDir });
-run('node smoke.mjs', { cwd: smokeDir });
-run('node smoke.cjs', { cwd: smokeDir });
-
-// ---------- 6. Optional Bun leg ----------
-if (which('bun')) {
-  console.log('\nsmoke: bun detected — running Bun leg');
-  run('bun run smoke_bun.ts', { cwd: smokeDir });
-} else {
-  console.log('\nsmoke: bun not installed locally — skipping Bun leg (CI runs it)');
-}
-
-// ---------- 7. Optional Deno leg ----------
-if (which('deno')) {
-  console.log('\nsmoke: deno detected — running Deno leg');
-  // node_modules is already populated by pnpm above; deno reads it via nodeModulesDir: auto
-  run('deno run --allow-read --allow-env smoke_deno.ts', { cwd: smokeDir });
-} else {
-  console.log('\nsmoke: deno not installed locally — skipping Deno leg (CI runs it)');
-}
-
-console.log('\nsmoke: all available runtime legs passed');
