@@ -13,7 +13,7 @@
 
 import { execSync, spawnSync } from 'node:child_process';
 import { existsSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
-import { resolve, join } from 'node:path';
+import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
@@ -28,11 +28,11 @@ const smokePkgPath = join(smokeDir, 'package.json');
 const originalManifest = readFileSync(smokePkgPath, 'utf8');
 
 function run(cmd, opts = {}) {
-  const label = opts.cwd ? opts.cwd.replace(repoRoot + '/', '') : '.';
+  const label = opts.cwd ? opts.cwd.replace(`${repoRoot}/`, '') : '.';
   console.log(`\n$ ${cmd}  (in ${label})`);
   try {
     execSync(cmd, { stdio: 'inherit', ...opts });
-  } catch (err) {
+  } catch (_err) {
     throw new Error(`smoke: FAILED at step: ${cmd}`);
   }
 }
@@ -58,7 +58,10 @@ try {
   console.log(`\nsmoke: tarball ready at ${packedAt}`);
 
   // ---------- 3. Patch smoke fixture manifest via shared helper ----------
-  run(`node ${join(repoRoot, 'scripts/smoke/patch-manifest.mjs')} ../../packages/whisper/${TARBALL_NAME}`, { cwd: smokeDir });
+  run(
+    `node ${join(repoRoot, 'scripts/smoke/patch-manifest.mjs')} ../../packages/whisper/${TARBALL_NAME}`,
+    { cwd: smokeDir },
+  );
 
   // ---------- 4. Bust pnpm cache: remove node_modules and lockfile ----------
   const smokeNodeModules = join(smokeDir, 'node_modules');
