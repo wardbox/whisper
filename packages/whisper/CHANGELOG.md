@@ -1,5 +1,11 @@
 # @wardbox/whisper
 
+## 0.2.2
+
+### Patch Changes
+
+- [`8a6d344`](https://github.com/wardbox/whisper/commit/8a6d3449ddaca749cee07d1ce952e4bca2a0be9c) Thanks [@dylan-snl](https://github.com/dylan-snl)! - chore: verify OIDC-based CI publish pipeline
+
 ## 0.2.1
 
 ### Patch Changes
