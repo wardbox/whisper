@@ -1,5 +1,11 @@
 # @wardbox/whisper
 
+## 0.2.5
+
+### Patch Changes
+
+- [`6140d9f`](https://github.com/wardbox/whisper/commit/6140d9f61f38c321a501753fe672f73222311804) Thanks [@wardbox](https://github.com/wardbox)! - chore: verify OIDC publish with stripped \_authToken
+
 ## 0.2.4
 
 ### Patch Changes
