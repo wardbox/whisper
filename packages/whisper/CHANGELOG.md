@@ -1,5 +1,11 @@
 # @wardbox/whisper
 
+## 0.2.6
+
+### Patch Changes
+
+- [`cc7f020`](https://github.com/wardbox/whisper/commit/cc7f02069b414c8a275c8da868b1e429921725a9) Thanks [@wardbox](https://github.com/wardbox)! - chore: verify OIDC publish with npm 11.5.1+
+
 ## 0.2.5
 
 ### Patch Changes
