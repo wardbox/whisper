@@ -5,7 +5,7 @@ description: How Whisper's proactive rate limiter keeps you under Riot's limits
 
 ## How It Works
 
-Whisper uses **proactive** rate limiting. Instead of waiting for a 429 response and retrying, the rate limiter reads Riot's rate limit headers (`X-App-Rate-Limit`, `X-Method-Rate-Limit`, `X-Rate-Limit-Count`) from every response and tracks how many requests remain in each time window. When a window is near its limit, requests are queued and released only when capacity is available.
+Whisper uses **proactive** rate limiting. Instead of waiting for a 429 response and retrying, the rate limiter reads Riot's rate limit headers (`X-App-Rate-Limit`, `X-App-Rate-Limit-Count`, `X-Method-Rate-Limit`, `X-Method-Rate-Limit-Count`) from every response and tracks how many requests remain in each time window. When a window is near its limit, requests are queued and released only when capacity is available.
 
 This means you rarely see 429 errors at all -- the limiter prevents them before they happen.
 
@@ -30,11 +30,11 @@ Riot enforces three levels of rate limiting:
 
 ### App-Level Limits
 
-Global limits that apply across all endpoints for your API key. Tracked via the `X-App-Rate-Limit` and `X-Rate-Limit-Count` headers. A typical development key has limits like `20:1,100:120` (20 requests per second, 100 requests per 2 minutes).
+Global limits that apply across all endpoints for your API key. Tracked via the `X-App-Rate-Limit` and `X-App-Rate-Limit-Count` headers. A typical development key has limits like `20:1,100:120` (20 requests per second, 100 requests per 2 minutes).
 
 ### Method-Level Limits
 
-Per-endpoint limits that apply to a specific API method. Tracked via the `X-Method-Rate-Limit` header. Different endpoints have different method limits -- match history might allow 500 requests per 10 seconds while summoner lookups allow 2000.
+Per-endpoint limits that apply to a specific API method. Tracked via the `X-Method-Rate-Limit` and `X-Method-Rate-Limit-Count` headers. Different endpoints have different method limits -- match history might allow 500 requests per 10 seconds while summoner lookups allow 2000.
 
 ### Service-Level Limits (429)
 
