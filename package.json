@@ -4,6 +4,8 @@
   "scripts": {
     "build": "pnpm --filter @wardbox/whisper build",
     "test": "pnpm --filter @wardbox/whisper test",
+    "docs:dev": "pnpm --filter whisper-docs dev",
+    "docs:build": "pnpm build && pnpm --filter whisper-docs build",
     "check": "biome check .",
     "check:fix": "biome check --fix .",
     "smoke": "node scripts/smoke/run.mjs",

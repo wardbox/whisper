@@ -1,0 +1,19 @@
+{
+  "root": true,
+  "pages": [
+    "---Getting Started---",
+    "quickstart",
+    "---Guides---",
+    "routing",
+    "rate-limiting",
+    "caching",
+    "middleware",
+    "---API Reference---",
+    "api/lol",
+    "api/tft",
+    "api/val",
+    "api/lor",
+    "api/riftbound",
+    "api/riot"
+  ]
+}

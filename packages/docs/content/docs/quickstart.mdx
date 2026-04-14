@@ -1,0 +1,144 @@
+---
+title: Quickstart
+description: Get up and running with Whisper in under 5 minutes
+---
+
+## Installation
+
+Install Whisper with your package manager of choice:
+
+```bash tab="npm"
+npm install @wardbox/whisper
+```
+
+```bash tab="pnpm"
+pnpm add @wardbox/whisper
+```
+
+```bash tab="yarn"
+yarn add @wardbox/whisper
+```
+
+```bash tab="bun"
+bun add @wardbox/whisper
+```
+
+Whisper has zero runtime dependencies -- just the package itself.
+
+## Get a Riot API Key
+
+You need a Riot Games API key to make requests.
+
+1. Go to the [Riot Developer Portal](https://developer.riotgames.com) and sign in
+2. Generate a **Development API Key** from the dashboard
+
+Development keys expire every 24 hours. For production use, apply for a personal or production key.
+
+## Create a Client
+
+Import `createClient` from the core subpath and pass your API key:
+
+```typescript
+import { createClient } from '@wardbox/whisper/core';
+
+const client = createClient({
+  apiKey: 'RGAPI-your-key-here',
+});
+```
+
+The client handles rate limiting, caching, and retries automatically. No extra configuration needed.
+
+## Look Up a Riot Account
+
+Most workflows start with a Riot ID (like `wardbox#666`). Use `accountV1` to resolve it to a PUUID -- the universal identifier across all Riot APIs. Account lookups use **regional routing**:
+
+```typescript
+import { createClient } from '@wardbox/whisper/core';
+import { accountV1 } from '@wardbox/whisper/riot';
+
+const client = createClient({ apiKey: 'RGAPI-your-key-here' });
+
+const account = await accountV1.getByRiotId(client, 'americas', 'wardbox', '666');
+console.log(`PUUID: ${account.puuid}`);
+```
+
+The `gameName` and `tagLine` are the two parts of a Riot ID split on the `#`.
+
+## Get Summoner Data
+
+Now that you have a PUUID, you can look up summoner data. This uses **platform routing** -- you pass a server like `'na1'` or `'euw1'`:
+
+```typescript
+import { summonerV4 } from '@wardbox/whisper/lol';
+
+const summoner = await summonerV4.getByPuuid(client, 'na1', account.puuid);
+console.log(`Summoner level: ${summoner.summonerLevel}`);
+```
+
+TypeScript enforces that `summonerV4` only accepts a `PlatformRoute` -- passing `'americas'` here would be a type error.
+
+## Fetch Match History
+
+Match endpoints use **regional routing** instead of platform routing. North American players use the `'americas'` region:
+
+```typescript
+import { matchV5 } from '@wardbox/whisper/lol';
+
+// Match history uses regional routing, not platform
+const matchIds = await matchV5.getMatchIdsByPuuid(
+  client,
+  'americas',
+  account.puuid,
+  { count: 5 },
+);
+
+const match = await matchV5.getMatch(client, 'americas', matchIds[0]);
+console.log(`Game duration: ${match.info.gameDuration}s`);
+```
+
+Notice how the route changed from `'na1'` (platform) to `'americas'` (regional). Whisper's types enforce this -- you cannot pass a platform route to a match endpoint.
+
+## Full Example
+
+Putting it all together:
+
+```typescript
+import { createClient } from '@wardbox/whisper/core';
+import { accountV1 } from '@wardbox/whisper/riot';
+import { matchV5, summonerV4 } from '@wardbox/whisper/lol';
+
+const client = createClient({ apiKey: 'RGAPI-your-key-here' });
+
+// 1. Start with a Riot ID (e.g. wardbox#666)
+const account = await accountV1.getByRiotId(
+  client,
+  'americas',
+  'wardbox',
+  '666',
+);
+
+// 2. Get summoner data using the PUUID (platform route)
+const summoner = await summonerV4.getByPuuid(client, 'na1', account.puuid);
+console.log(`Level: ${summoner.summonerLevel}`);
+
+// 3. Get recent matches (regional route)
+const matchIds = await matchV5.getMatchIdsByPuuid(
+  client,
+  'americas',
+  account.puuid,
+  { count: 3 },
+);
+
+for (const id of matchIds) {
+  const match = await matchV5.getMatch(client, 'americas', id);
+  console.log(`Match ${id}: ${match.info.gameDuration}s`);
+}
+```
+
+## What's Next
+
+- [Routing](/docs/routing) -- Understand the three routing types (platform, regional, Valorant)
+- [Rate Limiting](/docs/rate-limiting) -- How Whisper keeps you under Riot's limits
+- [Caching](/docs/caching) -- Configure TTLs and custom cache adapters
+- [Middleware](/docs/middleware) -- Add logging, metrics, and custom behavior
+- [LoL API Reference](/docs/api/lol) -- All 13 LoL API groups with full type tables
