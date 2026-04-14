@@ -1,5 +1,11 @@
 # @wardbox/whisper
 
+## 0.2.7
+
+### Patch Changes
+
+- [`c4a01ce`](https://github.com/wardbox/whisper/commit/c4a01ce70493f41c7318fcb7fd1a8010869e6071) Thanks [@wardbox](https://github.com/wardbox)! - Update README with documentation site links and Riot ID quickstart example
+
 ## 0.2.6
 
 ### Patch Changes
