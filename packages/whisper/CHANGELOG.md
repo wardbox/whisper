@@ -1,5 +1,11 @@
 # @wardbox/whisper
 
+## 0.2.4
+
+### Patch Changes
+
+- [`dd9b8b8`](https://github.com/wardbox/whisper/commit/dd9b8b8ce3730d5fe3b2c49a3725a5b41fcb8716) Thanks [@wardbox](https://github.com/wardbox)! - chore: verify OIDC publish without registry-url interference
+
 ## 0.2.3
 
 ### Patch Changes
