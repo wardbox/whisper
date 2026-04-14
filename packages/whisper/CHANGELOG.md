@@ -1,5 +1,11 @@
 # @wardbox/whisper
 
+## 0.2.3
+
+### Patch Changes
+
+- [`83d7a34`](https://github.com/wardbox/whisper/commit/83d7a34ca3b31bfa2ae31fcbc4472f37ef55a18c) Thanks [@dylan-snl](https://github.com/dylan-snl)! - chore: verify OIDC publish via npm CLI
+
 ## 0.2.2
 
 ### Patch Changes
