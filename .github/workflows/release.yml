@@ -33,6 +33,12 @@ jobs:
         with:
           node-version: '22'
           cache: 'pnpm'
+          registry-url: 'https://registry.npmjs.org'
+
+      # Remove the _authToken line that setup-node writes — it interferes
+      # with npm's OIDC trusted publishing when NODE_AUTH_TOKEN is unset.
+      - name: Configure npm for OIDC
+        run: sed -i '/_authToken/d' ~/.npmrc
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
