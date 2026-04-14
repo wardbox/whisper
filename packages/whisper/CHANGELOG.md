@@ -1,5 +1,11 @@
 # @wardbox/whisper
 
+## 0.2.1
+
+### Patch Changes
+
+- [`d2cd3d1`](https://github.com/wardbox/whisper/commit/d2cd3d18b6411b0a8a53a10a00c3c62abe2b166d) Thanks [@dylan-snl](https://github.com/dylan-snl)! - chore: verify automated CI publish pipeline
+
 ## 0.2.0
 
 ### Minor Changes
