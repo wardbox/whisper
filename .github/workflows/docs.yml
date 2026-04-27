@@ -32,7 +32,7 @@ jobs:
         run: pnpm --filter whisper-docs build
         env:
           PAGES_BASE_PATH: /whisper
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: packages/docs/out
 
@@ -44,4 +44,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

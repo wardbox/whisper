@@ -79,7 +79,7 @@ jobs:
         run: node e2e/smoke/tree-shake/check.mjs
 
       - name: Upload packed tarball for smoke matrix
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: whisper-tarball
           path: e2e/smoke/wardbox-whisper-*.tgz
@@ -103,7 +103,7 @@ jobs:
       - uses: actions/checkout@v6
 
       - name: Download packed tarball
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: whisper-tarball
           path: e2e/smoke/
