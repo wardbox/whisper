@@ -30,9 +30,8 @@
       },
       "milestoneGrades": {
         "items": {
-          "type": "unknown"
+          "type": "string"
         },
-        "optional": true,
         "type": "array"
       },
       "nextSeasonMilestone": {
@@ -42,12 +41,7 @@
           },
           "requireGradeCounts": {
             "fields": {
-              "A-": {
-                "optional": true,
-                "type": "integer"
-              },
               "S-": {
-                "optional": true,
                 "type": "integer"
               }
             },

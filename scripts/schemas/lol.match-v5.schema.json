@@ -107,7 +107,7 @@
                       "type": "integer"
                     },
                     "HealFromMapSources": {
-                      "type": "integer"
+                      "type": "number"
                     },
                     "InfernalScalePickup": {
                       "type": "integer"
@@ -158,7 +158,7 @@
                       "type": "integer"
                     },
                     "bountyGold": {
-                      "type": "number"
+                      "type": "integer"
                     },
                     "buffsStolen": {
                       "type": "integer"
@@ -195,6 +195,7 @@
                       "type": "integer"
                     },
                     "earliestDragonTakedown": {
+                      "optional": true,
                       "type": "number"
                     },
                     "earlyLaningPhaseGoldExpAdvantage": {
@@ -421,6 +422,10 @@
                     "soloKills": {
                       "type": "integer"
                     },
+                    "soloTurretsLategame": {
+                      "optional": true,
+                      "type": "integer"
+                    },
                     "stealthWardsPlaced": {
                       "type": "integer"
                     },
@@ -461,10 +466,6 @@
                       "type": "integer"
                     },
                     "teamRiftHeraldKills": {
-                      "type": "integer"
-                    },
-                    "teleportTakedowns": {
-                      "optional": true,
                       "type": "integer"
                     },
                     "tookLargeDamageSurvived": {
@@ -1008,35 +1009,6 @@
                     "type": "object"
                   },
                   "type": "array"
-                },
-                "feats": {
-                  "fields": {
-                    "EPIC_MONSTER_KILL": {
-                      "fields": {
-                        "featState": {
-                          "type": "integer"
-                        }
-                      },
-                      "type": "object"
-                    },
-                    "FIRST_BLOOD": {
-                      "fields": {
-                        "featState": {
-                          "type": "integer"
-                        }
-                      },
-                      "type": "object"
-                    },
-                    "FIRST_TURRET": {
-                      "fields": {
-                        "featState": {
-                          "type": "integer"
-                        }
-                      },
-                      "type": "object"
-                    }
-                  },
-                  "type": "object"
                 },
                 "objectives": {
                   "fields": {
