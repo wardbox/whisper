@@ -3,6 +3,63 @@ import * as path from 'node:path';
 import type { FieldDef, SchemaFile } from './types.js';
 
 /**
+ * Loaded descriptions keyed by `${game}.${interfaceName}`.
+ *
+ * `_description` is the type-level doc; other keys are field descriptions.
+ * Game-prefixed keys disambiguate interfaces with the same name across games
+ * (e.g. `BannedChampion` exists in both LoL and TFT generated files).
+ */
+export type Descriptions = Record<string, Record<string, string> & { _description?: string }>;
+
+/** Identifier pattern: starts with a letter, _, or $; rest can include digits. */
+const VALID_IDENTIFIER = /^[A-Za-z_$][A-Za-z0-9_$]*$/;
+/** Integer-literal pattern: TS accepts these as unquoted numeric property names. */
+const INTEGER_LITERAL = /^[0-9]+$/;
+
+/**
+ * Quote a property name if it isn't a valid TS unquoted property key.
+ *
+ * Two forms are accepted unquoted:
+ *  - identifier: `[A-Za-z_$][A-Za-z0-9_$]*` (e.g. `puuid`, `_priv`, `$ref`)
+ *  - integer literal: `[0-9]+` (e.g. `0`, `121003`)
+ *
+ * Everything else — hyphenated locale codes like `ar-AE`, names with dots,
+ * starts with digits-but-not-pure-int, etc. — gets wrapped in single quotes.
+ */
+export function formatPropertyKey(name: string): string {
+  if (VALID_IDENTIFIER.test(name) || INTEGER_LITERAL.test(name)) return name;
+  // Escape any double quotes / backslashes that appear inside the key.
+  // Double quotes match the convention already in committed types.
+  const escaped = name.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+  return `"${escaped}"`;
+}
+
+/** Indent every line of a multi-line string by `prefix`. */
+function indentLines(s: string, prefix: string): string {
+  return s
+    .split('\n')
+    .map((line) => `${prefix}${line}`)
+    .join('\n');
+}
+
+/**
+ * Format a description as a JSDoc block.
+ * Single-line descriptions emit `/** text *\/` on one line; multi-line emit
+ * a `/**\n * line\n *\/` block. `indent` is prepended to every line.
+ */
+export function formatJsDoc(description: string, indent: string): string {
+  const trimmed = description.trim();
+  if (!trimmed.includes('\n')) {
+    return `${indent}/** ${trimmed} */`;
+  }
+  const body = trimmed
+    .split('\n')
+    .map((line) => (line ? ` * ${line}` : ' *'))
+    .join('\n');
+  return `${indent}/**\n${indentLines(body, indent)}\n${indent} */`;
+}
+
+/**
  * Strip trailing DTO/Dto/dto suffix from a type name.
  *
  * @example
@@ -162,10 +219,11 @@ export function mapToTsType(field: FieldDef, fieldName?: string): string {
           .sort()
           .map((key) => {
             const f = field.fields?.[key];
-            if (!f) return `${key}: unknown`;
+            const formattedKey = formatPropertyKey(key);
+            if (!f) return `${formattedKey}: unknown`;
             const optional = f.optional ? '?' : '';
             const nullable = f.nullable ? ' | null' : '';
-            return `${key}${optional}: ${mapToTsType(f, key)}${nullable}`;
+            return `${formattedKey}${optional}: ${mapToTsType(f, key)}${nullable}`;
           });
         return `{ ${entries.join('; ')} }`;
       }
@@ -182,10 +240,18 @@ export function mapToTsType(field: FieldDef, fieldName?: string): string {
  * Generate a single TypeScript interface string from a name and field definitions.
  *
  * Fields are sorted alphabetically. Optional fields use `?` syntax.
- * Nullable fields append `| null`.
+ * Nullable fields append `| null`. If `descriptions` contains a matching entry
+ * for the interface or any field, JSDoc is emitted from it.
  */
-export function generateInterface(name: string, fields: Record<string, FieldDef>): string {
+export function generateInterface(
+  name: string,
+  fields: Record<string, FieldDef>,
+  descriptions?: Descriptions[string],
+): string {
   const lines: string[] = [];
+  if (descriptions?._description) {
+    lines.push(formatJsDoc(descriptions._description, ''));
+  }
   lines.push(`export interface ${name} {`);
 
   for (const fieldName of Object.keys(fields).sort()) {
@@ -193,7 +259,11 @@ export function generateInterface(name: string, fields: Record<string, FieldDef>
     const tsType = mapToTsType(field, fieldName);
     const optional = field.optional ? '?' : '';
     const nullable = field.nullable ? ' | null' : '';
-    lines.push(`  ${fieldName}${optional}: ${tsType}${nullable};`);
+    const fieldDoc = descriptions?.[fieldName];
+    if (fieldDoc) {
+      lines.push(formatJsDoc(fieldDoc, '  '));
+    }
+    lines.push(`  ${formatPropertyKey(fieldName)}${optional}: ${tsType}${nullable};`);
   }
 
   lines.push('}');
@@ -214,23 +284,38 @@ export function hasOverride(overridesDir: string, game: string, typeName: string
 }
 
 /**
+ * Load descriptions JSON from the given path. Returns an empty object if the
+ * file is absent so the generator works in environments where descriptions
+ * haven't been seeded yet.
+ */
+export function loadDescriptions(filePath: string): Descriptions {
+  if (!existsSync(filePath)) return {};
+  const raw = readFileSync(filePath, 'utf-8');
+  return JSON.parse(raw) as Descriptions;
+}
+
+/**
  * Generate TypeScript interfaces from schema JSON files.
  *
  * Reads all `.schema.json` files from schemasDir, groups by game prefix,
  * generates per-game output files, and writes a barrel index.ts.
  *
  * Types with hand-written overrides are skipped and re-exported from the
- * override file instead.
+ * override file instead. If `descriptionsPath` is provided and the file
+ * exists, JSDoc is emitted from it onto each interface and field.
  *
  * @param schemasDir - Directory containing .schema.json files
  * @param outputDir - Directory for generated TypeScript output
  * @param overridesDir - Directory containing hand-written type overrides
+ * @param descriptionsPath - Optional path to descriptions JSON
  */
 export function generateInterfaces(
   schemasDir: string,
   outputDir: string,
   overridesDir: string,
+  descriptionsPath?: string,
 ): void {
+  const descriptions = descriptionsPath ? loadDescriptions(descriptionsPath) : {};
   const header = ['// Auto-generated by generate-schema. Do not edit.', ''].join('\n');
 
   // Read all schema files
@@ -292,7 +377,9 @@ export function generateInterfaces(
 
     for (const typeInfo of sortedTypes) {
       lines.push('');
-      lines.push(generateInterface(typeInfo.name, typeInfo.fields));
+      lines.push(
+        generateInterface(typeInfo.name, typeInfo.fields, descriptions[`${game}.${typeInfo.name}`]),
+      );
     }
 
     lines.push('');

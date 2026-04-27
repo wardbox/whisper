@@ -6,14 +6,15 @@ import { createClient } from '../../packages/whisper/src/core/client.js';
 import { generateInterfaces } from './codegen.js';
 import { discoverData } from './discovery.js';
 import { ENDPOINT_REGISTRY } from './registry.js';
-import { extractSchema, mergeSchemas, writeSchemaFile } from './schema.js';
-import type { SchemaFile } from './types.js';
+import { extractSchema, mergeSchemas, patchUnknownArrayItems, writeSchemaFile } from './schema.js';
+import type { FieldDef, SchemaFile } from './types.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const SCHEMAS_DIR = path.resolve(__dirname, '../schemas');
 const GENERATED_DIR = path.resolve(__dirname, '../../packages/whisper/src/types/generated');
 const OVERRIDES_DIR = path.resolve(__dirname, '../../packages/whisper/src/types/overrides');
+const DESCRIPTIONS_FILE = path.resolve(__dirname, '../descriptions.json');
 
 const args = process.argv.slice(2);
 const discoveryOnly = args.includes('--discovery-only');
@@ -149,6 +150,26 @@ async function main() {
     // Write schema file if we got any types
     if (Object.keys(schemaFile.types).length > 0) {
       const filePath = path.join(SCHEMAS_DIR, `${group.game}.${group.name}.schema.json`);
+
+      // Preserve concrete array item shape from any prior schema for fields
+      // where this run's response had an empty array. An inferred-empty
+      // sample produces `items: { type: 'unknown' }`; mergeSchemas already
+      // prefers concrete items over unknown, but we need to walk the prior
+      // schema field-by-field to apply that across nested arrays.
+      if (fs.existsSync(filePath)) {
+        const previous = JSON.parse(fs.readFileSync(filePath, 'utf-8')) as SchemaFile;
+        for (const [typeName, currentFields] of Object.entries(schemaFile.types)) {
+          const previousFields = previous.types[typeName];
+          if (!previousFields) continue;
+          for (const [fieldName, currentField] of Object.entries(currentFields)) {
+            patchUnknownArrayItems(
+              currentField as FieldDef,
+              previousFields[fieldName] as FieldDef | undefined,
+            );
+          }
+        }
+      }
+
       writeSchemaFile(filePath, schemaFile);
       console.log(`  Wrote ${filePath}`);
     }
@@ -156,7 +177,7 @@ async function main() {
 
   // 6. Generate TypeScript interfaces from schema files
   console.log('Generating TypeScript interfaces...');
-  generateInterfaces(SCHEMAS_DIR, GENERATED_DIR, OVERRIDES_DIR);
+  generateInterfaces(SCHEMAS_DIR, GENERATED_DIR, OVERRIDES_DIR, DESCRIPTIONS_FILE);
   console.log(`Done. ${requestCount} API requests made.`);
 }
 
