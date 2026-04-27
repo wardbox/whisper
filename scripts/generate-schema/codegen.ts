@@ -24,7 +24,8 @@ const INTEGER_LITERAL = /^[0-9]+$/;
  *  - integer literal: `[0-9]+` (e.g. `0`, `121003`)
  *
  * Everything else — hyphenated locale codes like `ar-AE`, names with dots,
- * starts with digits-but-not-pure-int, etc. — gets wrapped in single quotes.
+ * starts with digits-but-not-pure-int, etc. — gets wrapped in double quotes
+ * to match the convention already in committed types.
  */
 export function formatPropertyKey(name: string): string {
   if (VALID_IDENTIFIER.test(name) || INTEGER_LITERAL.test(name)) return name;
