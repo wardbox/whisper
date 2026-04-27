@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import {
   AMBIGUOUS_NAMES,
+  formatJsDoc,
+  formatPropertyKey,
   generateInterface,
   generateInterfaces,
   hasOverride,
@@ -287,5 +289,103 @@ describe('generateInterfaces', () => {
   // in a temp directory to verify the full pipeline.
   it('is exported as a function', () => {
     expect(typeof generateInterfaces).toBe('function');
+  });
+});
+
+describe('formatPropertyKey', () => {
+  it('leaves valid identifiers unquoted', () => {
+    expect(formatPropertyKey('foo')).toBe('foo');
+    expect(formatPropertyKey('camelCase')).toBe('camelCase');
+    expect(formatPropertyKey('_underscore')).toBe('_underscore');
+    expect(formatPropertyKey('$dollar')).toBe('$dollar');
+    expect(formatPropertyKey('with123Digits')).toBe('with123Digits');
+  });
+
+  it('leaves pure integer literals unquoted (valid as numeric property keys)', () => {
+    expect(formatPropertyKey('0')).toBe('0');
+    expect(formatPropertyKey('123')).toBe('123');
+    expect(formatPropertyKey('603010')).toBe('603010');
+  });
+
+  it('quotes hyphenated locale codes with double quotes', () => {
+    expect(formatPropertyKey('ar-AE')).toBe('"ar-AE"');
+    expect(formatPropertyKey('pt-BR')).toBe('"pt-BR"');
+    expect(formatPropertyKey('zh-CN')).toBe('"zh-CN"');
+  });
+
+  it('quotes keys with leading digits but trailing letters', () => {
+    expect(formatPropertyKey('123challenge')).toBe('"123challenge"');
+  });
+
+  it('escapes embedded double quotes', () => {
+    expect(formatPropertyKey('foo"bar')).toBe('"foo\\"bar"');
+  });
+});
+
+describe('formatJsDoc', () => {
+  it('emits single-line for short descriptions', () => {
+    expect(formatJsDoc('A summoner profile.', '')).toBe('/** A summoner profile. */');
+    expect(formatJsDoc('A summoner profile.', '  ')).toBe('  /** A summoner profile. */');
+  });
+
+  it('emits multi-line block for descriptions with newlines', () => {
+    const out = formatJsDoc('First paragraph.\n\nSecond paragraph.', '');
+    expect(out).toBe('/**\n * First paragraph.\n *\n * Second paragraph.\n */');
+  });
+
+  it('preserves indentation across all lines of a multi-line block', () => {
+    const out = formatJsDoc('Line one.\nLine two.', '  ');
+    expect(out).toBe('  /**\n   * Line one.\n   * Line two.\n   */');
+  });
+});
+
+describe('generateInterface with descriptions', () => {
+  it('emits JSDoc for the interface and known fields, skipping undocumented fields', () => {
+    const fields: Record<string, FieldDef> = {
+      id: { type: 'string' },
+      name: { type: 'string' },
+      misc: { type: 'string' },
+    };
+    const out = generateInterface('Summoner', fields, {
+      _description: 'A player summoner profile.',
+      id: 'Encrypted PUUID.',
+      name: 'Display name.',
+    });
+    expect(out).toContain('/** A player summoner profile. */\nexport interface Summoner');
+    expect(out).toContain('  /** Encrypted PUUID. */\n  id: string;');
+    expect(out).toContain('  /** Display name. */\n  name: string;');
+    expect(out).toContain('  misc: string;');
+    // misc has no JSDoc since it's not in the descriptions map.
+    expect(out).not.toContain('/** Display name. */\n  misc');
+  });
+
+  it('emits no JSDoc when descriptions are absent', () => {
+    const out = generateInterface('Summoner', { id: { type: 'string' } });
+    expect(out).toBe('export interface Summoner {\n  id: string;\n}');
+  });
+});
+
+describe('generateInterface with non-identifier keys', () => {
+  it('quotes hyphenated keys in object field types', () => {
+    const fields: Record<string, FieldDef> = {
+      localizedNames: {
+        type: 'object',
+        fields: {
+          'ar-AE': { type: 'string' },
+          'en-US': { type: 'string' },
+        },
+      },
+    };
+    const out = generateInterface('Content', fields);
+    expect(out).toContain('"ar-AE": string');
+    expect(out).toContain('"en-US": string');
+  });
+
+  it('quotes hyphenated keys at the interface field level', () => {
+    const fields: Record<string, FieldDef> = {
+      'foo-bar': { type: 'string' },
+    };
+    const out = generateInterface('Weird', fields);
+    expect(out).toContain('"foo-bar": string;');
   });
 });

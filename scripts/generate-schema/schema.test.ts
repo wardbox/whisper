@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { extractSchema, mergeSchemas, sortKeys } from './schema.js';
-import type { TypeSchema } from './types.js';
+import { extractSchema, mergeSchemas, patchUnknownArrayItems, sortKeys } from './schema.js';
+import type { FieldDef, TypeSchema } from './types.js';
 
 describe('extractSchema', () => {
   it('extracts string fields', () => {
@@ -200,5 +200,108 @@ describe('sortKeys', () => {
     const a = { z: 1, a: { c: 3, b: 2 } };
     const b = { a: { b: 2, c: 3 }, z: 1 };
     expect(JSON.stringify(sortKeys(a))).toBe(JSON.stringify(sortKeys(b)));
+  });
+});
+
+describe('patchUnknownArrayItems', () => {
+  it('replaces unknown items with concrete shape from source', () => {
+    const target: FieldDef = { type: 'array', items: { type: 'unknown' } };
+    const source: FieldDef = {
+      type: 'array',
+      items: { type: 'object', fields: { id: { type: 'string' } } },
+    };
+    patchUnknownArrayItems(target, source);
+    expect(target.items).toEqual({ type: 'object', fields: { id: { type: 'string' } } });
+  });
+
+  it('does not override concrete items when current sample has data', () => {
+    const target: FieldDef = {
+      type: 'array',
+      items: { type: 'object', fields: { newField: { type: 'string' } } },
+    };
+    const source: FieldDef = {
+      type: 'array',
+      items: { type: 'object', fields: { oldField: { type: 'integer' } } },
+    };
+    patchUnknownArrayItems(target, source);
+    expect(target.items).toEqual({
+      type: 'object',
+      fields: { newField: { type: 'string' } },
+    });
+  });
+
+  it('walks into objects and patches nested empty arrays', () => {
+    const target: FieldDef = {
+      type: 'object',
+      fields: {
+        outer: {
+          type: 'object',
+          fields: {
+            empties: { type: 'array', items: { type: 'unknown' } },
+          },
+        },
+      },
+    };
+    const source: FieldDef = {
+      type: 'object',
+      fields: {
+        outer: {
+          type: 'object',
+          fields: {
+            empties: {
+              type: 'array',
+              items: { type: 'object', fields: { id: { type: 'integer' } } },
+            },
+          },
+        },
+      },
+    };
+    patchUnknownArrayItems(target, source);
+    const outer = target.fields?.outer;
+    expect(outer?.fields?.empties.items).toEqual({
+      type: 'object',
+      fields: { id: { type: 'integer' } },
+    });
+  });
+
+  it('walks into nested arrays and patches their items', () => {
+    const target: FieldDef = {
+      type: 'array',
+      items: {
+        type: 'object',
+        fields: { nested: { type: 'array', items: { type: 'unknown' } } },
+      },
+    };
+    const source: FieldDef = {
+      type: 'array',
+      items: {
+        type: 'object',
+        fields: {
+          nested: {
+            type: 'array',
+            items: { type: 'object', fields: { kind: { type: 'string' } } },
+          },
+        },
+      },
+    };
+    patchUnknownArrayItems(target, source);
+    const nested = (target.items?.fields ?? {}).nested;
+    expect(nested.items).toEqual({
+      type: 'object',
+      fields: { kind: { type: 'string' } },
+    });
+  });
+
+  it('is a no-op when source is missing', () => {
+    const target: FieldDef = { type: 'array', items: { type: 'unknown' } };
+    patchUnknownArrayItems(target, undefined);
+    expect(target).toEqual({ type: 'array', items: { type: 'unknown' } });
+  });
+
+  it('is a no-op when target field type does not match source', () => {
+    const target: FieldDef = { type: 'string' };
+    const source: FieldDef = { type: 'array', items: { type: 'integer' } };
+    patchUnknownArrayItems(target, source);
+    expect(target).toEqual({ type: 'string' });
   });
 });

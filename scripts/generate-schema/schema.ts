@@ -151,6 +151,42 @@ export function mergeSchemas(existing: TypeSchema, incoming: TypeSchema): TypeSc
 }
 
 /**
+ * Restore concrete array item shape from a prior schema when the current
+ * sample produced an empty array.
+ *
+ * extractFieldDef emits `{ type: 'array', items: { type: 'unknown' } }` for
+ * empty arrays — we have no shape to infer. If a prior schema captured the
+ * shape from a non-empty sample, we preserve it. Walks objects and arrays
+ * recursively so nested empty arrays are also patched.
+ *
+ * Mutates `target` in place; `source` is read-only.
+ */
+export function patchUnknownArrayItems(target: FieldDef, source: FieldDef | undefined): void {
+  if (!source) return;
+
+  if (
+    target.type === 'array' &&
+    target.items?.type === 'unknown' &&
+    source.type === 'array' &&
+    source.items
+  ) {
+    target.items = source.items;
+    return;
+  }
+
+  if (target.type === 'array' && target.items && source.type === 'array' && source.items) {
+    patchUnknownArrayItems(target.items, source.items);
+    return;
+  }
+
+  if (target.type === 'object' && target.fields && source.type === 'object' && source.fields) {
+    for (const [key, field] of Object.entries(target.fields)) {
+      patchUnknownArrayItems(field, source.fields[key]);
+    }
+  }
+}
+
+/**
  * Recursively sort object keys alphabetically for deterministic JSON output.
  *
  * - Objects: keys sorted alphabetically, values recursed
