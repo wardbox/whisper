@@ -13,11 +13,11 @@ jobs:
     runs-on: ubuntu-latest
     if: github.repository == 'wardbox/whisper'
     steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v5
         with:
           version: 10.11.0
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: '22'
           cache: 'pnpm'
@@ -37,7 +37,7 @@ jobs:
           fi
       - name: Create PR
         if: steps.diff.outputs.changed == 'true'
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           title: 'chore: update schemas for Riot API changes'
           branch: schema-drift-update

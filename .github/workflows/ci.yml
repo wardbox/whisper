@@ -19,13 +19,13 @@ jobs:
     name: Build + gates (node 22)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v5
         with:
           version: 10.11.0
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: '22'
           cache: 'pnpm'
@@ -79,7 +79,7 @@ jobs:
         run: node e2e/smoke/tree-shake/check.mjs
 
       - name: Upload packed tarball for smoke matrix
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: whisper-tarball
           path: e2e/smoke/wardbox-whisper-*.tgz
@@ -100,10 +100,10 @@ jobs:
       matrix:
         runtime: [node-esm, node-cjs, deno, bun]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Download packed tarball
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: whisper-tarball
           path: e2e/smoke/
@@ -111,13 +111,13 @@ jobs:
       # Node legs share pnpm + Node setup
       - name: Setup pnpm
         if: startsWith(matrix.runtime, 'node')
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v5
         with:
           version: 10.11.0
 
       - name: Setup Node
         if: startsWith(matrix.runtime, 'node')
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: '22'
           cache: 'pnpm'
