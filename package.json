@@ -13,7 +13,7 @@
     "tarball:audit": "node scripts/tarball-audit/audit.mjs",
     "tree-shake": "node e2e/smoke/tree-shake/check.mjs",
     "changeset": "changeset",
-    "release": "pnpm build && pnpm smoke && pnpm size && pnpm tarball:audit && pnpm tree-shake && cd packages/whisper && npm publish --access public --provenance"
+    "release": "pnpm build && pnpm smoke && pnpm size && pnpm tarball:audit && pnpm tree-shake && node scripts/publish-if-new.mjs"
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.7",
