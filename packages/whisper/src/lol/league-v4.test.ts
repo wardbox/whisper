@@ -12,10 +12,8 @@ describe('leagueV4', () => {
   describe('getChallengerLeague', () => {
     it('returns unwrapped league data', async () => {
       const expected = {
-        leagueId: 'uuid-1',
         entries: [],
         tier: 'CHALLENGER',
-        name: 'Test League',
         queue: 'RANKED_SOLO_5x5',
       };
       const client = mockClient(expected);
@@ -26,7 +24,7 @@ describe('leagueV4', () => {
     });
 
     it('calls client.request with correct path and methodId', async () => {
-      const client = mockClient({ leagueId: '', entries: [], tier: '', name: '', queue: '' });
+      const client = mockClient({ entries: [], tier: '', queue: '' });
 
       await leagueV4.getChallengerLeague(client, 'euw1', 'RANKED_SOLO_5x5');
 
@@ -41,10 +39,8 @@ describe('leagueV4', () => {
   describe('getGrandmasterLeague', () => {
     it('returns unwrapped league data', async () => {
       const expected = {
-        leagueId: 'uuid-2',
         entries: [],
         tier: 'GRANDMASTER',
-        name: 'GM League',
         queue: 'RANKED_SOLO_5x5',
       };
       const client = mockClient(expected);
@@ -55,7 +51,7 @@ describe('leagueV4', () => {
     });
 
     it('calls client.request with correct path and methodId', async () => {
-      const client = mockClient({ leagueId: '', entries: [], tier: '', name: '', queue: '' });
+      const client = mockClient({ entries: [], tier: '', queue: '' });
 
       await leagueV4.getGrandmasterLeague(client, 'jp1', 'RANKED_SOLO_5x5');
 
@@ -70,10 +66,8 @@ describe('leagueV4', () => {
   describe('getMasterLeague', () => {
     it('returns unwrapped league data', async () => {
       const expected = {
-        leagueId: 'uuid-3',
         entries: [],
         tier: 'MASTER',
-        name: 'Master League',
         queue: 'RANKED_SOLO_5x5',
       };
       const client = mockClient(expected);
@@ -84,7 +78,7 @@ describe('leagueV4', () => {
     });
 
     it('calls client.request with correct path and methodId', async () => {
-      const client = mockClient({ leagueId: '', entries: [], tier: '', name: '', queue: '' });
+      const client = mockClient({ entries: [], tier: '', queue: '' });
 
       await leagueV4.getMasterLeague(client, 'eun1', 'RANKED_SOLO_5x5');
 
@@ -103,7 +97,6 @@ describe('leagueV4', () => {
           freshBlood: false,
           hotStreak: false,
           inactive: false,
-          leagueId: 'uuid-1',
           leaguePoints: 100,
           losses: 10,
           puuid: 'abc-123',
@@ -173,10 +166,8 @@ describe('leagueV4', () => {
   describe('getById', () => {
     it('returns unwrapped league data', async () => {
       const expected = {
-        leagueId: 'some-uuid',
         entries: [],
         tier: 'DIAMOND',
-        name: 'Some League',
         queue: 'RANKED_SOLO_5x5',
       };
       const client = mockClient(expected);
@@ -187,7 +178,7 @@ describe('leagueV4', () => {
     });
 
     it('calls client.request with correct path and methodId', async () => {
-      const client = mockClient({ leagueId: '', entries: [], tier: '', name: '', queue: '' });
+      const client = mockClient({ entries: [], tier: '', queue: '' });
 
       await leagueV4.getById(client, 'tr1', 'league-uuid');
 

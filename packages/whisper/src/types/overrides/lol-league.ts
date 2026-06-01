@@ -24,14 +24,10 @@ export interface MiniSeries {
  * getChallengerLeague, getGrandmasterLeague, getMasterLeague, getById.
  */
 export interface LeagueList {
-  /** Unique identifier for this league */
-  leagueId: string;
   /** List of ranked entries in this league */
   entries: LolLeagueEntry[];
   /** Tier of this league (e.g., "CHALLENGER", "GRANDMASTER", "MASTER") */
   tier: string;
-  /** Display name of this league */
-  name: string;
   /** Queue type (e.g., "RANKED_SOLO_5x5") */
   queue: string;
 }
