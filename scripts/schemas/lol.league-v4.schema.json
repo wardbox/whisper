@@ -13,9 +13,6 @@
       "inactive": {
         "type": "boolean"
       },
-      "leagueId": {
-        "type": "string"
-      },
       "leaguePoints": {
         "type": "integer"
       },
