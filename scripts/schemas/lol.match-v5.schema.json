@@ -101,6 +101,9 @@
                 "basicPings": {
                   "type": "integer"
                 },
+                "causedGameEndFromIGNBSurrender": {
+                  "type": "boolean"
+                },
                 "challenges": {
                   "fields": {
                     "12AssistStreakCount": {
@@ -194,9 +197,6 @@
                     "dragonTakedowns": {
                       "type": "integer"
                     },
-                    "earliestDragonTakedown": {
-                      "type": "number"
-                    },
                     "earlyLaningPhaseGoldExpAdvantage": {
                       "type": "integer"
                     },
@@ -230,6 +230,9 @@
                     "firstTurretKilled": {
                       "type": "integer"
                     },
+                    "firstTurretKilledTime": {
+                      "type": "number"
+                    },
                     "fistBumpParticipation": {
                       "type": "integer"
                     },
@@ -253,6 +256,10 @@
                       "type": "integer"
                     },
                     "highestCrowdControlScore": {
+                      "optional": true,
+                      "type": "integer"
+                    },
+                    "highestWardKills": {
                       "optional": true,
                       "type": "integer"
                     },
@@ -421,6 +428,10 @@
                     "soloKills": {
                       "type": "integer"
                     },
+                    "soloTurretsLategame": {
+                      "optional": true,
+                      "type": "integer"
+                    },
                     "stealthWardsPlaced": {
                       "type": "integer"
                     },
@@ -461,10 +472,6 @@
                       "type": "integer"
                     },
                     "teamRiftHeraldKills": {
-                      "type": "integer"
-                    },
-                    "teleportTakedowns": {
-                      "optional": true,
                       "type": "integer"
                     },
                     "tookLargeDamageSurvived": {
@@ -582,6 +589,9 @@
                   "type": "boolean"
                 },
                 "gameEndedInEarlySurrender": {
+                  "type": "boolean"
+                },
+                "gameEndedInIGNBSurrender": {
                   "type": "boolean"
                 },
                 "gameEndedInSurrender": {
@@ -822,6 +832,9 @@
                 "playerSubteamId": {
                   "type": "integer"
                 },
+                "positionAssignedByMatchmaking": {
+                  "type": "string"
+                },
                 "profileIcon": {
                   "type": "integer"
                 },
@@ -848,6 +861,9 @@
                 },
                 "roleBoundItem": {
                   "type": "integer"
+                },
+                "selectedRolePreferences": {
+                  "type": "string"
                 },
                 "sightWardsBoughtInGame": {
                   "type": "integer"
@@ -889,6 +905,9 @@
                   "type": "string"
                 },
                 "teamEarlySurrendered": {
+                  "type": "boolean"
+                },
+                "teamIGNBSurrendered": {
                   "type": "boolean"
                 },
                 "teamId": {
@@ -978,6 +997,15 @@
                 "wardsPlaced": {
                   "type": "integer"
                 },
+                "wasPremadeWithIGNBGameEndCauser": {
+                  "type": "boolean"
+                },
+                "wasPremadeWithSevereTransgressor": {
+                  "type": "boolean"
+                },
+                "wasSevereTransgressor": {
+                  "type": "boolean"
+                },
                 "win": {
                   "type": "boolean"
                 }
@@ -1008,35 +1036,6 @@
                     "type": "object"
                   },
                   "type": "array"
-                },
-                "feats": {
-                  "fields": {
-                    "EPIC_MONSTER_KILL": {
-                      "fields": {
-                        "featState": {
-                          "type": "integer"
-                        }
-                      },
-                      "type": "object"
-                    },
-                    "FIRST_BLOOD": {
-                      "fields": {
-                        "featState": {
-                          "type": "integer"
-                        }
-                      },
-                      "type": "object"
-                    },
-                    "FIRST_TURRET": {
-                      "fields": {
-                        "featState": {
-                          "type": "integer"
-                        }
-                      },
-                      "type": "object"
-                    }
-                  },
-                  "type": "object"
                 },
                 "objectives": {
                   "fields": {
@@ -1181,11 +1180,23 @@
                 "events": {
                   "items": {
                     "fields": {
+                      "bounty": {
+                        "optional": true,
+                        "type": "integer"
+                      },
                       "creatorId": {
                         "optional": true,
                         "type": "integer"
                       },
                       "itemId": {
+                        "optional": true,
+                        "type": "integer"
+                      },
+                      "killStreakLength": {
+                        "optional": true,
+                        "type": "integer"
+                      },
+                      "killerId": {
                         "optional": true,
                         "type": "integer"
                       },
@@ -1201,7 +1212,23 @@
                         "optional": true,
                         "type": "integer"
                       },
+                      "position": {
+                        "fields": {
+                          "x": {
+                            "type": "integer"
+                          },
+                          "y": {
+                            "type": "integer"
+                          }
+                        },
+                        "optional": true,
+                        "type": "object"
+                      },
                       "realTimestamp": {
+                        "optional": true,
+                        "type": "integer"
+                      },
+                      "shutdownBounty": {
                         "optional": true,
                         "type": "integer"
                       },
@@ -1214,6 +1241,154 @@
                       },
                       "type": {
                         "type": "string"
+                      },
+                      "victimDamageDealt": {
+                        "items": {
+                          "fields": {
+                            "basic": {
+                              "type": "boolean"
+                            },
+                            "magicDamage": {
+                              "type": "integer"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "participantId": {
+                              "type": "integer"
+                            },
+                            "physicalDamage": {
+                              "type": "integer"
+                            },
+                            "spellName": {
+                              "type": "string"
+                            },
+                            "spellSlot": {
+                              "type": "integer"
+                            },
+                            "trueDamage": {
+                              "type": "integer"
+                            },
+                            "type": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "optional": true,
+                        "type": "array"
+                      },
+                      "victimDamageReceived": {
+                        "items": {
+                          "fields": {
+                            "basic": {
+                              "type": "boolean"
+                            },
+                            "magicDamage": {
+                              "type": "integer"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "participantId": {
+                              "type": "integer"
+                            },
+                            "physicalDamage": {
+                              "type": "integer"
+                            },
+                            "spellName": {
+                              "type": "string"
+                            },
+                            "spellSlot": {
+                              "type": "integer"
+                            },
+                            "trueDamage": {
+                              "type": "integer"
+                            },
+                            "type": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "optional": true,
+                        "type": "array"
+                      },
+                      "victimId": {
+                        "optional": true,
+                        "type": "integer"
+                      },
+                      "victimTeamfightDamageDealt": {
+                        "items": {
+                          "fields": {
+                            "basic": {
+                              "type": "boolean"
+                            },
+                            "magicDamage": {
+                              "type": "integer"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "participantId": {
+                              "type": "integer"
+                            },
+                            "physicalDamage": {
+                              "type": "integer"
+                            },
+                            "spellName": {
+                              "type": "string"
+                            },
+                            "spellSlot": {
+                              "type": "integer"
+                            },
+                            "trueDamage": {
+                              "type": "integer"
+                            },
+                            "type": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "optional": true,
+                        "type": "array"
+                      },
+                      "victimTeamfightDamageReceived": {
+                        "items": {
+                          "fields": {
+                            "basic": {
+                              "type": "boolean"
+                            },
+                            "magicDamage": {
+                              "type": "integer"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "participantId": {
+                              "type": "integer"
+                            },
+                            "physicalDamage": {
+                              "type": "integer"
+                            },
+                            "spellName": {
+                              "type": "string"
+                            },
+                            "spellSlot": {
+                              "type": "integer"
+                            },
+                            "trueDamage": {
+                              "type": "integer"
+                            },
+                            "type": {
+                              "type": "string"
+                            }
+                          },
+                          "type": "object"
+                        },
+                        "optional": true,
+                        "type": "array"
                       },
                       "wardType": {
                         "optional": true,

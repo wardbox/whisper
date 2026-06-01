@@ -30,9 +30,8 @@
       },
       "milestoneGrades": {
         "items": {
-          "type": "unknown"
+          "type": "string"
         },
-        "optional": true,
         "type": "array"
       },
       "nextSeasonMilestone": {
