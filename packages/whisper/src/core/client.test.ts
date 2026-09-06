@@ -1,4 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { MemoryCache } from './cache.js';
 import { createClient } from './client.js';
 import type { Middleware } from './types.js';
 
@@ -58,9 +59,9 @@ describe('createClient', () => {
     expect(init?.headers.get('X-Riot-Token')).toBe('RGAPI-test');
   });
 
-  it('cache:false disables caching (same request twice = two fetch calls)', async () => {
+  it('cache is off by default (same request twice = two fetch calls)', async () => {
     const fetchMock = mockFetch(200, { id: '1' });
-    const client = createClient({ apiKey: 'RGAPI-test', cache: false, rateLimiter: false });
+    const client = createClient({ apiKey: 'RGAPI-test', rateLimiter: false });
 
     await client.request('na1', '/test', 'test.method');
     await client.request('na1', '/test', 'test.method');
@@ -68,9 +69,13 @@ describe('createClient', () => {
     expect(fetchMock).toHaveBeenCalledTimes(2);
   });
 
-  it('cache enabled (default) caches response (same request twice = one fetch call)', async () => {
+  it('cache adapter caches response (same request twice = one fetch call)', async () => {
     const fetchMock = mockFetch(200, { id: '1' });
-    const client = createClient({ apiKey: 'RGAPI-test', rateLimiter: false });
+    const client = createClient({
+      apiKey: 'RGAPI-test',
+      cache: new MemoryCache(),
+      rateLimiter: false,
+    });
 
     const r1 = await client.request('na1', '/test', 'test.method');
     const r2 = await client.request('na1', '/test', 'test.method');
@@ -79,9 +84,43 @@ describe('createClient', () => {
     expect(r1.data).toEqual(r2.data);
   });
 
+  it('per-call cache:false skips the cached entry and refreshes it', async () => {
+    let callCount = 0;
+    const fetchMock = vi.fn().mockImplementation(() => {
+      callCount++;
+      return Promise.resolve({
+        ok: true,
+        status: 200,
+        statusText: 'OK',
+        headers: new Headers(),
+        json: async () => ({ call: callCount }),
+      });
+    });
+    globalThis.fetch = fetchMock;
+    const client = createClient({
+      apiKey: 'RGAPI-test',
+      cache: new MemoryCache(),
+      rateLimiter: false,
+    });
+
+    const r1 = await client.request('na1', '/test', 'test.method');
+    const r2 = await client.request('na1', '/test', 'test.method', { cache: false });
+    const r3 = await client.request('na1', '/test', 'test.method');
+
+    // 1st fetches and stores, 2nd bypasses and re-stores, 3rd reads the refreshed entry
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(r1.data).toEqual({ call: 1 });
+    expect(r2.data).toEqual({ call: 2 });
+    expect(r3.data).toEqual({ call: 2 });
+  });
+
   it('POST requests bypass cache (two POSTs = two fetch calls)', async () => {
     const fetchMock = mockFetch(200, { id: '1' });
-    const client = createClient({ apiKey: 'RGAPI-test', rateLimiter: false });
+    const client = createClient({
+      apiKey: 'RGAPI-test',
+      cache: new MemoryCache(),
+      rateLimiter: false,
+    });
 
     await client.request('na1', '/test', 'test.method', { method: 'POST', body: '{"a":1}' });
     await client.request('na1', '/test', 'test.method', { method: 'POST', body: '{"a":1}' });
@@ -102,7 +141,11 @@ describe('createClient', () => {
       });
     });
 
-    const client = createClient({ apiKey: 'RGAPI-test', rateLimiter: false });
+    const client = createClient({
+      apiKey: 'RGAPI-test',
+      cache: new MemoryCache(),
+      rateLimiter: false,
+    });
 
     const get = await client.request('na1', '/test', 'test.method');
     const post = await client.request('na1', '/test', 'test.method', {
@@ -139,7 +182,11 @@ describe('createClient', () => {
       });
     });
 
-    const client = createClient({ apiKey: 'RGAPI-test', rateLimiter: false });
+    const client = createClient({
+      apiKey: 'RGAPI-test',
+      cache: new MemoryCache(),
+      rateLimiter: false,
+    });
 
     const r1 = await client.request('na1', '/test', 'test.method', { params: { page: '1' } });
     const r2 = await client.request('na1', '/test', 'test.method', { params: { page: '2' } });
@@ -247,7 +294,7 @@ describe('createClient', () => {
     const client = createClient({
       apiKey: 'RGAPI-test',
       middleware: [middleware],
-      // cache and rate limiter enabled by default
+      cache: new MemoryCache(),
     });
 
     const response = await client.request('na1', '/test', 'test.method');

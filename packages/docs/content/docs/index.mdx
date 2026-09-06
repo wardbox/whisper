@@ -11,7 +11,7 @@ Whisper is a TypeScript library that wraps every Riot Games API endpoint with fu
 - **Proactive rate limiting** -- parses Riot's rate limit headers and queues requests before hitting limits. No more 429s.
 - **Tree-shakeable** -- import only the game you need: `@wardbox/whisper/lol`, `@wardbox/whisper/tft`, etc.
 - **Type-safe routing** -- platform vs regional vs Valorant routing enforced at compile time. Wrong route type = type error.
-- **Configurable caching** -- per-method TTL with pluggable adapters (in-memory default, Redis, custom).
+- **Opt-in caching** -- per-path-pattern TTL with pluggable adapters (bounded in-memory, Redis, custom).
 - **Middleware pipeline** -- intercept requests and responses for logging, metrics, and custom behavior.
 
 ## Getting Started

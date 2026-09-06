@@ -1,7 +1,7 @@
 import type { PlatformRoute } from '../types/platform.js';
 import type { RegionalRoute } from '../types/regional.js';
 import type { ValPlatformRoute } from '../types/val-platform.js';
-import { buildCacheKey, MemoryCache, resolveTtl } from './cache.js';
+import { buildCacheKey, resolveTtl } from './cache.js';
 import { RateLimitError } from './errors.js';
 import type { KeyProvider } from './http.js';
 import { buildUrl, createHttpClient, normalizeKeyProvider } from './http.js';
@@ -11,13 +11,14 @@ import type {
   ApiResponse,
   CacheAdapter,
   CacheTtlConfig,
+  CallOptions,
   ClientConfig,
   Middleware,
   RequestContext,
 } from './types.js';
 
 /** Options for individual API requests */
-interface RequestOptions {
+interface RequestOptions extends CallOptions {
   /** HTTP method (defaults to 'GET') */
   method?: string | undefined;
   /** Request body for POST/PUT */
@@ -69,8 +70,15 @@ const MAX_429_RETRIES = 3;
  *
  * @example
  * ```typescript
- * // Minimal setup
+ * // Minimal setup: rate limiting on, no cache
  * const client = createClient({ apiKey: 'RGAPI-xxx' });
+ *
+ * // Opt in to caching
+ * const client = createClient({
+ *   apiKey: 'RGAPI-xxx',
+ *   cache: new MemoryCache(),
+ *   cacheTtl: { summoner: 3600, spectator: 0, default: 300 },
+ * });
  *
  * // Full configuration
  * const client = createClient({
@@ -81,12 +89,8 @@ const MAX_429_RETRIES = 3;
  *   middleware: [loggingMiddleware, metricsMiddleware],
  * });
  *
- * // Disable caching and rate limiting
- * const client = createClient({
- *   apiKey: 'RGAPI-xxx',
- *   cache: false,
- *   rateLimiter: false,
- * });
+ * // Disable rate limiting too (not recommended)
+ * const client = createClient({ apiKey: 'RGAPI-xxx', rateLimiter: false });
  * ```
  */
 export function createClient(config: ClientConfig): WhisperClient {
@@ -99,15 +103,8 @@ export function createClient(config: ClientConfig): WhisperClient {
       ? new RateLimiter(typeof config.rateLimiter === 'object' ? config.rateLimiter : undefined)
       : null;
 
-  // Cache: false to disable, CacheAdapter to use custom, undefined for default MemoryCache
-  let cache: CacheAdapter | null;
-  if (config.cache === false) {
-    cache = null;
-  } else if (config.cache) {
-    cache = config.cache;
-  } else {
-    cache = new MemoryCache();
-  }
+  // Cache is opt-in: pass a CacheAdapter (e.g. new MemoryCache()) to enable it
+  const cache: CacheAdapter | null = config.cache || null;
 
   const middleware: Middleware[] = config.middleware ?? [];
   const cacheTtl: CacheTtlConfig = config.cacheTtl ?? { default: 300 };
@@ -121,13 +118,15 @@ export function createClient(config: ClientConfig): WhisperClient {
     ): Promise<ApiResponse<T>> {
       const method = options?.method ?? 'GET';
 
-      // 1. Check cache (only for GET requests)
+      // 1. Check cache (GET only; `cache: false` skips the read but still stores the fresh result)
       let cacheKey: string | undefined;
       if (cache && method === 'GET') {
         const apiKey = await keyProvider.getKey();
         cacheKey = buildCacheKey(apiKey, route, path, options?.params);
-        const cached = await cache.get<ApiResponse<T>>(cacheKey);
-        if (cached) return cached;
+        if (options?.cache !== false) {
+          const cached = await cache.get<ApiResponse<T>>(cacheKey);
+          if (cached) return cached;
+        }
       }
 
       // 2. Build full URL with query params

@@ -23,6 +23,7 @@ export type {
   ApiResponse,
   CacheAdapter,
   CacheTtlConfig,
+  CallOptions,
   ClientConfig,
   Middleware,
   RateLimiterConfig,
