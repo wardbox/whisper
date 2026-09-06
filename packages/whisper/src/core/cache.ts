@@ -17,21 +17,31 @@ interface CacheEntry {
 }
 
 /**
- * Default in-memory cache backed by a `Map`.
+ * In-memory cache backed by a `Map`, bounded by entry count.
  *
- * Entries are lazily evicted on access -- expired entries are removed when
- * `get()` or `has()` is called. A TTL of 0 or less means "do not cache",
- * which is the correct default for live game data (spectator endpoints).
+ * Expired entries are dropped when read, and when the cache is full every
+ * expired entry is swept before the oldest live entries are evicted (FIFO)
+ * to make room. A TTL of 0 or less means "do not cache", which is the
+ * correct default for live game data (spectator endpoints).
+ *
+ * The bound is on entry count, not bytes: match-v5 bodies are ~1.3MB each,
+ * so size `maxEntries` for the largest responses you cache.
  *
  * @example
  * ```typescript
- * const cache = new MemoryCache();
+ * const cache = new MemoryCache({ maxEntries: 200 });
  * await cache.set('summoner:abc', data, 3600);
  * const cached = await cache.get<SummonerDTO>('summoner:abc');
  * ```
  */
 export class MemoryCache implements CacheAdapter {
   private readonly store = new Map<string, CacheEntry>();
+  private readonly maxEntries: number;
+
+  /** @param options.maxEntries - Maximum live entries before FIFO eviction (default 1000) */
+  constructor(options: { maxEntries?: number | undefined } = {}) {
+    this.maxEntries = options.maxEntries ?? 1000;
+  }
 
   async get<T>(key: string): Promise<T | undefined> {
     const entry = this.store.get(key);
@@ -47,6 +57,16 @@ export class MemoryCache implements CacheAdapter {
 
   async set<T>(key: string, value: T, ttlSeconds: number): Promise<void> {
     if (ttlSeconds <= 0) return;
+    if (!this.store.has(key) && this.store.size >= this.maxEntries) {
+      // ponytail: sweep expired then FIFO; LRU needs touch-on-read bookkeeping, add if hit rate matters
+      const now = Date.now();
+      for (const [k, entry] of this.store) {
+        if (now >= entry.expiresAt) this.store.delete(k);
+      }
+      while (this.store.size >= this.maxEntries) {
+        this.store.delete(this.store.keys().next().value as string);
+      }
+    }
     this.store.set(key, {
       value,
       expiresAt: Date.now() + ttlSeconds * 1000,

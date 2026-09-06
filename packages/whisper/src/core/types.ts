@@ -12,6 +12,20 @@ export interface CacheAdapter {
   has(key: string): Promise<boolean>;
 }
 
+/**
+ * Per-call options accepted by every API method.
+ *
+ * @example
+ * ```typescript
+ * // Skip the cache for this one call; the fresh response is stored for later reads
+ * const summoner = await summonerV4.getByPuuid(client, 'na1', puuid, { cache: false });
+ * ```
+ */
+export interface CallOptions {
+  /** Set to `false` to bypass the cache read for this call. The fresh response is still stored. */
+  cache?: false | undefined;
+}
+
 /** Per-method TTL configuration via pattern matching */
 export interface CacheTtlConfig {
   [pattern: string]: number;
@@ -72,7 +86,10 @@ export interface ApiResponse<T = unknown> {
 export interface ClientConfig {
   /** API key or async key provider for rotation */
   apiKey: ApiKeyProvider;
-  /** Cache adapter, or false to disable caching */
+  /**
+   * Cache adapter. Off by default; pass `new MemoryCache()` or a custom {@link CacheAdapter} to enable.
+   * `false` is accepted and equivalent to omitting it.
+   */
   cache?: CacheAdapter | false | undefined;
   /** Per-method TTL configuration */
   cacheTtl?: CacheTtlConfig | undefined;

@@ -3,20 +3,30 @@ title: Caching
 description: Per-method TTL caching with pluggable adapters
 ---
 
-## Default Behavior
+## Opt-In Caching
 
-Whisper includes an in-memory cache that is enabled by default. GET requests are cached based on route, path, and query parameters. The default TTL is 300 seconds (5 minutes).
+Caching is off by default. Riot responses are either immutable (match bodies, which you usually store yourself) or time-sensitive (live games, ranked entries), so the library does not guess for you. Pass a cache adapter to enable it:
 
 ```typescript
-import { createClient } from '@wardbox/whisper/core';
+import { createClient, MemoryCache } from '@wardbox/whisper/core';
 
-// Caching is active by default (in-memory, 300s TTL)
 const client = createClient({
   apiKey: 'RGAPI-your-key-here',
+  cache: new MemoryCache(),
 });
 ```
 
-Cache keys include a hash of your API key to prevent cross-key cache pollution when rotating keys.
+With a cache, GET requests are stored keyed by route, path, and query parameters for `cacheTtl` seconds (default 300). Cache keys include a hash of your API key to prevent cross-key cache pollution when rotating keys.
+
+`MemoryCache` is bounded by entry count (default 1000, FIFO eviction once full, expired entries swept first). The bound is entries, not bytes, so size it for the largest bodies you cache:
+
+```typescript
+// match-v5 bodies are ~1.3MB each; keep at most ~65MB resident
+const client = createClient({
+  apiKey: 'RGAPI-your-key-here',
+  cache: new MemoryCache({ maxEntries: 50 }),
+});
+```
 
 ## TTL Configuration
 
@@ -38,6 +48,19 @@ const client = createClient({
 ```
 
 A TTL of `0` means "do not cache" -- the request always hits the API. This is the correct default for live game data like spectator endpoints, where stale data is actively harmful.
+
+## Bypassing the Cache for One Call
+
+Pass `{ cache: false }` to `client.request` to skip the cached entry and fetch from Riot. The fresh response is stored, so later reads see it:
+
+```typescript
+const summoner = await client.request<LolSummoner>(
+  'na1',
+  `/lol/summoner/v4/summoners/by-puuid/${puuid}`,
+  'summoner-v4.getByPuuid',
+  { cache: false },
+);
+```
 
 ## Custom Cache Adapter
 
@@ -77,17 +100,6 @@ const client = createClient({
 });
 ```
 
-## Disabling the Cache
-
-To skip caching entirely:
-
-```typescript
-const client = createClient({
-  apiKey: 'RGAPI-your-key-here',
-  cache: false,
-});
-```
-
 ## API-Key-Aware Cache Keys
 
 Cache keys include a short hash derived from your API key. This prevents a subtle bug: if you rotate API keys and the old key's cached responses are served to the new key, Riot may flag the mismatch.
@@ -101,6 +113,7 @@ Example:          k8f2a:na1:/lol/summoner/v4/summoners/by-puuid/xyz
 
 ## Cache Behavior
 
+- Nothing is cached unless you pass a `cache` adapter.
 - Only **GET** requests are cached. POST, PUT, and DELETE always hit the API.
 - The cache is checked **before** the middleware pipeline runs -- cached responses skip middleware entirely for performance.
-- Expired entries are lazily evicted on access, not on a timer.
+- `MemoryCache` drops expired entries on read, and sweeps them (then evicts oldest, FIFO) when `maxEntries` is reached.

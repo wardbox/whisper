@@ -82,6 +82,44 @@ describe('MemoryCache', () => {
     expect(await cache.has('key2')).toBe(true);
   });
 
+  it('sweeps expired entries when full instead of growing forever', async () => {
+    const small = new MemoryCache({ maxEntries: 3 });
+    await small.set('a', 1, 1);
+    await small.set('b', 2, 1);
+    await small.set('c', 3, 10);
+    vi.advanceTimersByTime(1100);
+
+    await small.set('d', 4, 10);
+
+    expect(await small.has('a')).toBe(false);
+    expect(await small.has('b')).toBe(false);
+    expect(await small.get('c')).toBe(3);
+    expect(await small.get('d')).toBe(4);
+  });
+
+  it('evicts oldest live entry (FIFO) when full and nothing is expired', async () => {
+    const small = new MemoryCache({ maxEntries: 2 });
+    await small.set('a', 1, 10);
+    await small.set('b', 2, 10);
+
+    await small.set('c', 3, 10);
+
+    expect(await small.has('a')).toBe(false);
+    expect(await small.get('b')).toBe(2);
+    expect(await small.get('c')).toBe(3);
+  });
+
+  it('overwriting an existing key does not evict', async () => {
+    const small = new MemoryCache({ maxEntries: 2 });
+    await small.set('a', 1, 10);
+    await small.set('b', 2, 10);
+
+    await small.set('a', 9, 10);
+
+    expect(await small.get('a')).toBe(9);
+    expect(await small.get('b')).toBe(2);
+  });
+
   it('stores and retrieves complex objects', async () => {
     const obj = { name: 'Faker', level: 500, nested: { rank: 'Challenger' } };
     await cache.set('summoner', obj, 60);
