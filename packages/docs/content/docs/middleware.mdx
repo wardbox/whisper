@@ -146,4 +146,4 @@ Cache hit? -> return cached
 Cache miss -> onRequest -> rate limit -> fetch -> onResponse -> cache store
 ```
 
-Cached responses skip middleware entirely for performance. If you need middleware to run on every call regardless of cache, disable caching for those endpoints with `cacheTtl: { '/path': 0 }`.
+Cached responses skip middleware entirely for performance. Caching is off unless you pass a `cache` adapter; if you have one and need middleware to run on every call for some endpoints, set `cacheTtl: { '/path': 0 }` for them.
