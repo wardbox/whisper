@@ -1,9 +1,11 @@
 # Proactive rate limiting by default
 
-Whisper parses Riot's `X-App-Rate-Limit`, `X-Method-Rate-Limit`, and
-`X-Rate-Limit-Count` headers and queues requests *before* a limit is reached,
-rather than firing freely and retrying on 429. This proactive strategy is the
-default; a reactive retry-on-429 mode remains configurable.
+Whisper parses Riot's `X-App-Rate-Limit`, `X-App-Rate-Limit-Count`,
+`X-Method-Rate-Limit`, and `X-Method-Rate-Limit-Count` headers and queues
+requests *before* a limit is reached, rather than firing freely and retrying on
+429. This proactive strategy is the default. Setting `rateLimiter: false`
+disables both the proactive queue and the client-side 429 retries; there is no
+separate reactive mode.
 
 ## Considered Options
 
