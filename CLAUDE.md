@@ -83,7 +83,7 @@ Docs site with auto-generated type tables from source and inline type info in co
 
 ## Key Conventions
 
-- Cache is opt-in (off by default), per-method configurable with TTLs (summoner = long, match = short, live game = none). Bounded `MemoryCache` provided, pluggable via adapter interface.
+- Cache is opt-in (off by default), TTLs configurable per request-path pattern (summoner = long, match = short, live game = none). Bounded `MemoryCache` provided, pluggable via adapter interface.
 - Client accepts API key as string or async function (for key rotation).
 - Middleware/interceptor pattern for logging, metrics, retries, custom auth — raw and configurable, but sane defaults out of the box.
 - Every public export must have TSDoc with examples. Fields on types get JSDoc so IDE tooltips are useful without opening docs.

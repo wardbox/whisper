@@ -85,19 +85,33 @@ describe('createClient', () => {
   });
 
   it('per-call cache:false skips the cached entry and refreshes it', async () => {
-    const fetchMock = mockFetch(200, { id: '1' });
+    let callCount = 0;
+    const fetchMock = vi.fn().mockImplementation(() => {
+      callCount++;
+      return Promise.resolve({
+        ok: true,
+        status: 200,
+        statusText: 'OK',
+        headers: new Headers(),
+        json: async () => ({ call: callCount }),
+      });
+    });
+    globalThis.fetch = fetchMock;
     const client = createClient({
       apiKey: 'RGAPI-test',
       cache: new MemoryCache(),
       rateLimiter: false,
     });
 
-    await client.request('na1', '/test', 'test.method');
-    await client.request('na1', '/test', 'test.method', { cache: false });
-    await client.request('na1', '/test', 'test.method');
+    const r1 = await client.request('na1', '/test', 'test.method');
+    const r2 = await client.request('na1', '/test', 'test.method', { cache: false });
+    const r3 = await client.request('na1', '/test', 'test.method');
 
     // 1st fetches and stores, 2nd bypasses and re-stores, 3rd reads the refreshed entry
     expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(r1.data).toEqual({ call: 1 });
+    expect(r2.data).toEqual({ call: 2 });
+    expect(r3.data).toEqual({ call: 2 });
   });
 
   it('POST requests bypass cache (two POSTs = two fetch calls)', async () => {

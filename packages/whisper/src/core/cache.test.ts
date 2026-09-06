@@ -120,6 +120,12 @@ describe('MemoryCache', () => {
     expect(await small.get('b')).toBe(2);
   });
 
+  it('rejects non-positive-integer maxEntries', () => {
+    for (const bad of [0, -1, 1.5, Number.NaN, Number.POSITIVE_INFINITY]) {
+      expect(() => new MemoryCache({ maxEntries: bad })).toThrow(RangeError);
+    }
+  });
+
   it('stores and retrieves complex objects', async () => {
     const obj = { name: 'Faker', level: 500, nested: { rank: 'Challenger' } };
     await cache.set('summoner', obj, 60);

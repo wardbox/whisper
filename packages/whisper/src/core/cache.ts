@@ -38,9 +38,13 @@ export class MemoryCache implements CacheAdapter {
   private readonly store = new Map<string, CacheEntry>();
   private readonly maxEntries: number;
 
-  /** @param options.maxEntries - Maximum live entries before FIFO eviction (default 1000) */
+  /** @param options.maxEntries - Maximum live entries before FIFO eviction (positive integer, default 1000) */
   constructor(options: { maxEntries?: number | undefined } = {}) {
-    this.maxEntries = options.maxEntries ?? 1000;
+    const max = options.maxEntries ?? 1000;
+    if (!Number.isInteger(max) || max < 1) {
+      throw new RangeError(`MemoryCache maxEntries must be a positive integer, got ${max}`);
+    }
+    this.maxEntries = max;
   }
 
   async get<T>(key: string): Promise<T | undefined> {
