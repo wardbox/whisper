@@ -49,4 +49,17 @@ const result = spawnSync('npm', ['publish', '--access', 'public', '--provenance'
   cwd: resolve(__dirname, '../packages/whisper'),
   stdio: 'inherit',
 });
-process.exit(result.status ?? 1);
+if (result.status !== 0) process.exit(result.status ?? 1);
+
+// Tag and create a GitHub release with this version's CHANGELOG section as
+// the notes. Needs GITHUB_TOKEN in env (release.yml passes it through).
+const changelog = readFileSync(resolve(__dirname, '../packages/whisper/CHANGELOG.md'), 'utf8');
+const section = changelog.split(/^## /m).find((s) => s.startsWith(`${version}\n`));
+const notes = section ? section.slice(version.length).trim() : `Release ${version}`;
+console.log(`publish-if-new: creating GitHub release v${version}...`);
+const release = spawnSync(
+  'gh',
+  ['release', 'create', `v${version}`, '--title', `v${version}`, '--notes', notes],
+  { stdio: 'inherit' },
+);
+process.exit(release.status ?? 1);
