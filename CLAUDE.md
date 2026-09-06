@@ -91,3 +91,17 @@ Docs site with auto-generated type tables from source and inline type info in co
 - Runtime agnostic: native `fetch` only. Must work in Node 18+, Deno, Bun, edge runtimes.
 - Tree-shakeable per-game imports: `@wardbox/whisper/lol`, `@wardbox/whisper/tft`, etc.
 - Zero entries in `dependencies` field — all runtime deps forbidden.
+
+## Agent skills
+
+### Issue tracker
+
+Issues live in GitHub Issues (`gh` CLI). See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Default five-role vocabulary. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context — `CONTEXT.md` + `docs/adr/` at repo root. See `docs/agents/domain.md`.
